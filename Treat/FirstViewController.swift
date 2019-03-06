@@ -44,6 +44,8 @@ class FirstViewController: UIViewController, UITableViewDelegate {
 
 
     @IBOutlet weak var tableView: UITableView!
+    var refreshControl = UIRefreshControl()
+
     var dataSource : TaskDataSource? = nil
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -51,11 +53,12 @@ class FirstViewController: UIViewController, UITableViewDelegate {
     }
     
     //Insert new row into table view with title New Task
-    func addNewTask(_ sender: Any) {
+    @objc func addNewTask(_ sender: Any) {
         dataSource!.data[dataSource!.id] = (0, "New Task")
         dataSource!.id += 1
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.fade)
+        refreshControl.endRefreshing()
     }
     
     override func viewDidLoad() {
@@ -67,8 +70,17 @@ class FirstViewController: UIViewController, UITableViewDelegate {
         self.tabBarController?.tabBar.clipsToBounds = true
         self.tabBarController!.tabBar.isTranslucent = true;
         
+        refreshControl.addTarget(self, action: #selector(addNewTask(_:)), for: .valueChanged)
+        
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        
         dataSource = TaskDataSource()
         tableView.dataSource = dataSource
+
         tableView.rowHeight = 90;
         tableView.delegate = self
         tableView.reloadData()

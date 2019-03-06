@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0C6FEFFA222F420800F4FC23 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6FEFF9222F420800F4FC23 /* ProfileViewController.swift */; };
+		0C6FEFFC222F5D2500F4FC23 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6FEFFB222F5D2500F4FC23 /* Task.swift */; };
+		0C6FEFFE222F5DAC00F4FC23 /* Treat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6FEFFD222F5DAC00F4FC23 /* Treat.swift */; };
+		0C6FF000222F648400F4FC23 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6FEFFF222F648400F4FC23 /* UserProfile.swift */; };
 		0CE8635422124EC2005BD651 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE8635322124EC2005BD651 /* AppDelegate.swift */; };
 		0CE8635622124EC2005BD651 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE8635522124EC2005BD651 /* FirstViewController.swift */; };
 		0CE8635822124EC2005BD651 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE8635722124EC2005BD651 /* SecondViewController.swift */; };
@@ -37,6 +40,9 @@
 
 /* Begin PBXFileReference section */
 		0C6FEFF9222F420800F4FC23 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		0C6FEFFB222F5D2500F4FC23 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		0C6FEFFD222F5DAC00F4FC23 /* Treat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Treat.swift; sourceTree = "<group>"; };
+		0C6FEFFF222F648400F4FC23 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		0CE8635022124EC2005BD651 /* Treat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Treat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CE8635322124EC2005BD651 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0CE8635522124EC2005BD651 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +115,9 @@
 				0CE8635E22124EC3005BD651 /* LaunchScreen.storyboard */,
 				0CE8636122124EC3005BD651 /* Info.plist */,
 				0C6FEFF9222F420800F4FC23 /* ProfileViewController.swift */,
+				0C6FEFFB222F5D2500F4FC23 /* Task.swift */,
+				0C6FEFFD222F5DAC00F4FC23 /* Treat.swift */,
+				0C6FEFFF222F648400F4FC23 /* UserProfile.swift */,
 			);
 			path = Treat;
 			sourceTree = "<group>";
@@ -262,8 +271,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C6FEFFE222F5DAC00F4FC23 /* Treat.swift in Sources */,
 				0CE8635822124EC2005BD651 /* SecondViewController.swift in Sources */,
+				0C6FF000222F648400F4FC23 /* UserProfile.swift in Sources */,
 				0CE8635422124EC2005BD651 /* AppDelegate.swift in Sources */,
+				0C6FEFFC222F5D2500F4FC23 /* Task.swift in Sources */,
 				0C6FEFFA222F420800F4FC23 /* ProfileViewController.swift in Sources */,
 				0CE8635622124EC2005BD651 /* FirstViewController.swift in Sources */,
 			);
