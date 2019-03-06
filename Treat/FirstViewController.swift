@@ -53,13 +53,14 @@ class FirstViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var button2: UIButton!
     @IBOutlet weak var button3: UIButton!
     @IBOutlet weak var button4: UIButton!
-    var selectedAnswer : Int = -1
+    var selectedAnswer : Int = 0
     var answerButtons : [UIButton] = []
     @IBOutlet weak var add: UIButton!
     var pointAmounts : [Int] = [10, 50, 100, 500]
     
     @IBAction func taskInputChanged(_ sender: Any) {
-        if (taskInput.text == nil || taskInput.text! == "") {
+        print("inpuuuuut!")
+        if (taskInput.text == nil || taskInput.text == "") {
             add.isEnabled = false
         } else {
             add.isEnabled = true
@@ -101,10 +102,6 @@ class FirstViewController: UIViewController, UITableViewDelegate {
     }
     
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("User selected row at \(indexPath)")
-//    }
-    
     //Insert new row into table view with title New Task
     @objc func addNewTask(_ sender: Any) {
         newTaskView.isHidden = false
@@ -141,8 +138,11 @@ class FirstViewController: UIViewController, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
         let content:String = "+ \(dataSource!.data[editActionsForRowAt.row].points)"
-        let share = UITableViewRowAction(style: .normal, title: content) { action, index in
+        let share = UITableViewRowAction(style: .destructive, title: content) { action, index in
             print("share button tapped")
+            self.dataSource?.completeTasks.append((self.dataSource?.data[editActionsForRowAt.row])!)
+            self.dataSource?.data.remove(at: editActionsForRowAt.row)
+            tableView.deleteRows(at: [editActionsForRowAt], with: .fade)
         }
         share.backgroundColor = .blue
         
