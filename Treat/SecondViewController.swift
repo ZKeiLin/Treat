@@ -8,55 +8,44 @@
 
 import UIKit
 
+
 class TreatDataSource : NSObject, UITableViewDataSource
 {
-    var id : Int = 0
-    var data : [Int: (Int, String)] = [Int: (Int, String)]()
-    
-    override init() {
-        data[id] = (0, "New")
-        id += 1;
-    }
+    var data : [Treat] = []
+    init(_ elements : [Treat]) { data = elements }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count;
-    }
-    
-    // Code for Swipe right to delete
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            self.data.removeValue(forKey: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            id -= 1
-        }
+        return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TreatOnlineCell") as! TreatOnlineCell
+        let currData = data[indexPath.row]
         
-        cell.textLabel?.text = data[data.count - 1 - indexPath.row]!.1
+        cell.name.text = currData.name
+        cell.category.text = currData.category
+        cell.pointsButton.setTitle(String(currData.points), for: .normal)
+        cell.pointsButton.tag = indexPath.row
         
         return cell
     }
 }
 
 class SecondViewController: UIViewController, UITableViewDelegate {
-    
-    
- 
-    var dataSource : TreatDataSource? = nil
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("User selected row at \(indexPath)")
+    struct GlobalVariable{
+        static var addedTreat : Treat? = nil
     }
     
+    var treats : [Treat] = []
+    var dataSource : TreatDataSource? = nil
+    
     @IBOutlet weak var tableView: UITableView!
-    //Insert new row into table view with title New Task
-    func addNewTask(_ sender: Any) {
-        dataSource!.data[dataSource!.id] = (0, "New Treat")
-        dataSource!.id += 1
-        let indexPath = IndexPath(row: 0, section: 0)
-        tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.fade)
+    
+    func reloadData() {
+        dataSource = TreatDataSource(treats)
+        tableView.dataSource = dataSource
+        tableView.delegate = self
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -68,10 +57,16 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         self.tabBarController?.tabBar.clipsToBounds = true
         self.tabBarController!.tabBar.isTranslucent = true;
         
-        dataSource = TreatDataSource()
-        tableView.dataSource = dataSource
-        tableView.delegate = self
-        tableView.reloadData()
+        self.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let newTreat = GlobalVariable.addedTreat
+        if newTreat != nil {
+            treats.append(newTreat!)
+            GlobalVariable.addedTreat = nil
+            self.reloadData()
+        }
     }
     
 }

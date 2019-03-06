@@ -19,4 +19,4 @@ class Treat {
         self.points = points
     }
 }
-// Sample data link: https://api.myjson.com/bins/zvc0e
+// Sample data link: https://api.myjson.com/bins/1002ja

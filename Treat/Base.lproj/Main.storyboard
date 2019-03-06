@@ -253,33 +253,66 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yj6-R8-7Pc">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yj6-R8-7Pc">
                                 <rect key="frame" x="0.0" y="217.33333333333331" width="414" height="595.66666666666674"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellReuseIdentifier" textLabel="gvk-iy-C8D" detailTextLabel="VEf-In-4es" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="2S5-3n-GEN">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TreatOnlineCell" rowHeight="60" id="Eps-M5-Sru" customClass="TreatOnlineCell" customModule="Treat" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2S5-3n-GEN" id="sfn-cG-sZi">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Eps-M5-Sru" id="0pJ-AL-il7">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="59.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gvk-iy-C8D">
-                                                    <rect key="frame" x="20.000000000000004" y="11" width="41.333333333333336" height="24"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entertainment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESq-6V-gLL">
+                                                    <rect key="frame" x="20" y="32" width="311" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VEf-In-4es">
-                                                    <rect key="frame" x="20" y="35" width="43" height="14.333333333333334"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vib-Dm-TY6">
+                                                    <rect key="frame" x="339" y="14" width="60" height="30"/>
+                                                    <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="yHw-DL-S3P"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                    <color key="tintColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="Add"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="15"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="addTreat:" destination="bW9-o3-kz5" eventType="touchUpInside" id="I1t-Tm-P61"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Netflix" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLd-AS-dVp">
+                                                    <rect key="frame" x="20" y="11" width="311" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="CLd-AS-dVp" secondAttribute="height" multiplier="311:21" id="Lxf-rs-AEM"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ESq-6V-gLL" firstAttribute="width" secondItem="CLd-AS-dVp" secondAttribute="width" id="AIp-3L-a1x"/>
+                                                <constraint firstItem="ESq-6V-gLL" firstAttribute="top" secondItem="CLd-AS-dVp" secondAttribute="bottom" id="GZh-fg-XJR"/>
+                                                <constraint firstAttribute="trailing" secondItem="vib-Dm-TY6" secondAttribute="trailing" constant="15" id="Pii-gI-seh"/>
+                                                <constraint firstItem="ESq-6V-gLL" firstAttribute="leading" secondItem="0pJ-AL-il7" secondAttribute="leading" constant="20" id="Qg9-zM-ouw"/>
+                                                <constraint firstItem="CLd-AS-dVp" firstAttribute="leading" secondItem="0pJ-AL-il7" secondAttribute="leading" constant="20" id="UvC-DF-ejB"/>
+                                                <constraint firstItem="vib-Dm-TY6" firstAttribute="top" secondItem="0pJ-AL-il7" secondAttribute="top" constant="14" id="Y2w-yp-qFC"/>
+                                                <constraint firstItem="CLd-AS-dVp" firstAttribute="top" secondItem="0pJ-AL-il7" secondAttribute="top" constant="11" id="Y7z-I7-g17"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="category" destination="ESq-6V-gLL" id="uah-eq-hIA"/>
+                                            <outlet property="name" destination="CLd-AS-dVp" id="rUE-bh-gZO"/>
+                                            <outlet property="pointsButton" destination="vib-Dm-TY6" id="dO1-Nn-MvE"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -426,10 +459,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8UV-4D-a0R">
-                                <rect key="frame" x="0.0" y="183.33333333333337" width="414" height="180"/>
+                                <rect key="frame" x="0.0" y="183.33333333333337" width="414" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="2HJ-t3-CDw"/>
+                                    <constraint firstAttribute="height" constant="300" id="2HJ-t3-CDw"/>
                                 </constraints>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="NAn-kU-oVH">
                                     <rect key="frame" x="0.0" y="88" width="414" height="44"/>
@@ -464,6 +497,9 @@
                                                             <integer key="value" value="15"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="addTreat:" destination="bW9-o3-kz5" eventType="touchUpInside" id="LeQ-t3-b7l"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Netflix" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fz-Cl-aI5">
                                                     <rect key="frame" x="20" y="11" width="311" height="21"/>
@@ -494,7 +530,7 @@
                                 </prototypes>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="52" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="r9o-ec-Iwq">
-                                <rect key="frame" x="0.0" y="419.66666666666674" width="414" height="408.33333333333326"/>
+                                <rect key="frame" x="0.0" y="539.66666666666663" width="414" height="288.33333333333337"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TreatCategoryCell" rowHeight="52" id="xq4-u0-1rJ" customClass="TreatCategoryCell" customModule="Treat" customModuleProvider="target">
@@ -550,7 +586,7 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4W-4Y-igq">
-                                <rect key="frame" x="20" y="383.33333333333331" width="183.33333333333334" height="32.333333333333314"/>
+                                <rect key="frame" x="20" y="503.33333333333331" width="183.33333333333334" height="32.333333333333314"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -634,6 +670,9 @@
                                                             <integer key="value" value="15"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="addTreat:" destination="9NW-JH-VmL" eventType="touchUpInside" id="UzT-CU-LxH"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Netflix" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SdF-pm-KWh">
                                                     <rect key="frame" x="20" y="11" width="311" height="21"/>
@@ -709,6 +748,6 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sfa-gg-h3T"/>
+        <segue reference="Epe-M8-8fN"/>
     </inferredMetricsTieBreakers>
 </document>
