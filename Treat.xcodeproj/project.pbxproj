@@ -23,6 +23,7 @@
 		7D7DA498222F6F2A00C510B6 /* AddTreatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DA497222F6F2A00C510B6 /* AddTreatViewController.swift */; };
 		7D7DA49A222F771100C510B6 /* TreatOnlineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DA499222F771100C510B6 /* TreatOnlineCell.swift */; };
 		7D7DA49C222F7EE400C510B6 /* TreatCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DA49B222F7EE400C510B6 /* TreatCategoryCell.swift */; };
+		7D7DA49E222F850800C510B6 /* TreatCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DA49D222F850800C510B6 /* TreatCategoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		7D7DA497222F6F2A00C510B6 /* AddTreatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTreatViewController.swift; sourceTree = "<group>"; };
 		7D7DA499222F771100C510B6 /* TreatOnlineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatOnlineCell.swift; sourceTree = "<group>"; };
 		7D7DA49B222F7EE400C510B6 /* TreatCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatCategoryCell.swift; sourceTree = "<group>"; };
+		7D7DA49D222F850800C510B6 /* TreatCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatCategoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				7D7DA497222F6F2A00C510B6 /* AddTreatViewController.swift */,
 				7D7DA499222F771100C510B6 /* TreatOnlineCell.swift */,
 				0CE8635922124EC2005BD651 /* Main.storyboard */,
+				7D7DA49D222F850800C510B6 /* TreatCategoryViewController.swift */,
 				7D7DA49B222F7EE400C510B6 /* TreatCategoryCell.swift */,
 				0CE8635C22124EC3005BD651 /* Assets.xcassets */,
 				0CE8635E22124EC3005BD651 /* LaunchScreen.storyboard */,
@@ -286,6 +289,7 @@
 				0C6FEFFE222F5DAC00F4FC23 /* Treat.swift in Sources */,
 				7D7DA49C222F7EE400C510B6 /* TreatCategoryCell.swift in Sources */,
 				0CE8635822124EC2005BD651 /* SecondViewController.swift in Sources */,
+				7D7DA49E222F850800C510B6 /* TreatCategoryViewController.swift in Sources */,
 				7D7DA49A222F771100C510B6 /* TreatOnlineCell.swift in Sources */,
 				0C6FF000222F648400F4FC23 /* UserProfile.swift in Sources */,
 				0CE8635422124EC2005BD651 /* AppDelegate.swift in Sources */,

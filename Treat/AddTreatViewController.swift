@@ -22,7 +22,7 @@ class TreatOnlineDataSource : NSObject, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count;
+        return data.count // Show first 5 "Popular" Treats
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,13 +77,13 @@ class AddTreatViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         
         // Initialize Popular Treat Table
-        dataSource = TreatOnlineDataSource([])
+        dataSource = TreatOnlineDataSource(treats)
         popularTableView.dataSource = dataSource
         popularTableView.delegate = self
         popularTableView.reloadData()
         
         // Initialize Category Treat Table
-        categoryDataSource = TreatOnlineCategoryDataSource([])
+        categoryDataSource = TreatOnlineCategoryDataSource(categories)
         categoryTableView.dataSource = categoryDataSource
         categoryTableView.delegate = self
         categoryTableView.reloadData()
@@ -95,6 +95,20 @@ class AddTreatViewController: UIViewController, UITableViewDelegate {
  
         // Do any additional setup after loading the view.
     }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //check which cell is pressed, and send over data
+        if segue.identifier == "treatCategorySegue" {
+            print("segue identified!")
+            if let indexPath = categoryTableView.indexPathForSelectedRow {
+                let treatCategoryView = segue.destination as! TreatCategoryViewController
+                print(getTreatsFromCategory(categories[indexPath.row]))
+                treatCategoryView.treats = getTreatsFromCategory(categories[indexPath.row])
+            }
+        }
+    }
+    
     
     func fetchJsonData(_ fetchUrl: String){
         let url = URL(string: fetchUrl)
