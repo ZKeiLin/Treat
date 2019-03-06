@@ -88,22 +88,29 @@ class FirstViewController: UIViewController, UITableViewDelegate {
         selectedAnswer = sender.tag
     }
     
+    
+    @IBOutlet weak var tableviewTop: NSLayoutConstraint!
     @IBAction func addNewCustomTask(_ sender: Any) {
         let input = taskInput.text
         let newTask = Task(name: input!, points: pointAmounts[selectedAnswer])
         dataSource?.data.append(newTask)
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.fade)
-        
+        if tableviewTop.constant >= 90 {
+            tableviewTop.constant -= 90
+        }
         tableView.reloadData()
         newTaskView.isHidden = true;
         taskInput.text = ""
-    }
+    }   
     
     
     //Insert new row into table view with title New Task
     @objc func addNewTask(_ sender: Any) {
         newTaskView.isHidden = false
+        if tableviewTop.constant < 90 {
+            tableviewTop.constant += 90
+        }
         add.isEnabled = false
         refreshControl.endRefreshing()
     }
