@@ -10,12 +10,12 @@ import Foundation
 
 class Treat {
     var name: String
-    var points: Int
     var category: String
+    var points: Int
     
     init(name: String, points: Int, category: String) {
         self.name = name
-        self.points = points
         self.category = category
+        self.points = points
     }
 }
