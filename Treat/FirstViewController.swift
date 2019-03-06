@@ -46,6 +46,7 @@ class FirstViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     var refreshControl = UIRefreshControl()
 
+    @IBOutlet weak var profile: UIBarButtonItem!
     var dataSource : TaskDataSource? = nil
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
