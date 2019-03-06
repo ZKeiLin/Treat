@@ -43,7 +43,8 @@ class TreatDataSource : NSObject, UITableViewDataSource
 class SecondViewController: UIViewController, UITableViewDelegate {
     
     
- 
+    @IBOutlet weak var gh: UILabel!
+    
     var dataSource : TreatDataSource? = nil
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

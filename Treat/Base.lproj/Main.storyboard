@@ -139,21 +139,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
                                 <rect key="frame" x="106.66666666666669" y="426.66666666666669" width="201" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
                                 <rect key="frame" x="99.666666666666686" y="477.66666666666669" width="215" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yj6-R8-7Pc">
-                                <rect key="frame" x="0.0" y="253" width="414" height="560"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yj6-R8-7Pc">
+                                <rect key="frame" x="0.0" y="269" width="414" height="544"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellReuseIdentifier" textLabel="gvk-iy-C8D" detailTextLabel="VEf-In-4es" style="IBUITableViewCellStyleSubtitle" id="2S5-3n-GEN">
@@ -182,32 +184,27 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="175 pts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ni-Py-Eyd">
-                                <rect key="frame" x="20" y="171" width="153" height="54"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="54" id="aof-Dm-m6U"/>
-                                    <constraint firstAttribute="width" constant="153" id="czj-Mb-l1J"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="175 pts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ni-Py-Eyd">
+                                <rect key="frame" x="20" y="196" width="153" height="54"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Your currently have" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jR6-Yq-src">
+                                <rect key="frame" x="20" y="167" width="148" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Yj6-R8-7Pc" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="03Z-hg-hqQ"/>
-                            <constraint firstItem="Yj6-R8-7Pc" firstAttribute="width" secondItem="QS5-Rx-YEW" secondAttribute="width" id="0If-l7-C7c"/>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" constant="8" symbolic="YES" id="Day-4N-Vmt"/>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="JgO-Fn-dHn"/>
-                            <constraint firstItem="Yj6-R8-7Pc" firstAttribute="bottom" secondItem="O1u-W8-tvY" secondAttribute="bottom" id="Sy5-ZJ-gQm"/>
-                            <constraint firstItem="Yj6-R8-7Pc" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="WZ4-4k-Clv"/>
-                            <constraint firstItem="Yj6-R8-7Pc" firstAttribute="top" secondItem="4Ni-Py-Eyd" secondAttribute="bottom" constant="28" id="iNZ-7O-6N7"/>
-                            <constraint firstItem="Yj6-R8-7Pc" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="jIq-Tz-AAg"/>
-                            <constraint firstItem="4Ni-Py-Eyd" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" constant="20" id="kcL-xK-t7V"/>
-                            <constraint firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="qqM-NS-xev"/>
-                            <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
-                            <constraint firstItem="4Ni-Py-Eyd" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" constant="31" id="tJ9-KV-UKg"/>
-                            <constraint firstItem="Yj6-R8-7Pc" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="utu-HW-Vch"/>
+                            <constraint firstItem="Yj6-R8-7Pc" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="6pI-jy-5yt"/>
+                            <constraint firstItem="Yj6-R8-7Pc" firstAttribute="top" secondItem="4Ni-Py-Eyd" secondAttribute="bottom" constant="19" id="D2U-Z4-V3S"/>
+                            <constraint firstItem="jR6-Yq-src" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" constant="27" id="SWl-fD-YG9"/>
+                            <constraint firstItem="Yj6-R8-7Pc" firstAttribute="bottom" secondItem="O1u-W8-tvY" secondAttribute="bottom" id="cXm-RY-VuU"/>
+                            <constraint firstItem="Yj6-R8-7Pc" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="n1L-Xc-9YR"/>
+                            <constraint firstItem="4Ni-Py-Eyd" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" constant="56" id="vYa-fz-wUj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
@@ -226,6 +223,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="gh" destination="4Ni-Py-Eyd" id="Q3C-5G-K9n"/>
                         <outlet property="tableView" destination="Yj6-R8-7Pc" id="I0B-eS-9Ig"/>
                     </connections>
                 </viewController>
