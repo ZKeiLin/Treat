@@ -35,7 +35,7 @@
                                 <rect key="frame" x="0.0" y="140" width="414" height="673"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="cellReuseIdentifier" focusStyle="custom" textLabel="Sp7-Kv-hBq" detailTextLabel="VGR-WU-J43" style="IBUITableViewCellStyleSubtitle" id="rqN-2m-dCG">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="cellReuseIdentifier" focusStyle="custom" textLabel="Sp7-Kv-hBq" style="IBUITableViewCellStyleDefault" id="rqN-2m-dCG">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rqN-2m-dCG" id="G19-kT-NZv">
@@ -43,17 +43,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sp7-Kv-hBq">
-                                                    <rect key="frame" x="20.000000000000004" y="3" width="41.333333333333336" height="24"/>
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VGR-WU-J43">
-                                                    <rect key="frame" x="20" y="26.999999999999996" width="43" height="14.333333333333334"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
-                                                    <color key="textColor" red="0.3333357871" green="0.33332890269999998" blue="0.33333355190000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -72,7 +65,7 @@
                                         <connections>
                                             <action selector="checkInput:" destination="9pv-A4-QxB" eventType="editingDidEnd" id="yEx-kh-7ej"/>
                                             <action selector="taskInput:" destination="Vf6-8W-8IV" eventType="editingDidEnd" id="2Nh-8b-xFU"/>
-                                            <action selector="taskInputChanged:" destination="9pv-A4-QxB" eventType="valueChanged" id="B3Q-TH-O0F"/>
+                                            <action selector="taskInputChanged:" destination="9pv-A4-QxB" eventType="editingChanged" id="g4Z-wK-6Y4"/>
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOC-vB-fUu">
@@ -81,7 +74,9 @@
                                             <constraint firstAttribute="height" constant="30" id="0HI-3I-gRc"/>
                                             <constraint firstAttribute="width" constant="30" id="8ZX-BZ-aI7"/>
                                         </constraints>
-                                        <state key="normal" title="S"/>
+                                        <state key="normal" title="S">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="5OV-Fp-HvI"/>
                                         </connections>
@@ -92,7 +87,9 @@
                                             <constraint firstAttribute="width" constant="30" id="exx-Hc-LSd"/>
                                             <constraint firstAttribute="height" constant="30" id="gyE-ad-MQP"/>
                                         </constraints>
-                                        <state key="normal" title="M"/>
+                                        <state key="normal" title="M">
+                                            <color key="titleColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="FEe-uA-EVl"/>
                                         </connections>
@@ -103,7 +100,9 @@
                                             <constraint firstAttribute="width" constant="30" id="8pc-5J-P55"/>
                                             <constraint firstAttribute="height" constant="30" id="jx3-xH-L2y"/>
                                         </constraints>
-                                        <state key="normal" title="L"/>
+                                        <state key="normal" title="L">
+                                            <color key="titleColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="iZd-mt-1AZ"/>
                                         </connections>
@@ -114,7 +113,9 @@
                                             <constraint firstAttribute="height" constant="30" id="Gnc-iw-fSE"/>
                                             <constraint firstAttribute="width" constant="30" id="b0k-Nc-N3x"/>
                                         </constraints>
-                                        <state key="normal" title="XL"/>
+                                        <state key="normal" title="XL">
+                                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="XsA-ip-xY2"/>
                                         </connections>
