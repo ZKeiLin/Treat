@@ -59,6 +59,78 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="newTaskReuseIdentifier" rowHeight="90" id="AAM-fv-5Rd" customClass="NewTaskTableViewCell" customModule="Treat" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="414" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AAM-fv-5Rd" id="rX1-Hz-WFI">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M1y-YV-qcn">
+                                                    <rect key="frame" x="41.333333333333343" y="11" width="331.33333333333326" height="30"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="taskInput:" destination="Vf6-8W-8IV" eventType="editingDidEnd" id="2Nh-8b-xFU"/>
+                                                    </connections>
+                                                </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOC-vB-fUu">
+                                                    <rect key="frame" x="49" y="49" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="S"/>
+                                                    <connections>
+                                                        <action selector="buttonPressed:" destination="AAM-fv-5Rd" eventType="touchUpInside" id="yXM-t8-0Mq"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFY-k3-v54">
+                                                    <rect key="frame" x="103" y="49" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="M"/>
+                                                    <connections>
+                                                        <action selector="buttonPressed:" destination="AAM-fv-5Rd" eventType="touchUpInside" id="dcG-3I-fmN"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SM8-JZ-B7G">
+                                                    <rect key="frame" x="157" y="49" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="L"/>
+                                                    <connections>
+                                                        <action selector="buttonPressed:" destination="AAM-fv-5Rd" eventType="touchUpInside" id="HWm-Uc-02K"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l7b-Bb-zPK">
+                                                    <rect key="frame" x="211" y="49" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="XL"/>
+                                                    <connections>
+                                                        <action selector="buttonPressed:" destination="AAM-fv-5Rd" eventType="touchUpInside" id="Lzw-62-PmB"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csK-I6-Elo">
+                                                    <rect key="frame" x="334" y="49" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Add"/>
+                                                    <connections>
+                                                        <action selector="addNewTask:" destination="AAM-fv-5Rd" eventType="touchUpInside" id="dYb-Ac-829"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="M1y-YV-qcn" firstAttribute="width" secondItem="rX1-Hz-WFI" secondAttribute="width" multiplier="0.8" id="Ena-yv-ovK"/>
+                                                <constraint firstItem="M1y-YV-qcn" firstAttribute="centerX" secondItem="rX1-Hz-WFI" secondAttribute="centerX" id="jPE-yv-10k"/>
+                                                <constraint firstItem="M1y-YV-qcn" firstAttribute="top" secondItem="rX1-Hz-WFI" secondAttribute="topMargin" id="lJL-z0-5dt"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="add" destination="csK-I6-Elo" id="FdH-8D-Pap"/>
+                                            <outlet property="button1" destination="dOC-vB-fUu" id="Agp-qN-Bzt"/>
+                                            <outlet property="button2" destination="aFY-k3-v54" id="GW8-GU-CkC"/>
+                                            <outlet property="button3" destination="SM8-JZ-B7G" id="e2s-1t-ikX"/>
+                                            <outlet property="button4" destination="l7b-Bb-zPK" id="GwC-63-gyM"/>
+                                            <outlet property="taskInput" destination="M1y-YV-qcn" id="3aB-kd-Hxd"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -96,8 +168,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
+                <exit id="Vf6-8W-8IV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1688.8" y="-320.68965517241384"/>
+            <point key="canvasLocation" x="1688.4057971014495" y="-320.75892857142856"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="rLD-Q3-JYB">
@@ -334,6 +407,6 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Epe-M8-8fN"/>
+        <segue reference="sfa-gg-h3T"/>
     </inferredMetricsTieBreakers>
 </document>

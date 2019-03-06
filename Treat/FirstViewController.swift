@@ -10,13 +10,8 @@ import UIKit
 
 class TaskDataSource : NSObject, UITableViewDataSource
 {
-    var id : Int = 0
-    var data : [Int: (Int, String)] = [Int: (Int, String)]()
-    
-    override init() {
-        data[id] = (0, "New")
-        id += 1;
-    }
+    var data : [Task] = [Task(name: "a", points: 1)]
+    var completeTasks : [Task] = [Task]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count;
@@ -25,18 +20,24 @@ class TaskDataSource : NSObject, UITableViewDataSource
     // Code for Swipe right to delete
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            self.data.removeValue(forKey: indexPath.row)
+            completeTasks.append(data[indexPath.row])
+            self.data.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            id -= 1
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")!
-        
-        cell.textLabel?.text = data[data.count - 1 - indexPath.row]!.1
-        
-        return cell
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "newTaskReuseIdentifier")!
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")!
+            
+            cell.textLabel?.text = data[data.count - 1 - indexPath.row].name
+            
+            return cell
+        }
     }
 }
 
@@ -54,8 +55,8 @@ class FirstViewController: UIViewController, UITableViewDelegate {
     
     //Insert new row into table view with title New Task
     @objc func addNewTask(_ sender: Any) {
-        dataSource!.data[dataSource!.id] = (0, "New Task")
-        dataSource!.id += 1
+        
+        dataSource!.data.append(Task(name: "New Task", points: 10))
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.fade)
         refreshControl.endRefreshing()
@@ -80,7 +81,6 @@ class FirstViewController: UIViewController, UITableViewDelegate {
         
         dataSource = TaskDataSource()
         tableView.dataSource = dataSource
-
         tableView.rowHeight = 90;
         tableView.delegate = self
         tableView.reloadData()
