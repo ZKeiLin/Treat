@@ -129,7 +129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="61m-PX-0a1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2735" y="0.0"/>
+            <point key="canvasLocation" x="2707" y="-321"/>
         </scene>
         <!--Treats-->
         <scene sceneID="wg7-f3-ORb">
@@ -224,6 +224,13 @@
                                 </connections>
                             </button>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="2Gf-NB-xNz">
+                            <connections>
+                                <segue destination="bW9-o3-kz5" kind="popoverPresentation" popoverAnchorBarButtonItem="2Gf-NB-xNz" id="lrl-xA-xUG">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Yj6-R8-7Pc" id="I0B-eS-9Ig"/>
@@ -305,6 +312,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tvk-u1-5hl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="749.27536231884062" y="359.59821428571428"/>
+        </scene>
+        <!--Add Treat-->
+        <scene sceneID="dxx-FF-5mb">
+            <objects>
+                <viewController id="bW9-o3-kz5" userLabel="Add Treat" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Mo4-4N-rPe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="qry-hU-WXV"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tNT-Az-MyF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2706" y="360"/>
         </scene>
     </scenes>
     <resources>
