@@ -26,13 +26,11 @@ class TaskDataSource : NSObject, UITableViewDataSource
     }
     
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")!
             
-            cell.textLabel?.text = data[data.count - 1 - indexPath.row].name
-            
+            cell.textLabel?.text = data[indexPath.row].name
             return cell
     }
 }
@@ -59,7 +57,6 @@ class FirstViewController: UIViewController, UITableViewDelegate {
     var pointAmounts : [Int] = [10, 50, 100, 500]
     
     @IBAction func taskInputChanged(_ sender: Any) {
-        print("inpuuuuut!")
         if (taskInput.text == nil || taskInput.text == "") {
             add.isEnabled = false
         } else {
@@ -94,8 +91,10 @@ class FirstViewController: UIViewController, UITableViewDelegate {
     @IBAction func addNewCustomTask(_ sender: Any) {
         let input = taskInput.text
         let newTask = Task(name: input!, points: pointAmounts[selectedAnswer])
-        let dataLength = dataSource!.data.count
-        dataSource!.data[dataLength - 1] = newTask
+        dataSource?.data.append(newTask)
+        let indexPath = IndexPath(row: 0, section: 0)
+        tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.fade)
+        
         tableView.reloadData()
         newTaskView.isHidden = true;
         taskInput.text = ""
@@ -106,9 +105,6 @@ class FirstViewController: UIViewController, UITableViewDelegate {
     @objc func addNewTask(_ sender: Any) {
         newTaskView.isHidden = false
         add.isEnabled = false
-        dataSource!.data.append(Task(name: "New Task", points: 10))
-        let indexPath = IndexPath(row: 0, section: 0)
-        tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.fade)
         refreshControl.endRefreshing()
     }
     
@@ -137,16 +133,27 @@ class FirstViewController: UIViewController, UITableViewDelegate {
         
     }
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
-        let content:String = "+ \(dataSource!.data[editActionsForRowAt.row].points)"
-        let share = UITableViewRowAction(style: .destructive, title: content) { action, index in
-            print("share button tapped")
-            self.dataSource?.completeTasks.append((self.dataSource?.data[editActionsForRowAt.row])!)
+        let dataLength = dataSource!.data.count
+        let selectedTaskPoint = self.dataSource!.data[editActionsForRowAt.row].points
+        let content:String = "+ \(selectedTaskPoint)"
+        let remove = UITableViewRowAction(style: .destructive, title: content) { action, index in            self.dataSource?.completeTasks.append((self.dataSource?.data[editActionsForRowAt.row])!)
             self.dataSource?.data.remove(at: editActionsForRowAt.row)
             tableView.deleteRows(at: [editActionsForRowAt], with: .fade)
         }
-        share.backgroundColor = .blue
+        switch selectedTaskPoint {
+        case 10:
+            remove.backgroundColor = .blue
+        case 50:
+            remove.backgroundColor = .green
+        case 100:
+            remove.backgroundColor = .orange
+        case 500:
+            remove.backgroundColor = .red
+        default:
+            remove.backgroundColor = .blue
+        }
         
-        return [share]
+        return [remove]
     }
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
