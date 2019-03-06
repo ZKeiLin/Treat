@@ -97,12 +97,12 @@ class FirstViewController: UIViewController, UITableViewDelegate {
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.fade)
         if tableviewTop.constant >= 90 {
-            tableviewTop.constant - = 90
+            tableviewTop.constant -= 90
         }
         tableView.reloadData()
         newTaskView.isHidden = true;
         taskInput.text = ""
-    }
+    }   
     
     
     //Insert new row into table view with title New Task
