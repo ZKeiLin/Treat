@@ -99,18 +99,34 @@ class FirstViewController: UIViewController, UITableViewDelegate {
         if tableviewTop.constant >= 90 {
             tableviewTop.constant -= 90
         }
+        
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut,animations: {
+            self.newTaskView.alpha = 0
+            self.view.layoutIfNeeded()
+        })
+
         tableView.reloadData()
-        newTaskView.isHidden = true;
+//        newTaskView.isHidden = true;
         taskInput.text = ""
-    }   
+        
+    }
+
     
+
     
     //Insert new row into table view with title New Task
     @objc func addNewTask(_ sender: Any) {
         newTaskView.isHidden = false
+        
         if tableviewTop.constant < 90 {
             tableviewTop.constant += 90
         }
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut,animations: {
+            self.newTaskView.alpha = 1
+            self.view.layoutIfNeeded()
+        })
+        
+
         add.isEnabled = false
         refreshControl.endRefreshing()
     }
