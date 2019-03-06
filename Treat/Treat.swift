@@ -19,3 +19,4 @@ class Treat {
         self.category = category
     }
 }
+//sample data link: https://api.myjson.com/bins/1e1g7i

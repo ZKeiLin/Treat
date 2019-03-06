@@ -1,0 +1,20 @@
+{
+    "Treats":[
+        {
+            "name":"Netflix",
+            "points": 15,
+            "category":"Entertainment"
+        },
+        {
+            "name":"League of Legends",
+            "points": 100,
+            "category":"Gaming"
+
+        },
+        {
+            "name":"Anime",
+            "points": 100,
+            "category":"Entertainment"
+        }
+    ]
+}
