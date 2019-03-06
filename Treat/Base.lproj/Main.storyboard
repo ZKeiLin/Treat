@@ -370,6 +370,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="CurrPts" destination="4Ni-Py-Eyd" id="sq6-e9-GUw"/>
                         <outlet property="tableView" destination="Yj6-R8-7Pc" id="I0B-eS-9Ig"/>
                     </connections>
                 </viewController>
