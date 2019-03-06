@@ -70,7 +70,6 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         
         dataSource = TreatDataSource()
         tableView.dataSource = dataSource
-        tableView.rowHeight = 90;
         tableView.delegate = self
         tableView.reloadData()
     }

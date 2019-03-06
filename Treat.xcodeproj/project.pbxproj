@@ -20,6 +20,8 @@
 		0CE8636022124EC3005BD651 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CE8635E22124EC3005BD651 /* LaunchScreen.storyboard */; };
 		0CE8636B22124EC3005BD651 /* TreatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE8636A22124EC3005BD651 /* TreatTests.swift */; };
 		0CE8637622124EC3005BD651 /* TreatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE8637522124EC3005BD651 /* TreatUITests.swift */; };
+		7D7DA498222F6F2A00C510B6 /* AddTreatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DA497222F6F2A00C510B6 /* AddTreatViewController.swift */; };
+		7D7DA49A222F771100C510B6 /* TreatOnlineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DA499222F771100C510B6 /* TreatOnlineCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		0CE8637122124EC3005BD651 /* TreatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TreatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CE8637522124EC3005BD651 /* TreatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatUITests.swift; sourceTree = "<group>"; };
 		0CE8637722124EC3005BD651 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D7DA497222F6F2A00C510B6 /* AddTreatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTreatViewController.swift; sourceTree = "<group>"; };
+		7D7DA499222F771100C510B6 /* TreatOnlineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatOnlineCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,8 @@
 				0CE8635322124EC2005BD651 /* AppDelegate.swift */,
 				0CE8635522124EC2005BD651 /* FirstViewController.swift */,
 				0CE8635722124EC2005BD651 /* SecondViewController.swift */,
+				7D7DA497222F6F2A00C510B6 /* AddTreatViewController.swift */,
+				7D7DA499222F771100C510B6 /* TreatOnlineCell.swift */,
 				0CE8635922124EC2005BD651 /* Main.storyboard */,
 				0CE8635C22124EC3005BD651 /* Assets.xcassets */,
 				0CE8635E22124EC3005BD651 /* LaunchScreen.storyboard */,
@@ -276,12 +282,14 @@
 			files = (
 				0C6FEFFE222F5DAC00F4FC23 /* Treat.swift in Sources */,
 				0CE8635822124EC2005BD651 /* SecondViewController.swift in Sources */,
+				7D7DA49A222F771100C510B6 /* TreatOnlineCell.swift in Sources */,
 				0C6FF000222F648400F4FC23 /* UserProfile.swift in Sources */,
 				0CE8635422124EC2005BD651 /* AppDelegate.swift in Sources */,
 				0C6FEFFC222F5D2500F4FC23 /* Task.swift in Sources */,
 				0C6FF002222F74C500F4FC23 /* NewTaskTableViewCell.swift in Sources */,
 				0C6FEFFA222F420800F4FC23 /* ProfileViewController.swift in Sources */,
 				0CE8635622124EC2005BD651 /* FirstViewController.swift in Sources */,
+				7D7DA498222F6F2A00C510B6 /* AddTreatViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
