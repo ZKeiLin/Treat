@@ -15,8 +15,9 @@ class TreatCategoryViewController: UIViewController, UITableViewDelegate {
     var treats : [Treat] = []
     var dataSource : TreatOnlineDataSource? = nil
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("User selected row at \(indexPath)")
+    @IBAction func addTreat (_ sender : UIButton) {
+        SecondViewController.GlobalVariable.addedTreat = treats[sender.tag]
+        dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {

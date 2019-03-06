@@ -17,12 +17,11 @@ struct TreatObject: Codable {
 class TreatOnlineDataSource : NSObject, UITableViewDataSource
 {
     var data : [Treat] = []
-    init(_ elements : [Treat]) {
-        data = elements
-    }
+    init(_ elements : [Treat]) { data = elements }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count // Show first 5 "Popular" Treats
+        let showCount = data.count < 5 ? data.count : 5
+        return showCount // Show first 5 "Popular" Treats
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -32,6 +31,7 @@ class TreatOnlineDataSource : NSObject, UITableViewDataSource
         cell.name.text = currData.name
         cell.category.text = currData.category
         cell.pointsButton.setTitle(String(currData.points), for: .normal)
+        cell.pointsButton.tag = indexPath.row
         
         return cell
     }
@@ -40,9 +40,7 @@ class TreatOnlineDataSource : NSObject, UITableViewDataSource
 class TreatOnlineCategoryDataSource : NSObject, UITableViewDataSource
 {
     var data : [String] = []
-    init(_ elements : [String]) {
-        data = elements
-    }
+    init(_ elements : [String]) { data = elements }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count;
@@ -67,14 +65,15 @@ class AddTreatViewController: UIViewController, UITableViewDelegate {
     var dataSource : TreatOnlineDataSource? = nil
     var categoryDataSource : TreatOnlineCategoryDataSource? = nil
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("User selected row at \(indexPath)")
-    }
     
     @IBAction func cancelAdd(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func addTreat (_ sender : UIButton) {
+        SecondViewController.GlobalVariable.addedTreat = treats[sender.tag]
+        dismiss(animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,11 +91,7 @@ class AddTreatViewController: UIViewController, UITableViewDelegate {
         categoryTableView.reloadData()
         
         // Fetch online Treats
-        fetchJsonData("https://api.myjson.com/bins/zvc0e")
-        print("test")
-        
- 
-        // Do any additional setup after loading the view.
+        fetchJsonData("https://api.myjson.com/bins/1002ja")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -162,9 +157,7 @@ class AddTreatViewController: UIViewController, UITableViewDelegate {
             let currTreat = Treat(name: t.name, points: t.points, category: t.category)
             returnTreat.append(currTreat)
         }
-        
-//        returnTreat = returnTreat.sorted(by: { $0.hits > $1.hits })
-        self.categories = getCategories(returnTreat)
+                self.categories = getCategories(returnTreat)
         
         return returnTreat
     }
@@ -174,7 +167,6 @@ class AddTreatViewController: UIViewController, UITableViewDelegate {
         for t in treats {
             if !returnCategories.contains(t.category) { returnCategories.append(t.category) }
         }
-        print (returnCategories)
         
         return returnCategories
     }
