@@ -71,6 +71,9 @@ class AddTreatViewController: UIViewController, UITableViewDelegate {
         print("User selected row at \(indexPath)")
     }
     
+    @IBAction func cancelAdd(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     
     override func viewDidLoad() {
@@ -95,7 +98,6 @@ class AddTreatViewController: UIViewController, UITableViewDelegate {
  
         // Do any additional setup after loading the view.
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //check which cell is pressed, and send over data
