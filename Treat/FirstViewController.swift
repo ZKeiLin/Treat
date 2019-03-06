@@ -16,8 +16,7 @@ class TaskDataSource : NSObject, UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count;
     }
-    
-    // Code for Swipe right to delete
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             completeTasks.append(data[indexPath.row])
@@ -26,18 +25,15 @@ class TaskDataSource : NSObject, UITableViewDataSource
         }
     }
     
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "newTaskReuseIdentifier")!
-            
-            return cell
-        } else {
+    
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")!
             
             cell.textLabel?.text = data[data.count - 1 - indexPath.row].name
             
             return cell
-        }
     }
 }
 
@@ -49,13 +45,70 @@ class FirstViewController: UIViewController, UITableViewDelegate {
 
     var dataSource : TaskDataSource? = nil
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("User selected row at \(indexPath)")
+    
+    
+    @IBOutlet weak var newTaskView: UIView!
+    @IBOutlet weak var taskInput: UITextField!
+    @IBOutlet weak var button1: UIButton!
+    @IBOutlet weak var button2: UIButton!
+    @IBOutlet weak var button3: UIButton!
+    @IBOutlet weak var button4: UIButton!
+    var selectedAnswer : Int = -1
+    var answerButtons : [UIButton] = []
+    @IBOutlet weak var add: UIButton!
+    var pointAmounts : [Int] = [10, 50, 100, 500]
+    
+    @IBAction func taskInputChanged(_ sender: Any) {
+        if (taskInput.text == nil || taskInput.text! == "") {
+            add.isEnabled = false
+        } else {
+            add.isEnabled = true
+        }
     }
+    @IBAction func checkInput(_ sender: Any) {
+
+    }
+    // Custom Interaction Helper functions
+    func updateAnswerSelection(_ answerIdx : Int) {
+        for ans in answerButtons { highlightAnswer(ans, highlighted: false) }
+        highlightAnswer(answerButtons[answerIdx], highlighted: true)
+    }
+    
+    func highlightAnswer(_ answerButt : UIButton, highlighted : Bool) {
+        if highlighted {
+            answerButt.backgroundColor = UIColor.lightGray
+            answerButt.setTitleColor(UIColor.black, for: .normal)
+        } else {
+            answerButt.backgroundColor = UIColor.white
+            answerButt.setTitleColor(UIColor.darkGray, for: .normal)
+        }
+    }
+    
+    // Interaction Functions
+    @IBAction func buttonPressed (_ sender : UIButton) {
+        updateAnswerSelection(sender.tag)
+        selectedAnswer = sender.tag
+    }
+    
+    @IBAction func addNewCustomTask(_ sender: Any) {
+        let input = taskInput.text
+        let newTask = Task(name: input!, points: pointAmounts[selectedAnswer])
+        let dataLength = dataSource!.data.count
+        dataSource!.data[dataLength - 1] = newTask
+        tableView.reloadData()
+        newTaskView.isHidden = true;
+        taskInput.text = ""
+    }
+    
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        print("User selected row at \(indexPath)")
+//    }
     
     //Insert new row into table view with title New Task
     @objc func addNewTask(_ sender: Any) {
-        
+        newTaskView.isHidden = false
+        add.isEnabled = false
         dataSource!.data.append(Task(name: "New Task", points: 10))
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.fade)
@@ -78,13 +131,25 @@ class FirstViewController: UIViewController, UITableViewDelegate {
         } else {
             tableView.addSubview(refreshControl)
         }
-        
+        answerButtons = [button1, button2, button3, button4]
         dataSource = TaskDataSource()
         tableView.dataSource = dataSource
         tableView.rowHeight = 90;
         tableView.delegate = self
         tableView.reloadData()
+        
     }
-
+    func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+        let content:String = "+ \(dataSource!.data[editActionsForRowAt.row].points)"
+        let share = UITableViewRowAction(style: .normal, title: content) { action, index in
+            print("share button tapped")
+        }
+        share.backgroundColor = .blue
+        
+        return [share]
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 }
 
