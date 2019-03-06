@@ -571,7 +571,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qry-hU-WXV"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Explore Treats" id="C47-NO-bMA"/>
+                    <navigationItem key="navigationItem" title="Explore Treats" id="C47-NO-bMA">
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="5LO-cD-5Dt">
+                            <connections>
+                                <action selector="cancelAdd:" destination="bW9-o3-kz5" id="MCB-dQ-PVW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="categoryTableView" destination="r9o-ec-Iwq" id="Ctt-sA-2ed"/>
                         <outlet property="popularTableView" destination="8UV-4D-a0R" id="d3j-U0-1eY"/>
@@ -590,7 +596,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MaH-Za-nUv">
-                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="C9j-be-uPF">
                                     <rect key="frame" x="0.0" y="88" width="414" height="44"/>
