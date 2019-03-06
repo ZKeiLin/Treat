@@ -43,7 +43,8 @@ class FirstViewController: UIViewController, UITableViewDelegate {
 
     var dataSource : TaskDataSource? = nil
     
-    
+    let pointColor : [UIColor] = [UIColor.blue, UIColor(red:0.18, green:0.61, blue:0.58, alpha:1.0), UIColor.orange, UIColor.red]
+
     
     @IBOutlet weak var newTaskView: UIView!
     @IBOutlet weak var taskInput: UITextField!
@@ -73,19 +74,25 @@ class FirstViewController: UIViewController, UITableViewDelegate {
     }
     
     func highlightAnswer(_ answerButt : UIButton, highlighted : Bool) {
-        if highlighted {
-            answerButt.backgroundColor = UIColor.lightGray
-            answerButt.setTitleColor(UIColor.black, for: .normal)
-        } else {
+        let color = pointColor[selectedAnswer]
+        if highlighted { // highlighted
+//            answerButt.backgroundColor = UIColor.lightGray
+            answerButt.backgroundColor = color
+            answerButt.layer.cornerRadius = 5
+            answerButt.layer.borderWidth = 1
+            answerButt.layer.borderColor = color.cgColor
+            answerButt.setTitleColor(UIColor.white, for: .normal)
+        } else { // all other buttons
+            answerButt.layer.borderColor = UIColor.white.cgColor
             answerButt.backgroundColor = UIColor.white
-            answerButt.setTitleColor(UIColor.darkGray, for: .normal)
+            answerButt.setTitleColor(pointColor[answerButt.tag], for: .normal)
         }
     }
     
     // Interaction Functions
     @IBAction func buttonPressed (_ sender : UIButton) {
-        updateAnswerSelection(sender.tag)
         selectedAnswer = sender.tag
+        updateAnswerSelection(sender.tag)
     }
     
     
@@ -106,12 +113,9 @@ class FirstViewController: UIViewController, UITableViewDelegate {
         })
 
         tableView.reloadData()
-//        newTaskView.isHidden = true;
         taskInput.text = ""
         
     }
-
-    
 
     
     //Insert new row into table view with title New Task
@@ -125,7 +129,6 @@ class FirstViewController: UIViewController, UITableViewDelegate {
             self.newTaskView.alpha = 1
             self.view.layoutIfNeeded()
         })
-        
 
         add.isEnabled = false
         refreshControl.endRefreshing()
@@ -155,6 +158,8 @@ class FirstViewController: UIViewController, UITableViewDelegate {
         tableView.reloadData()
         
     }
+    
+    
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
         let dataLength = dataSource!.data.count
         let selectedTaskPoint = self.dataSource!.data[editActionsForRowAt.row].points
@@ -163,21 +168,23 @@ class FirstViewController: UIViewController, UITableViewDelegate {
             self.dataSource?.data.remove(at: editActionsForRowAt.row)
             tableView.deleteRows(at: [editActionsForRowAt], with: .fade)
         }
-        switch selectedTaskPoint {
-        case 10:
-            remove.backgroundColor = .blue
-        case 50:
-            remove.backgroundColor = .green
-        case 100:
-            remove.backgroundColor = .orange
-        case 500:
-            remove.backgroundColor = .red
-        default:
-            remove.backgroundColor = .blue
-        }
+        remove.backgroundColor = pointColor[editActionsForRowAt.row]
+//        switch selectedTaskPoint {
+//        case 10:
+//            remove.backgroundColor = .blue
+//        case 50:
+//            remove.backgroundColor = .green
+//        case 100:
+//            remove.backgroundColor = .orange
+//        case 500:
+//            remove.backgroundColor = .red
+//        default:
+//            remove.backgroundColor = .blue
+//        }
         
         return [remove]
     }
+    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
