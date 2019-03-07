@@ -381,9 +381,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="CurrPts" destination="4Ni-Py-Eyd" id="sq6-e9-GUw"/>
                         <outlet property="noTreatAvailable" destination="JLO-FG-In0" id="GF1-o3-Or1"/>
                         <outlet property="tableView" destination="Yj6-R8-7Pc" id="I0B-eS-9Ig"/>
+                        <outlet property="userPointsLabel" destination="4Ni-Py-Eyd" id="dlK-qS-B4a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>

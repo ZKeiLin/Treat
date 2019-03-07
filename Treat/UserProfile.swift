@@ -9,9 +9,11 @@
 import Foundation
 
 class UserProfile {
+    let XP_PER_LEVEL : Float = 500.0
+
     var name : String
     var points : Int
-    var level : Int?
+    var xp : Int
     
     var history : [Any]
     
@@ -21,14 +23,31 @@ class UserProfile {
     init(name: String) {
         self.name = name
         self.points = 0
-        self.level = 0
+        self.xp = 0
+        
         self.history = []
         self.tasks = []
         self.treats = []
         
         let firstTask = Task(name: "Pull down to create new tasks", points: 10)
         tasks.append(firstTask)
-        
-        
+    }
+    
+    func addPoints(_ step : Int) { self.points += step }
+
+    func getLevel() -> Int {
+        return Int(floor(Float(xp) / XP_PER_LEVEL))
+    }
+    
+    func completeTask(_ task : Task) {
+        addPoints(task.points)
+        self.xp += points
+        if let idx = self.tasks.firstIndex(where: { $0 === task }) { self.tasks.remove(at: idx) } // Remove task from list
+        self.history.append(task)
+    }
+    
+    func useTreat(_ treat : Treat) {
+        addPoints(treat.points * -1)
+        self.history.append(treat)
     }
 }
