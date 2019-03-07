@@ -21,6 +21,6 @@ extension User {
     @NSManaged public var points: Int32
     @NSManaged public var history: [Any]?
     @NSManaged public var tasks: [Any]?
-//    @NSManaged public var treats: [Any]?
+    @NSManaged public var treats: [Any]?
 
 }

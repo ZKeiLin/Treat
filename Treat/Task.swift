@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Task :NSObject{
+class Task {
     var name: String
     var points: Int
     

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Treat :NSObject{
+class Treat {
     var name: String
     var category: String
     var points: Int
