@@ -97,12 +97,14 @@ class AddTreatViewController: UIViewController, UITableViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //check which cell is pressed, and send over data
         if segue.identifier == "treatCategorySegue" {
-            print("segue identified!")
             if let indexPath = categoryTableView.indexPathForSelectedRow {
                 let treatCategoryView = segue.destination as! TreatCategoryViewController
                 print(getTreatsFromCategory(categories[indexPath.row]))
                 treatCategoryView.treats = getTreatsFromCategory(categories[indexPath.row])
             }
+        } else if segue.identifier == "treatNewSegue" {
+            let createTreatView = segue.destination as! CreateTreatViewController
+            createTreatView.categoryList = categories
         }
     }
     
