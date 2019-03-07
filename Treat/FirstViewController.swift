@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class TaskDataSource : NSObject, UITableViewDataSource
 {
@@ -46,6 +47,7 @@ class FirstViewController: UIViewController, UITableViewDelegate {
     let pointColor : [UIColor] = [UIColor.blue, UIColor(red:0.18, green:0.61, blue:0.58, alpha:1.0), UIColor.orange, UIColor.red]
 
     
+    @IBOutlet weak var test: UILabel!
     @IBOutlet weak var newTaskView: UIView!
     @IBOutlet weak var taskInput: UITextField!
     @IBOutlet weak var button1: UIButton!
@@ -106,6 +108,23 @@ class FirstViewController: UIViewController, UITableViewDelegate {
         if tableviewTop.constant >= 90 {
             tableviewTop.constant -= 90
         }
+        self.user.points = Int32(Int(self.user.points) + pointAmounts[selectedAnswer])
+        PersistenceService.saveContext()
+        
+        print("testFETC")
+        let fetchRequest : NSFetchRequest<User> = User.fetchRequest()
+        do{
+            let result = try PersistenceService.context.fetch(fetchRequest)
+            print(result)
+            for data in result{
+                print(data.name)
+            }
+            self.user = result[0]
+            test.text = String(result[0].points)
+            
+        }catch{
+            print("cantfetch")
+        }
         
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut,animations: {
             self.newTaskView.alpha = 0
@@ -137,6 +156,41 @@ class FirstViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nibs
+                if self.user.name == nil{
+                    self.user.name = "me"
+                    self.user.points = 0
+                    self.user.history = dataSource?.completeTasks
+                    self.user.tasks = dataSource?.data
+                    PersistenceService.saveContext()
+                }
+        let fetchRequest : NSFetchRequest<User> = User.fetchRequest()
+        do{
+            let result = try PersistenceService.context.fetch(fetchRequest)
+            print(result)
+            for data in result{
+                print(data.name)
+            }
+            self.user = result[0]
+            test.text = String(result[0].points)
+        }catch{
+            print("cantfetch")
+            self.user.name = "new"
+            self.user.points = 0
+            self.user.history = dataSource?.completeTasks
+            self.user.tasks = dataSource?.data
+            PersistenceService.saveContext()
+        }
+        
+//        if self.user.name == nil{
+//            self.user.name = "me"
+//            self.user.points = 0
+//            self.user.history = dataSource?.completeTasks
+//            self.user.tasks = dataSource?.data
+//            PersistenceService.saveContext()
+//        }
+//
+        
+        
         
         self.tabBarController!.tabBar.layer.borderWidth = 0.50
         self.tabBarController!.tabBar.layer.borderColor = UIColor(red:0.35, green:0.00, blue:0.68, alpha:0.0).cgColor
