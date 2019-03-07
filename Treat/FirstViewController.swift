@@ -137,8 +137,8 @@ class FirstViewController: UIViewController, UITableViewDelegate {
         tableView.rowHeight = 90;
         tableView.delegate = self
         tableView.reloadData()
-        
     }
+    
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
         let dataLength = dataSource!.data.count
         let selectedTaskPoint = self.dataSource!.data[editActionsForRowAt.row].points
