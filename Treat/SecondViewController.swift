@@ -29,6 +29,7 @@ class TreatDataSource : NSObject, UITableViewDataSource
         cell.pointsButton.setTitle(String(currData.points), for: .normal)
         if userPts < currData.points {
             cell.pointsButton.setTitleColor(UIColor.gray, for: .normal)
+            cell.pointsButton.isEnabled = false
         }
         cell.pointsButton.tag = indexPath.row
         
@@ -40,15 +41,35 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     struct GlobalVariable{
         static var addedTreat : Treat? = nil
     }
-    var user : UserProfile = UserProfile(name: "Bob")
-    var treats : [Treat] = []
+    
+    var user : UserProfile = UserProfile(name: "Me") // SAMPLE DATA -> REMOVE THIS
     var dataSource : TreatDataSource? = nil
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var noTreatAvailable: UILabel!
+    @IBOutlet weak var userPointsLabel: UILabel!
     
-    @IBOutlet weak var CurrPts: UILabel!
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //check which cell is pressed, and send over data
+        if segue.identifier == "treatAddSegue" {
+            let treatAddViewNav = segue.destination as! UINavigationController
+            let treatAddView = treatAddViewNav.topViewController as! AddTreatViewController
+            treatAddView.userTreats = user.treats
+            print("User Treats: \(treatAddView.userTreats)")
+        }
+    }
+    
+    @IBAction func completeTreat (_ sender : UIButton) {
+        user.useTreat(user.treats[sender.tag])
+        print("complete!")
+        self.reloadData()
+    }
+    
     func reloadData() {
-        dataSource = TreatDataSource(treats.sorted(by: {$0.points < $1.points}))
+        userPointsLabel.text = "\(String(user.points)) pts"
+        noTreatAvailable.isHidden = user.treats.count == 0 ? false : true
+        
+        dataSource = TreatDataSource(user.treats.sorted(by: {$0.points < $1.points}))
         dataSource?.userPts = user.points
         tableView.dataSource = dataSource
         tableView.delegate = self
@@ -57,17 +78,14 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nibs
-        
         // Tab Code
-       CurrPts.text = String(user.points) + " pts"
         self.tabBarController!.tabBar.layer.borderWidth = 0.50
         self.tabBarController!.tabBar.layer.borderColor = UIColor(red:0.35, green:0.00, blue:0.68, alpha:0.0).cgColor
         self.tabBarController?.tabBar.clipsToBounds = true
         self.tabBarController!.tabBar.isTranslucent = true;
         
-        // Initialiazing user
-        treats = user.treats
+        // Initializing user
+        user.addPoints(150) // lets give poor bob 150 points for testing
         
         self.reloadData()
     }
@@ -75,12 +93,11 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         let newTreat = GlobalVariable.addedTreat
         if newTreat != nil {
-            treats.append(newTreat!)
+            user.treats.append(newTreat!)
             GlobalVariable.addedTreat = nil
             self.reloadData()
         }
     }
-    
 }
 
 
