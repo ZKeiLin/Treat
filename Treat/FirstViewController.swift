@@ -40,7 +40,7 @@ class FirstViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     var refreshControl = UIRefreshControl()
-
+    var user : User = User(context: PersistenceService.context) 
     var dataSource : TaskDataSource? = nil
     
     let pointColor : [UIColor] = [UIColor.blue, UIColor(red:0.18, green:0.61, blue:0.58, alpha:1.0), UIColor.orange, UIColor.red]

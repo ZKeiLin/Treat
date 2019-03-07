@@ -20,6 +20,10 @@
 		0CE8636022124EC3005BD651 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CE8635E22124EC3005BD651 /* LaunchScreen.storyboard */; };
 		0CE8636B22124EC3005BD651 /* TreatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE8636A22124EC3005BD651 /* TreatTests.swift */; };
 		0CE8637622124EC3005BD651 /* TreatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE8637522124EC3005BD651 /* TreatUITests.swift */; };
+		2D4E28512230923A0071A905 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4E284F2230923A0071A905 /* User+CoreDataClass.swift */; };
+		2D4E28522230923A0071A905 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4E28502230923A0071A905 /* User+CoreDataProperties.swift */; };
+		2D58234E22308E5200BE2988 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D58234C22308E5200BE2988 /* DataModel.xcdatamodeld */; };
+		2D58237122308F5800BE2988 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D58237022308F5800BE2988 /* PersistenceService.swift */; };
 		7D7DA498222F6F2A00C510B6 /* AddTreatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DA497222F6F2A00C510B6 /* AddTreatViewController.swift */; };
 		7D7DA49A222F771100C510B6 /* TreatOnlineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DA499222F771100C510B6 /* TreatOnlineCell.swift */; };
 		7D7DA49C222F7EE400C510B6 /* TreatCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DA49B222F7EE400C510B6 /* TreatCategoryCell.swift */; };
@@ -63,6 +67,10 @@
 		0CE8637122124EC3005BD651 /* TreatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TreatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CE8637522124EC3005BD651 /* TreatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatUITests.swift; sourceTree = "<group>"; };
 		0CE8637722124EC3005BD651 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D4E284F2230923A0071A905 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2D4E28502230923A0071A905 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D58234D22308E5200BE2988 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		2D58237022308F5800BE2988 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		7D7DA497222F6F2A00C510B6 /* AddTreatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTreatViewController.swift; sourceTree = "<group>"; };
 		7D7DA499222F771100C510B6 /* TreatOnlineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatOnlineCell.swift; sourceTree = "<group>"; };
 		7D7DA49B222F7EE400C510B6 /* TreatCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatCategoryCell.swift; sourceTree = "<group>"; };
@@ -133,6 +141,10 @@
 				0C6FEFFD222F5DAC00F4FC23 /* Treat.swift */,
 				0C6FEFFF222F648400F4FC23 /* UserProfile.swift */,
 				0C6FF001222F74C500F4FC23 /* NewTaskTableViewCell.swift */,
+				2D58234C22308E5200BE2988 /* DataModel.xcdatamodeld */,
+				2D58237022308F5800BE2988 /* PersistenceService.swift */,
+				2D4E284F2230923A0071A905 /* User+CoreDataClass.swift */,
+				2D4E28502230923A0071A905 /* User+CoreDataProperties.swift */,
 			);
 			path = Treat;
 			sourceTree = "<group>";
@@ -288,16 +300,20 @@
 			files = (
 				0C6FEFFE222F5DAC00F4FC23 /* Treat.swift in Sources */,
 				7D7DA49C222F7EE400C510B6 /* TreatCategoryCell.swift in Sources */,
+				2D4E28522230923A0071A905 /* User+CoreDataProperties.swift in Sources */,
 				0CE8635822124EC2005BD651 /* SecondViewController.swift in Sources */,
 				7D7DA49E222F850800C510B6 /* TreatCategoryViewController.swift in Sources */,
 				7D7DA49A222F771100C510B6 /* TreatOnlineCell.swift in Sources */,
 				0C6FF000222F648400F4FC23 /* UserProfile.swift in Sources */,
 				0CE8635422124EC2005BD651 /* AppDelegate.swift in Sources */,
+				2D58237122308F5800BE2988 /* PersistenceService.swift in Sources */,
 				0C6FEFFC222F5D2500F4FC23 /* Task.swift in Sources */,
 				0C6FF002222F74C500F4FC23 /* NewTaskTableViewCell.swift in Sources */,
 				0C6FEFFA222F420800F4FC23 /* ProfileViewController.swift in Sources */,
+				2D58234E22308E5200BE2988 /* DataModel.xcdatamodeld in Sources */,
 				0CE8635622124EC2005BD651 /* FirstViewController.swift in Sources */,
 				7D7DA498222F6F2A00C510B6 /* AddTreatViewController.swift in Sources */,
+				2D4E28512230923A0071A905 /* User+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,6 +638,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2D58234C22308E5200BE2988 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2D58234D22308E5200BE2988 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 2D58234D22308E5200BE2988 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0CE8634822124EC1005BD651 /* Project object */;
 }
