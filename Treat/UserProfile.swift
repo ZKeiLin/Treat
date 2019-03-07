@@ -47,7 +47,9 @@ class UserProfile {
     }
     
     func useTreat(_ treat : Treat) {
-        addPoints(treat.points * -1)
-        self.history.append(treat)
+        if points - treat.points >= 0 {
+            addPoints(treat.points * -1)
+            self.history.append(treat)
+        }
     }
 }

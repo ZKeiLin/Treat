@@ -29,6 +29,7 @@ class TreatDataSource : NSObject, UITableViewDataSource
         cell.pointsButton.setTitle(String(currData.points), for: .normal)
         if userPts < currData.points {
             cell.pointsButton.setTitleColor(UIColor.gray, for: .normal)
+            cell.pointsButton.isEnabled = false
         }
         cell.pointsButton.tag = indexPath.row
         
@@ -58,7 +59,14 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         }
     }
     
+    @IBAction func completeTreat (_ sender : UIButton) {
+        user.useTreat(user.treats[sender.tag])
+        print("complete!")
+        self.reloadData()
+    }
+    
     func reloadData() {
+        userPointsLabel.text = "\(String(user.points)) pts"
         noTreatAvailable.isHidden = user.treats.count == 0 ? false : true
         
         dataSource = TreatDataSource(user.treats.sorted(by: {$0.points < $1.points}))
@@ -78,7 +86,6 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         
         // Initializing user
         user.addPoints(150) // lets give poor bob 150 points for testing
-        userPointsLabel.text = "\(String(user.points)) pts"
         
         self.reloadData()
     }

@@ -291,6 +291,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="addTreat:" destination="bW9-o3-kz5" eventType="touchUpInside" id="I1t-Tm-P61"/>
+                                                        <action selector="completeTreat:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="xph-c2-qmo"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Netflix" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLd-AS-dVp">
