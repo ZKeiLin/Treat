@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class TaskDataSource : NSObject, UITableViewDataSource
 {
@@ -40,12 +41,13 @@ class FirstViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     var refreshControl = UIRefreshControl()
-    var user : User = User(context: PersistenceService.context) 
+//    var user : User = User(context: PersistenceService.context) 
     var dataSource : TaskDataSource? = nil
     
     let pointColor : [UIColor] = [UIColor.blue, UIColor(red:0.18, green:0.61, blue:0.58, alpha:1.0), UIColor.orange, UIColor.red]
 
     
+    @IBOutlet weak var testLabel: UILabel!
     @IBOutlet weak var newTaskView: UIView!
     @IBOutlet weak var taskInput: UITextField!
     @IBOutlet weak var button1: UIButton!
@@ -107,11 +109,14 @@ class FirstViewController: UIViewController, UITableViewDelegate {
             tableviewTop.constant -= 90
         }
         
+//        self.user.setValue( dataSource?.data, forKey: "tasks")
+
+//        self.user.tasks = dataSource?.data
+//        PersistenceService.saveContext()
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut,animations: {
             self.newTaskView.alpha = 0
             self.view.layoutIfNeeded()
         })
-
         tableView.reloadData()
         taskInput.text = ""
         
@@ -121,7 +126,6 @@ class FirstViewController: UIViewController, UITableViewDelegate {
     //Insert new row into table view with title New Task
     @objc func addNewTask(_ sender: Any) {
         newTaskView.isHidden = false
-        
         if tableviewTop.constant < 90 {
             tableviewTop.constant += 90
         }
@@ -136,12 +140,21 @@ class FirstViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view, typically from a nibs
-        
+//        if self.user.name == nil{
+//            self.user.name = "me"
+//            self.user.points = 0
+//            self.user.tasks = dataSource?.data
+//            self.user.history = dataSource?.completeTasks
+//            PersistenceService.saveContext()
+//        }
+//        print("name: \(self.user.name), task: \(self.user.tasks)")
         self.tabBarController!.tabBar.layer.borderWidth = 0.50
         self.tabBarController!.tabBar.layer.borderColor = UIColor(red:0.35, green:0.00, blue:0.68, alpha:0.0).cgColor
         self.tabBarController?.tabBar.clipsToBounds = true
         self.tabBarController!.tabBar.isTranslucent = true;
+//        self.testLabel.text = self.user.namef
         
         refreshControl.addTarget(self, action: #selector(addNewTask(_:)), for: .valueChanged)
         
