@@ -88,7 +88,7 @@
                                             <constraint firstAttribute="height" constant="30" id="gyE-ad-MQP"/>
                                         </constraints>
                                         <state key="normal" title="M">
-                                            <color key="titleColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="0.30588235294117649" green="0.78823529411764703" blue="0.63529411764705879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="FEe-uA-EVl"/>
@@ -370,6 +370,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="CurrPts" destination="4Ni-Py-Eyd" id="sq6-e9-GUw"/>
                         <outlet property="tableView" destination="Yj6-R8-7Pc" id="I0B-eS-9Ig"/>
                     </connections>
                 </viewController>
