@@ -45,9 +45,12 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     var dataSource : TreatDataSource? = nil
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var noTreatAvailable: UILabel!
     
     @IBOutlet weak var CurrPts: UILabel!
     func reloadData() {
+        noTreatAvailable.isHidden = treats.count == 0 ? false : true
+        
         dataSource = TreatDataSource(treats.sorted(by: {$0.points < $1.points}))
         dataSource?.userPts = user.points
         tableView.dataSource = dataSource
