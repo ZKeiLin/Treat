@@ -48,6 +48,16 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var noTreatAvailable: UILabel!
     @IBOutlet weak var userPointsLabel: UILabel!
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //check which cell is pressed, and send over data
+        if segue.identifier == "treatAddSegue" {
+            let treatAddViewNav = segue.destination as! UINavigationController
+            let treatAddView = treatAddViewNav.topViewController as! AddTreatViewController
+            treatAddView.userTreats = user.treats
+            print("User Treats: \(treatAddView.userTreats)")
+        }
+    }
+    
     func reloadData() {
         noTreatAvailable.isHidden = user.treats.count == 0 ? false : true
         

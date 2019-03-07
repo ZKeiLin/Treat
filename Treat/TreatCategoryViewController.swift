@@ -12,6 +12,7 @@ class TreatCategoryViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var treatTableView: UITableView!
     
+    var userTreats : [Treat] = []
     var treats : [Treat] = []
     var dataSource : TreatOnlineDataSource? = nil
     
@@ -26,13 +27,9 @@ class TreatCategoryViewController: UIViewController, UITableViewDelegate {
         
         // Initialize Popular Treat Table
         dataSource = TreatOnlineDataSource(treats)
-        print("treats received: \(treats)")
+        dataSource?.userTreats = userTreats
         treatTableView.dataSource = dataSource
         treatTableView.delegate = self
         treatTableView.reloadData()
-        
-        // Do any additional setup after loading the view.
     }
-
-
 }
