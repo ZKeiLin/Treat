@@ -17,6 +17,8 @@ struct TreatObject: Codable {
 class TreatOnlineDataSource : NSObject, UITableViewDataSource
 {
     var data : [Treat] = []
+    var userTreats : [Treat] = []
+    
     init(_ elements : [Treat]) { data = elements }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,6 +33,17 @@ class TreatOnlineDataSource : NSObject, UITableViewDataSource
         cell.name.text = currData.name
         cell.category.text = currData.category
         cell.pointsButton.setTitle(String(currData.points), for: .normal)
+        
+        for t in userTreats {
+            if t.name == currData.name {
+                cell.pointsButton.setTitle("Added", for: .normal)
+                cell.pointsButton.titleLabel?.font = .systemFont(ofSize: 13.0)
+                cell.pointsButton.setTitleColor(UIColor.gray, for: .normal)
+                cell.pointsButton.isEnabled = false
+                break
+            }
+        }
+        
         cell.pointsButton.tag = indexPath.row
         
         return cell
@@ -60,6 +73,7 @@ class AddTreatViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var popularTableView: UITableView!
     @IBOutlet weak var categoryTableView: UITableView!
     
+    var userTreats : [Treat] = []
     var treats : [Treat] = []
     var categories : [String] = []
     var dataSource : TreatOnlineDataSource? = nil
@@ -80,6 +94,7 @@ class AddTreatViewController: UIViewController, UITableViewDelegate {
         
         // Initialize Popular Treat Table
         dataSource = TreatOnlineDataSource(treats)
+        dataSource?.userTreats = userTreats
         popularTableView.dataSource = dataSource
         popularTableView.delegate = self
         popularTableView.reloadData()
@@ -90,19 +105,20 @@ class AddTreatViewController: UIViewController, UITableViewDelegate {
         categoryTableView.delegate = self
         categoryTableView.reloadData()
         
-        // Fetch online Treats
+        // Fetch online Treats (Sample JSON)
         fetchJsonData("https://api.myjson.com/bins/1002ja")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //check which cell is pressed, and send over data
         if segue.identifier == "treatCategorySegue" {
-            print("segue identified!")
             if let indexPath = categoryTableView.indexPathForSelectedRow {
                 let treatCategoryView = segue.destination as! TreatCategoryViewController
-                print(getTreatsFromCategory(categories[indexPath.row]))
                 treatCategoryView.treats = getTreatsFromCategory(categories[indexPath.row])
+                treatCategoryView.userTreats = userTreats
             }
+        } else if segue.identifier == "treatNewSegue" {
+            let createTreatView = segue.destination as! CreateTreatViewController
+            createTreatView.categoryList = categories
         }
     }
     
@@ -136,6 +152,7 @@ class AddTreatViewController: UIViewController, UITableViewDelegate {
                     // All Treats
                     self.treats = fetchedTreats
                     self.dataSource = TreatOnlineDataSource(self.treats)
+                    self.dataSource?.userTreats = self.userTreats
                     self.popularTableView.dataSource = self.dataSource
                     self.popularTableView.reloadData()
                     

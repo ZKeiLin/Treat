@@ -28,6 +28,7 @@
 		7D7DA49A222F771100C510B6 /* TreatOnlineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DA499222F771100C510B6 /* TreatOnlineCell.swift */; };
 		7D7DA49C222F7EE400C510B6 /* TreatCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DA49B222F7EE400C510B6 /* TreatCategoryCell.swift */; };
 		7D7DA49E222F850800C510B6 /* TreatCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DA49D222F850800C510B6 /* TreatCategoryViewController.swift */; };
+		7DFA15012230940000626758 /* CreateTreatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFA15002230940000626758 /* CreateTreatViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		7D7DA499222F771100C510B6 /* TreatOnlineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatOnlineCell.swift; sourceTree = "<group>"; };
 		7D7DA49B222F7EE400C510B6 /* TreatCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatCategoryCell.swift; sourceTree = "<group>"; };
 		7D7DA49D222F850800C510B6 /* TreatCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatCategoryViewController.swift; sourceTree = "<group>"; };
+		7DFA15002230940000626758 /* CreateTreatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTreatViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 				7D7DA497222F6F2A00C510B6 /* AddTreatViewController.swift */,
 				7D7DA499222F771100C510B6 /* TreatOnlineCell.swift */,
 				0CE8635922124EC2005BD651 /* Main.storyboard */,
+				7DFA15002230940000626758 /* CreateTreatViewController.swift */,
 				7D7DA49D222F850800C510B6 /* TreatCategoryViewController.swift */,
 				7D7DA49B222F7EE400C510B6 /* TreatCategoryCell.swift */,
 				0CE8635C22124EC3005BD651 /* Assets.xcassets */,
@@ -303,6 +306,7 @@
 				2D4E28522230923A0071A905 /* User+CoreDataProperties.swift in Sources */,
 				0CE8635822124EC2005BD651 /* SecondViewController.swift in Sources */,
 				7D7DA49E222F850800C510B6 /* TreatCategoryViewController.swift in Sources */,
+				7DFA15012230940000626758 /* CreateTreatViewController.swift in Sources */,
 				7D7DA49A222F771100C510B6 /* TreatOnlineCell.swift in Sources */,
 				0C6FF000222F648400F4FC23 /* UserProfile.swift in Sources */,
 				0CE8635422124EC2005BD651 /* AppDelegate.swift in Sources */,

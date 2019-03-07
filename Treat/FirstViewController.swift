@@ -10,7 +10,7 @@ import UIKit
 
 class TaskDataSource : NSObject, UITableViewDataSource
 {
-    var data : [Task] = [Task(name: "a", points: 1)]
+    var data : [Task] = []
     var completeTasks : [Task] = [Task]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -156,31 +156,27 @@ class FirstViewController: UIViewController, UITableViewDelegate {
         tableView.rowHeight = 90;
         tableView.delegate = self
         tableView.reloadData()
-        
     }
     
-    
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
-        let dataLength = dataSource!.data.count
         let selectedTaskPoint = self.dataSource!.data[editActionsForRowAt.row].points
         let content:String = "+ \(selectedTaskPoint)"
         let remove = UITableViewRowAction(style: .destructive, title: content) { action, index in            self.dataSource?.completeTasks.append((self.dataSource?.data[editActionsForRowAt.row])!)
             self.dataSource?.data.remove(at: editActionsForRowAt.row)
             tableView.deleteRows(at: [editActionsForRowAt], with: .fade)
         }
-        remove.backgroundColor = pointColor[editActionsForRowAt.row]
-//        switch selectedTaskPoint {
-//        case 10:
-//            remove.backgroundColor = .blue
-//        case 50:
-//            remove.backgroundColor = .green
-//        case 100:
-//            remove.backgroundColor = .orange
-//        case 500:
-//            remove.backgroundColor = .red
-//        default:
-//            remove.backgroundColor = .blue
-//        }
+        switch selectedTaskPoint {            
+        case 10:
+            remove.backgroundColor = pointColor[0]
+        case 50:
+            remove.backgroundColor = pointColor[1]
+        case 100:
+            remove.backgroundColor = pointColor[2]
+        case 500:
+            remove.backgroundColor = pointColor[3]
+        default:
+            remove.backgroundColor = pointColor[0]
+        }
         
         return [remove]
     }
