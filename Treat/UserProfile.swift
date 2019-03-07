@@ -40,7 +40,7 @@ class UserProfile {
     }
     
     func completeTask(_ task : Task) {
-        addPoints(task.points)
+        addPoints(task.points!)
         self.xp += points
         if let idx = self.tasks.firstIndex(where: { $0 === task }) { self.tasks.remove(at: idx) } // Remove task from list
         self.history.append(task)

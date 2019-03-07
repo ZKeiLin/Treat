@@ -109,19 +109,20 @@ class FirstViewController: UIViewController, UITableViewDelegate {
             tableviewTop.constant -= 90
         }
         self.user.points = Int32(Int(self.user.points) + pointAmounts[selectedAnswer])
+        self.user.tasks = dataSource?.data
         PersistenceService.saveContext()
         
         print("testFETC")
         let fetchRequest : NSFetchRequest<User> = User.fetchRequest()
         do{
             let result = try PersistenceService.context.fetch(fetchRequest)
-            print(result)
+            print(result.count)
             for data in result{
-                print(data.name)
+                print("resule \(data.tasks)")
             }
             self.user = result[0]
             test.text = String(result[0].points)
-            
+//            dataSource?.data = self.user.tasks as! [Task]
         }catch{
             print("cantfetch")
         }
@@ -155,14 +156,15 @@ class FirstViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dataSource = TaskDataSource()
         // Do any additional setup after loading the view, typically from a nibs
-                if self.user.name == nil{
-                    self.user.name = "me"
-                    self.user.points = 0
-                    self.user.history = dataSource?.completeTasks
-                    self.user.tasks = dataSource?.data
-                    PersistenceService.saveContext()
-                }
+//                if self.user.name == nil{
+//                    self.user.name = "me"
+//                    self.user.points = 0
+//                    self.user.history = dataSource?.completeTasks
+//                    self.user.tasks = dataSource?.data
+//                    PersistenceService.saveContext()
+//                }
         let fetchRequest : NSFetchRequest<User> = User.fetchRequest()
         do{
             let result = try PersistenceService.context.fetch(fetchRequest)
@@ -172,25 +174,19 @@ class FirstViewController: UIViewController, UITableViewDelegate {
             }
             self.user = result[0]
             test.text = String(result[0].points)
+            dataSource?.data = result[0].tasks ?? []
         }catch{
-            print("cantfetch")
-            self.user.name = "new"
+            print("can't fetch")
+        }
+        
+        if self.user.name == nil{
+            //            print("daaaa : \(self.dataSource?.data[0])")
+            self.user.name = "me"
             self.user.points = 0
             self.user.history = dataSource?.completeTasks
             self.user.tasks = dataSource?.data
             PersistenceService.saveContext()
         }
-        
-//        if self.user.name == nil{
-//            self.user.name = "me"
-//            self.user.points = 0
-//            self.user.history = dataSource?.completeTasks
-//            self.user.tasks = dataSource?.data
-//            PersistenceService.saveContext()
-//        }
-//
-        
-        
         
         self.tabBarController!.tabBar.layer.borderWidth = 0.50
         self.tabBarController!.tabBar.layer.borderColor = UIColor(red:0.35, green:0.00, blue:0.68, alpha:0.0).cgColor
@@ -205,7 +201,7 @@ class FirstViewController: UIViewController, UITableViewDelegate {
             tableView.addSubview(refreshControl)
         }
         answerButtons = [button1, button2, button3, button4]
-        dataSource = TaskDataSource()
+       
         tableView.dataSource = dataSource
         tableView.rowHeight = 90;
         tableView.delegate = self

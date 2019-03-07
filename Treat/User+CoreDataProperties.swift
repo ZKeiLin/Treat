@@ -20,7 +20,7 @@ extension User {
     @NSManaged public var name: String?
     @NSManaged public var points: Int32
     @NSManaged public var history: [Any]?
-    @NSManaged public var tasks: [Any]?
+    @NSManaged public var tasks: [Task]?
     @NSManaged public var treats: [Any]?
 
 }
