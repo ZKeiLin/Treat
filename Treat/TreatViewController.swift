@@ -26,11 +26,17 @@ class TreatDataSource : NSObject, UITableViewDataSource
         
         cell.name.text = currData.name
         cell.category.text = currData.category
-        cell.pointsButton.setTitle(String(currData.points), for: .normal)
-        if userPts < currData.points {
-            cell.pointsButton.setTitleColor(UIColor.gray, for: .normal)
-            cell.pointsButton.isEnabled = false
+        
+        var color : UIColor = #colorLiteral(red: 1, green: 0.1764705882, blue: 0.3333333333, alpha: 1)
+        var buttEnabled : Bool = true
+        if userPts < currData.points { // If you can't redeem, disabled button
+            color = UIColor.gray
+            buttEnabled = false
         }
+        
+        cell.pointsButton.setTitleColor(color, for: .normal)
+        cell.pointsButton.isEnabled = buttEnabled
+        cell.pointsButton.setTitle(String(currData.points), for: .normal)
         cell.pointsButton.tag = indexPath.row
         
         return cell
@@ -85,8 +91,9 @@ class TreatViewController: UIViewController, UITableViewDelegate {
         noTreatAvailable.isHidden = self.user!.treats!.count == 0 ? false : true
         self.user!.treats = self.user!.treats?.sorted(by: {$0.points < $1.points})
         
-        dataSource = TreatDataSource(self.user!.treats!) 
-        dataSource?.userPts = Int(self.user!.points)
+        dataSource = TreatDataSource(self.user!.treats!)
+        dataSource!.userPts = Int(self.user!.points)
+        print(dataSource?.userPts)
         tableView.dataSource = dataSource
         tableView.delegate = self
         tableView.reloadData()
