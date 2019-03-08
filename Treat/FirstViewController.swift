@@ -152,43 +152,40 @@ class FirstViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         
         // Fetch Data from Coredata
-        let fetchRequest : NSFetchRequest<User> = User.fetchRequest()
-        do {
-            var result = try PersistenceService.context.fetch(fetchRequest)
-            print("THERE ARE \(result.count) USER PROFILES")
-            
-            if result.count == 0 { // No user profile is found
-                print("Creating initial user")
-                let userProfile : UserProfile = UserProfile(name: "Me") // Default Data, would change to a field user can enter information
-                user = User(context: PersistenceService.context)
-                self.user!.name = userProfile.name
-                self.user!.points = Int32(userProfile.points)
-                self.user!.history = userProfile.history
-                self.user!.tasks = userProfile.tasks
-                self.user!.treats = userProfile.treats
-                PersistenceService.saveContext()
-                result = try PersistenceService.context.fetch(fetchRequest)
-            }
-            
-            for data in result{
-                print(data.name)
-                for t in data.tasks! {
-                    print(t.toString())
-                }
-            }
-            
-            self.user = result[0]
-            dataSource = TaskDataSource(self.user!.tasks!)
-        } catch {
-            print("FATAL: Couldn't fetch Coredta")
-        }
-    
+//        let fetchRequest : NSFetchRequest<User> = User.fetchRequest()
+//        do {
+//            var result = try PersistenceService.context.fetch(fetchRequest)
+//            print("THERE ARE \(result.count) USER PROFILES")
+//
+//            if result.count == 0 { // No user profile is found
+//                print("Creating initial user")
+//                let userProfile : UserProfile = UserProfile(name: "Me") // Default Data, would change to a field user can enter information
+//                user = User(context: PersistenceService.context)
+//                self.user!.name = userProfile.name
+//                self.user!.points = Int32(userProfile.points)
+//                self.user!.history = userProfile.history
+//                self.user!.tasks = userProfile.tasks
+//                self.user!.treats = userProfile.treats
+//                PersistenceService.saveContext()
+//                result = try PersistenceService.context.fetch(fetchRequest)
+//            }
+//
+//            for data in result{
+//                print(data.name)
+//                for t in data.tasks! {
+//                    print(t.toString())
+//                }
+//            }
+//
+//            self.user = result[0]
+//            dataSource = TaskDataSource(self.user!.tasks!)
+//        } catch {
+//            print("FATAL: Couldn't fetch Coredta")
+//        }
+        self.user = DataFunc.fetchData()
+        dataSource = TaskDataSource(self.user!.tasks!)
+        self.reloadData()
 
-        // Tab code
-        self.tabBarController!.tabBar.layer.borderWidth = 0.50
-        self.tabBarController!.tabBar.layer.borderColor = UIColor(red:0.35, green:0.00, blue:0.68, alpha:0.0).cgColor
-        self.tabBarController?.tabBar.clipsToBounds = true
-        self.tabBarController!.tabBar.isTranslucent = true;
         
         // Refresh Code
         refreshControl.addTarget(self, action: #selector(addNewTask(_:)), for: .valueChanged)
@@ -198,11 +195,14 @@ class FirstViewController: UIViewController, UITableViewDelegate {
             tableView.addSubview(refreshControl)
         }
         
-        // Add Task View
+        // Add Task View buttons
         answerButtons = [button1, button2, button3, button4]
-       
-        // Tableview Setup
-        self.reloadData()
+        
+        // Tab code
+        self.tabBarController!.tabBar.layer.borderWidth = 0.50
+        self.tabBarController!.tabBar.layer.borderColor = UIColor(red:0.35, green:0.00, blue:0.68, alpha:0.0).cgColor
+        self.tabBarController?.tabBar.clipsToBounds = true
+        self.tabBarController!.tabBar.isTranslucent = true;
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {

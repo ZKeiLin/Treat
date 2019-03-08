@@ -29,6 +29,7 @@
 		7D7DA49C222F7EE400C510B6 /* TreatCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DA49B222F7EE400C510B6 /* TreatCategoryCell.swift */; };
 		7D7DA49E222F850800C510B6 /* TreatCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DA49D222F850800C510B6 /* TreatCategoryViewController.swift */; };
 		7DFA15012230940000626758 /* CreateTreatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFA15002230940000626758 /* CreateTreatViewController.swift */; };
+		7DFA150322326E2200626758 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFA150222326E2200626758 /* GlobalFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		7D7DA49B222F7EE400C510B6 /* TreatCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatCategoryCell.swift; sourceTree = "<group>"; };
 		7D7DA49D222F850800C510B6 /* TreatCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatCategoryViewController.swift; sourceTree = "<group>"; };
 		7DFA15002230940000626758 /* CreateTreatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTreatViewController.swift; sourceTree = "<group>"; };
+		7DFA150222326E2200626758 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				0CE8635322124EC2005BD651 /* AppDelegate.swift */,
 				0CE8635522124EC2005BD651 /* FirstViewController.swift */,
 				0CE8635722124EC2005BD651 /* SecondViewController.swift */,
+				7DFA150222326E2200626758 /* GlobalFunctions.swift */,
 				7D7DA497222F6F2A00C510B6 /* AddTreatViewController.swift */,
 				7D7DA499222F771100C510B6 /* TreatOnlineCell.swift */,
 				0CE8635922124EC2005BD651 /* Main.storyboard */,
@@ -309,6 +312,7 @@
 				7DFA15012230940000626758 /* CreateTreatViewController.swift in Sources */,
 				7D7DA49A222F771100C510B6 /* TreatOnlineCell.swift in Sources */,
 				0C6FF000222F648400F4FC23 /* UserProfile.swift in Sources */,
+				7DFA150322326E2200626758 /* GlobalFunctions.swift in Sources */,
 				0CE8635422124EC2005BD651 /* AppDelegate.swift in Sources */,
 				2D58237122308F5800BE2988 /* PersistenceService.swift in Sources */,
 				0C6FEFFC222F5D2500F4FC23 /* Task.swift in Sources */,

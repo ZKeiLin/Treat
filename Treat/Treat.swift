@@ -26,7 +26,7 @@ public class Treat: NSObject, NSCoding {
     }
     
     public func encode(with aCoder: NSCoder) {
-        if let name = self.name, let points = self.points, let categorty = self.category {
+        if let name = self.name, let points = self.points, let category = self.category {
             aCoder.encode(name, forKey: Key.name.rawValue)
             aCoder.encode(points, forKey: Key.points.rawValue)
             aCoder.encode(category, forKey: Key.category.rawValue)
@@ -34,10 +34,14 @@ public class Treat: NSObject, NSCoding {
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        name = aDecoder.decodeObject(forKey: Key.name.rawValue) as! String
-        points = aDecoder.decodeObject(forKey: Key.points.rawValue) as! Int
-        category = aDecoder.decodeObject(forKey: Key.category.rawValue) as! String
+        name = aDecoder.decodeObject(forKey: Key.name.rawValue) as? String
+        points = aDecoder.decodeInteger(forKey: Key.points.rawValue)
+        category = aDecoder.decodeObject(forKey: Key.category.rawValue) as? String
         super.init()
+    }
+    
+    func toString() -> String {
+        return "Treat Name: \(self.name), Category: \(self.category), Points: \(self.points)"
     }
 }
 // Sample data link: https://api.myjson.com/bins/1002ja
