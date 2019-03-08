@@ -144,7 +144,6 @@ class AddTreatViewController: UIViewController, UITableViewDelegate {
                     return
                 }
                 
-//                UserDefaults.standard.set(data, forKey: "data") // Saved for offline use
                 let fetchedTreats : [Treat] = self.convertJsonToTreats(treat)
                 
                 DispatchQueue.main.async {

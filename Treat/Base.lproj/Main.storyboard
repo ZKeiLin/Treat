@@ -176,7 +176,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Profile"/>
                                 <connections>
-                                    <segue destination="m91-Wr-Ziu" kind="popoverPresentation" popoverAnchorView="tXf-Ij-6qe" id="sfa-gg-h3T">
+                                    <segue destination="m91-Wr-Ziu" kind="popoverPresentation" identifier="profileSegue" popoverAnchorView="tXf-Ij-6qe" id="sfa-gg-h3T">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>
                                 </connections>
@@ -217,6 +217,14 @@
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <action selector="backPress:" destination="m91-Wr-Ziu" eventType="touchUpInside" id="MgK-13-Ivh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfl-ri-Fzh">
+                                <rect key="frame" x="144" y="375" width="127" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Reset all user data"/>
+                                <connections>
+                                    <action selector="resetUser:" destination="m91-Wr-Ziu" eventType="touchUpInside" id="8IU-1l-Gfg"/>
                                 </connections>
                             </button>
                         </subviews>

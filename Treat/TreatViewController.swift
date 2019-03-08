@@ -79,21 +79,20 @@ class TreatViewController: UIViewController, UITableViewDelegate {
     
     func reloadData() {
         // Print current status
-        print("\(self.user!.name) has \(self.user!.points) points")
+        print("\(self.user!.name!) has \(self.user!.points) points")
         print("Treats")
         for t in self.user!.treats! {
             print(t.toString())
         }
         print("History")
-        print(self.user!.history)
+        print(self.user!.history!)
         
         userPointsLabel.text = "\(String(self.user!.points)) pts"
         noTreatAvailable.isHidden = self.user!.treats!.count == 0 ? false : true
         self.user!.treats = self.user!.treats?.sorted(by: {$0.points < $1.points})
         
         dataSource = TreatDataSource(self.user!.treats!)
-        dataSource!.userPts = Int(self.user!.points)
-        print(dataSource?.userPts)
+        dataSource?.userPts = Int(self.user!.points)
         tableView.dataSource = dataSource
         tableView.delegate = self
         tableView.reloadData()
@@ -101,9 +100,7 @@ class TreatViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.user = DataFunc.fetchData()
-//        dataSource = TreatDataSource(self.user!.treats!)
         self.reloadData()
         
         
@@ -119,7 +116,6 @@ class TreatViewController: UIViewController, UITableViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         // Update the points when moving from Tasks to Treats
         self.user = DataFunc.fetchData()
-//        dataSource = TreatDataSource(self.user!.treats!)
         self.reloadData()
         
         let newTreat = GlobalVariable.addedTreat
@@ -132,5 +128,3 @@ class TreatViewController: UIViewController, UITableViewDelegate {
         }
     }
 }
-
-

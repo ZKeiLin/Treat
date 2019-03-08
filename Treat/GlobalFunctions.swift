@@ -31,17 +31,52 @@ struct DataFunc {
                 result = try PersistenceService.context.fetch(fetchRequest) // Fetch the CoreData again with the new user
             }
             
-            for data in result{
-                print(data.name)
-                for t in data.tasks! {
-                    print(t.toString())
-                }
-            }
-            
+            print("USERNAME: \(result[0].name!)")
             return result[0]
         } catch {
             print("FATAL: Couldn't fetch Coredta")
             return nil
         }
+    }
+    
+    static func eraseData() {
+
+        let context:NSManagedObjectContext = PersistenceService.persistentContainer.viewContext
+//        let names = PersistenceService.persistentContainer.managedObjectModel.entities.map({ (entity) -> String in
+//            return entity.name!
+//        })
+//
+//        print(names)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        fetchRequest.returnsObjectsAsFaults = false
+        print(fetchRequest)
+
+        do
+        {
+            let results = try context.fetch(fetchRequest)
+            print("results: \(results)")
+            for managedObject in results
+            {
+                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
+                print("deleted \(managedObjectData)")
+                context.delete(managedObjectData)
+            }
+            try! context.save()
+        } catch let error as NSError {
+            print("Deleted all my data in myEntity error : \(error) \(error.userInfo)")
+        }
+            //delete all data
+//            let context = PersistenceService.persistentContainer.viewContext
+//
+//            let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+//            let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+//
+//            do {
+//                try context.execute(deleteRequest)
+//                try context.save()
+//            } catch {
+//                print ("There was an error")
+//            }
+        
     }
 }

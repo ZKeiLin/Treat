@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import CoreData
+
+protocol ProfileViewControllerDelegate: class {
+    func notifyTaskOfReset(sender: ProfileViewController)
+}
 
 class ProfileViewController: UIViewController {
-
+    weak var delegate: ProfileViewControllerDelegate?
+    
     @IBAction func backPress(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -19,15 +25,10 @@ class ProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func resetUser(_ sender: Any) {
+        DataFunc.eraseData()
+        dismiss(animated: true) {
+            self.delegate?.notifyTaskOfReset(sender: self)
+        }
     }
-    */
-
 }

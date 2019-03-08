@@ -41,7 +41,7 @@ public class Treat: NSObject, NSCoding {
     }
     
     func toString() -> String {
-        return "Treat Name: \(self.name), Category: \(self.category), Points: \(self.points)"
+        return "Treat Name: \(self.name!), Category: \(self.category!), Points: \(self.points!)"
     }
 }
 // Sample data link: https://api.myjson.com/bins/1002ja

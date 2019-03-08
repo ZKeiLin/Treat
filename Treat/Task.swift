@@ -38,6 +38,6 @@ public class Task : NSObject, NSCoding{
     }
     
     func toString() -> String {
-        return "Task Name: \(self.name), Points: \(self.points)"
+        return "Task Name: \(self.name!), Points: \(self.points!)"
     }
 }

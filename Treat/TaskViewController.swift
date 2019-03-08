@@ -57,6 +57,40 @@ class TaskViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var add: UIButton!
     var pointAmounts : [Int] = [10, 50, 100, 500]
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+        let selectedTaskPoint = self.dataSource!.data[editActionsForRowAt.row].points!
+        let content:String = "+ \(selectedTaskPoint)"
+        let remove = UITableViewRowAction(style: .destructive, title: content) { action, index in
+            // IGNORING COMPLETED TASKS FOR NOW
+            // self.dataSource?.completeTasks.append((self.dataSource?.data[editActionsForRowAt.row])!)
+            //            tableView.deleteRows(at: [editActionsForRowAt], with: .fade)
+            self.user!.points += Int32(self.user!.tasks![editActionsForRowAt.row].points)
+            self.user!.history!.append(self.user!.tasks![editActionsForRowAt.row])
+            self.user!.tasks!.remove(at: editActionsForRowAt.row)
+            
+            //            self.dataSource?.data.remove(at: editActionsForRowAt.row)
+            PersistenceService.saveContext()
+            self.reloadData()
+            
+        }
+        switch selectedTaskPoint {
+        case 10:
+            remove.backgroundColor = pointColor[0]
+        case 50:
+            remove.backgroundColor = pointColor[1]
+        case 100:
+            remove.backgroundColor = pointColor[2]
+        case 500:
+            remove.backgroundColor = pointColor[3]
+        default:
+            remove.backgroundColor = pointColor[0]
+        }
+        
+        return [remove]
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool { return true }
+    
     @IBAction func taskInputChanged(_ sender: Any) {
         if (taskInput.text == nil || taskInput.text == "") {
             add.isEnabled = false
@@ -114,13 +148,14 @@ class TaskViewController: UIViewController, UITableViewDelegate {
             self.newTaskView.alpha = 0
             self.view.layoutIfNeeded()
         })
-
-        taskInput.text = ""
     }
 
-    
-    // Animation and visual control updates whne adding a new task
+    // Animation and visual control updates when adding a new task
     @objc func addNewTask(_ sender: Any) {
+        // Reset
+        taskInput.text = ""
+        updateAnswerSelection(0)
+        
         newTaskView.isHidden = false
         if tableviewTop.constant < 90 { tableviewTop.constant += 90 }
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut,animations: {
@@ -132,14 +167,21 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         refreshControl.endRefreshing()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "profileSegue" {
+            let profileViewController = segue.destination as! ProfileViewController
+            profileViewController.delegate = self
+        }
+    }
+    
     func reloadData() {
-        print("\(self.user!.name) has \(self.user!.points) points")
+        print("\(self.user!.name!) has \(self.user!.points) points")
         print("Tasks")
         for t in self.user!.tasks! {
             print(t.toString())
         }
         print("History")
-        print(self.user!.history)
+        print(self.user!.history!)
         
         dataSource = TaskDataSource(self.user!.tasks!) // add code for sorting?
         tableView.dataSource = dataSource
@@ -152,7 +194,6 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         
         // Fetch Data from Coredata
         self.user = DataFunc.fetchData()
-        dataSource = TaskDataSource(self.user!.tasks!)
         self.reloadData()
         
         
@@ -175,41 +216,29 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         self.tabBarController?.tabBar.clipsToBounds = true
         self.tabBarController!.tabBar.isTranslucent = true;
     }
-    
-    func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
-        let selectedTaskPoint = self.dataSource!.data[editActionsForRowAt.row].points!
-        let content:String = "+ \(selectedTaskPoint)"
-        let remove = UITableViewRowAction(style: .destructive, title: content) { action, index in
-            // IGNORING COMPLETED TASKS FOR NOW
-            // self.dataSource?.completeTasks.append((self.dataSource?.data[editActionsForRowAt.row])!)
-//            tableView.deleteRows(at: [editActionsForRowAt], with: .fade)
-            self.user!.points += Int32(self.user!.tasks![editActionsForRowAt.row].points)
-            self.user!.history!.append(self.user!.tasks![editActionsForRowAt.row])
-            self.user!.tasks!.remove(at: editActionsForRowAt.row)
+}
 
-//            self.dataSource?.data.remove(at: editActionsForRowAt.row)
-            PersistenceService.saveContext()
-            self.reloadData()
-
-        }
-        switch selectedTaskPoint {            
-        case 10:
-            remove.backgroundColor = pointColor[0]
-        case 50:
-            remove.backgroundColor = pointColor[1]
-        case 100:
-            remove.backgroundColor = pointColor[2]
-        case 500:
-            remove.backgroundColor = pointColor[3]
-        default:
-            remove.backgroundColor = pointColor[0]
-        }
+// Extension for erasing user data
+extension TaskViewController: ProfileViewControllerDelegate {
+    func notifyTaskOfReset(sender: ProfileViewController) {
+        //
+        let alert = UIAlertController(title: nil, message: "Erasing all content...", preferredStyle: .alert)
         
-        return [remove]
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+        loadingIndicator.startAnimating();
+        
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
+        
+        self.user = DataFunc.fetchData()
+        self.reloadData()
+        
+        // Dismiss the load after data ia reloaded
+        DispatchQueue.main.async {
+            self.dismiss(animated: false, completion: nil)
+        }
     }
 }
 
