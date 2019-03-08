@@ -41,7 +41,7 @@ class CreateTreatViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     @IBAction func addTreat(_ sender: Any) {
         let newTreat = Treat(name: treatFieldName.text!, points: Int(treatSliderPoints.value), category: treatFieldCategory.text!)
-        SecondViewController.GlobalVariable.addedTreat = newTreat
+        TreatViewController.GlobalVariable.addedTreat = newTreat
         dismiss(animated: true, completion: nil)
     }
     
@@ -51,7 +51,6 @@ class CreateTreatViewController: UIViewController, UIPickerViewDelegate, UIPicke
         treatFieldCategory.inputView = categoryPicker
         
         categoryPicker.delegate = self
-//        print(categoryList)
     }
 
 }

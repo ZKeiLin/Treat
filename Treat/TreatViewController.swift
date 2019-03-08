@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  TreatViewController.swift
 //  Treat
 //
 //  Created by Liam Brozik on 2/11/19.
@@ -37,7 +37,7 @@ class TreatDataSource : NSObject, UITableViewDataSource
     }
 }
 
-class SecondViewController: UIViewController, UITableViewDelegate {
+class TreatViewController: UIViewController, UITableViewDelegate {
     struct GlobalVariable{
         static var addedTreat : Treat? = nil
     }
@@ -50,7 +50,6 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var userPointsLabel: UILabel!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //check which cell is pressed, and send over data
         if segue.identifier == "treatAddSegue" {
             let treatAddViewNav = segue.destination as! UINavigationController
             let treatAddView = treatAddViewNav.topViewController as! AddTreatViewController
@@ -69,19 +68,10 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     @IBAction func completeTreat (_ sender : UIButton) {
         useTreat(user!.treats![sender.tag])
         PersistenceService.saveContext()
-        print("complete!")
         self.reloadData()
     }
     
     func reloadData() {
-//        userPointsLabel.text = "\(String(user.points)) pts"
-//        noTreatAvailable.isHidden = user.treats.count == 0 ? false : true
-//
-//        dataSource = TreatDataSource(user.treats.sorted(by: {$0.points < $1.points}))
-//        dataSource?.userPts = user.points
-//        tableView.dataSource = dataSource
-//        tableView.delegate = self
-//        tableView.reloadData()
         // Print current status
         print("\(self.user!.name) has \(self.user!.points) points")
         print("Treats")
@@ -95,7 +85,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         noTreatAvailable.isHidden = self.user!.treats!.count == 0 ? false : true
         self.user!.treats = self.user!.treats?.sorted(by: {$0.points < $1.points})
         
-        dataSource = TreatDataSource(self.user!.treats!) // add code for sorting?
+        dataSource = TreatDataSource(self.user!.treats!) 
         dataSource?.userPts = Int(self.user!.points)
         tableView.dataSource = dataSource
         tableView.delegate = self
@@ -104,47 +94,29 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("VIEW DID LOAD RAN")
-        // Fetch Data from Coredata
-//        let fetchRequest : NSFetchRequest<User> = User.fetchRequest()
-//        do {
-//            var result = try PersistenceService.context.fetch(fetchRequest)
-//            print("THERE ARE \(result.count) USER PROFILES")
-//
-//            for data in result{
-//                print(data.name)
-//                for t in data.tasks! {
-//                    print(t.toString())
-//                }
-//            }
-//
-//            self.user = result[0]
-//            dataSource = TreatDataSource(self.user!.treats!)
-//        } catch {
-//            print("FATAL: Couldn't fetch Coredta")
-//        }
         
         self.user = DataFunc.fetchData()
-        dataSource = TreatDataSource(self.user!.treats!)
+//        dataSource = TreatDataSource(self.user!.treats!)
         self.reloadData()
         
+        
+        //
+        // Misc Setup
         // Tab Code
         self.tabBarController!.tabBar.layer.borderWidth = 0.50
         self.tabBarController!.tabBar.layer.borderColor = UIColor(red:0.35, green:0.00, blue:0.68, alpha:0.0).cgColor
         self.tabBarController?.tabBar.clipsToBounds = true
         self.tabBarController!.tabBar.isTranslucent = true;
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         // Update the points when moving from Tasks to Treats
         self.user = DataFunc.fetchData()
-        dataSource = TreatDataSource(self.user!.treats!)
+//        dataSource = TreatDataSource(self.user!.treats!)
         self.reloadData()
         
         let newTreat = GlobalVariable.addedTreat
         if newTreat != nil {
-//            user.treats.append(newTreat!)
             self.user?.treats?.append(newTreat!)
             GlobalVariable.addedTreat = nil
             

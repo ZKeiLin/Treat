@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  TaskViewController.swift
 //  Treat
 //
 //  Created by Liam Brozik on 2/11/19.
@@ -20,7 +20,7 @@ class TaskDataSource : NSObject, UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count;
     }
-//
+
 //    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 //        if editingStyle == .delete {
 //            completeTasks.append(data[indexPath.row])
@@ -28,7 +28,6 @@ class TaskDataSource : NSObject, UITableViewDataSource
 //            tableView.deleteRows(at: [indexPath], with: .fade)
 //        }
 //    }
-//
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")!
@@ -38,7 +37,7 @@ class TaskDataSource : NSObject, UITableViewDataSource
     }
 }
 
-class FirstViewController: UIViewController, UITableViewDelegate {
+class TaskViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     var refreshControl = UIRefreshControl()
     var user : User? = nil
@@ -152,41 +151,13 @@ class FirstViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         
         // Fetch Data from Coredata
-//        let fetchRequest : NSFetchRequest<User> = User.fetchRequest()
-//        do {
-//            var result = try PersistenceService.context.fetch(fetchRequest)
-//            print("THERE ARE \(result.count) USER PROFILES")
-//
-//            if result.count == 0 { // No user profile is found
-//                print("Creating initial user")
-//                let userProfile : UserProfile = UserProfile(name: "Me") // Default Data, would change to a field user can enter information
-//                user = User(context: PersistenceService.context)
-//                self.user!.name = userProfile.name
-//                self.user!.points = Int32(userProfile.points)
-//                self.user!.history = userProfile.history
-//                self.user!.tasks = userProfile.tasks
-//                self.user!.treats = userProfile.treats
-//                PersistenceService.saveContext()
-//                result = try PersistenceService.context.fetch(fetchRequest)
-//            }
-//
-//            for data in result{
-//                print(data.name)
-//                for t in data.tasks! {
-//                    print(t.toString())
-//                }
-//            }
-//
-//            self.user = result[0]
-//            dataSource = TaskDataSource(self.user!.tasks!)
-//        } catch {
-//            print("FATAL: Couldn't fetch Coredta")
-//        }
         self.user = DataFunc.fetchData()
         dataSource = TaskDataSource(self.user!.tasks!)
         self.reloadData()
-
         
+        
+        //
+        // Misc Setup
         // Refresh Code
         refreshControl.addTarget(self, action: #selector(addNewTask(_:)), for: .valueChanged)
         if #available(iOS 10.0, *) {

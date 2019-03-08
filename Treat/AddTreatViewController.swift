@@ -85,7 +85,7 @@ class AddTreatViewController: UIViewController, UITableViewDelegate {
     }
     
     @IBAction func addTreat (_ sender : UIButton) {
-        SecondViewController.GlobalVariable.addedTreat = treats[sender.tag]
+        TreatViewController.GlobalVariable.addedTreat = treats[sender.tag]
         dismiss(animated: true, completion: nil)
     }
     

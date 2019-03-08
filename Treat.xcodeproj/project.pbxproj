@@ -13,8 +13,8 @@
 		0C6FF000222F648400F4FC23 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6FEFFF222F648400F4FC23 /* UserProfile.swift */; };
 		0C6FF002222F74C500F4FC23 /* NewTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6FF001222F74C500F4FC23 /* NewTaskTableViewCell.swift */; };
 		0CE8635422124EC2005BD651 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE8635322124EC2005BD651 /* AppDelegate.swift */; };
-		0CE8635622124EC2005BD651 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE8635522124EC2005BD651 /* FirstViewController.swift */; };
-		0CE8635822124EC2005BD651 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE8635722124EC2005BD651 /* SecondViewController.swift */; };
+		0CE8635622124EC2005BD651 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE8635522124EC2005BD651 /* TaskViewController.swift */; };
+		0CE8635822124EC2005BD651 /* TreatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE8635722124EC2005BD651 /* TreatViewController.swift */; };
 		0CE8635B22124EC2005BD651 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CE8635922124EC2005BD651 /* Main.storyboard */; };
 		0CE8635D22124EC3005BD651 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CE8635C22124EC3005BD651 /* Assets.xcassets */; };
 		0CE8636022124EC3005BD651 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CE8635E22124EC3005BD651 /* LaunchScreen.storyboard */; };
@@ -57,8 +57,8 @@
 		0C6FF001222F74C500F4FC23 /* NewTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskTableViewCell.swift; sourceTree = "<group>"; };
 		0CE8635022124EC2005BD651 /* Treat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Treat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CE8635322124EC2005BD651 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0CE8635522124EC2005BD651 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		0CE8635722124EC2005BD651 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		0CE8635522124EC2005BD651 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
+		0CE8635722124EC2005BD651 /* TreatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatViewController.swift; sourceTree = "<group>"; };
 		0CE8635A22124EC2005BD651 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0CE8635C22124EC3005BD651 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0CE8635F22124EC3005BD651 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -130,8 +130,8 @@
 			isa = PBXGroup;
 			children = (
 				0CE8635322124EC2005BD651 /* AppDelegate.swift */,
-				0CE8635522124EC2005BD651 /* FirstViewController.swift */,
-				0CE8635722124EC2005BD651 /* SecondViewController.swift */,
+				0CE8635522124EC2005BD651 /* TaskViewController.swift */,
+				0CE8635722124EC2005BD651 /* TreatViewController.swift */,
 				7DFA150222326E2200626758 /* GlobalFunctions.swift */,
 				7D7DA497222F6F2A00C510B6 /* AddTreatViewController.swift */,
 				7D7DA499222F771100C510B6 /* TreatOnlineCell.swift */,
@@ -307,7 +307,7 @@
 				0C6FEFFE222F5DAC00F4FC23 /* Treat.swift in Sources */,
 				7D7DA49C222F7EE400C510B6 /* TreatCategoryCell.swift in Sources */,
 				2D4E28522230923A0071A905 /* User+CoreDataProperties.swift in Sources */,
-				0CE8635822124EC2005BD651 /* SecondViewController.swift in Sources */,
+				0CE8635822124EC2005BD651 /* TreatViewController.swift in Sources */,
 				7D7DA49E222F850800C510B6 /* TreatCategoryViewController.swift in Sources */,
 				7DFA15012230940000626758 /* CreateTreatViewController.swift in Sources */,
 				7D7DA49A222F771100C510B6 /* TreatOnlineCell.swift in Sources */,
@@ -319,7 +319,7 @@
 				0C6FF002222F74C500F4FC23 /* NewTaskTableViewCell.swift in Sources */,
 				0C6FEFFA222F420800F4FC23 /* ProfileViewController.swift in Sources */,
 				2D58234E22308E5200BE2988 /* DataModel.xcdatamodeld in Sources */,
-				0CE8635622124EC2005BD651 /* FirstViewController.swift in Sources */,
+				0CE8635622124EC2005BD651 /* TaskViewController.swift in Sources */,
 				7D7DA498222F6F2A00C510B6 /* AddTreatViewController.swift in Sources */,
 				2D4E28512230923A0071A905 /* User+CoreDataClass.swift in Sources */,
 			);
