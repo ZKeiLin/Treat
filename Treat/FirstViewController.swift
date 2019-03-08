@@ -41,7 +41,6 @@ class TaskDataSource : NSObject, UITableViewDataSource
 class FirstViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     var refreshControl = UIRefreshControl()
-//    var user : User = User(context: PersistenceService.context)
     var user : User? = nil
     var dataSource : TaskDataSource? = nil
     
@@ -80,7 +79,6 @@ class FirstViewController: UIViewController, UITableViewDelegate {
     func highlightAnswer(_ answerButt : UIButton, highlighted : Bool) {
         let color = pointColor[selectedAnswer]
         if highlighted { // highlighted
-//            answerButt.backgroundColor = UIColor.lightGray
             answerButt.backgroundColor = color
             answerButt.layer.cornerRadius = 5
             answerButt.layer.borderWidth = 1
@@ -99,8 +97,9 @@ class FirstViewController: UIViewController, UITableViewDelegate {
         updateAnswerSelection(sender.tag)
     }
     
-    
     @IBOutlet weak var tableviewTop: NSLayoutConstraint!
+    
+    // Function that adds new task to table, user
     @IBAction func addNewCustomTask(_ sender: Any) {
         let input = taskInput.text
         let newTask = Task(name: input!, points: pointAmounts[selectedAnswer])
@@ -121,26 +120,28 @@ class FirstViewController: UIViewController, UITableViewDelegate {
     }
 
     
-    //Insert new row into table view with title New Task
+    // Animation and visual control updates whne adding a new task
     @objc func addNewTask(_ sender: Any) {
         newTaskView.isHidden = false
-        
-        if tableviewTop.constant < 90 {
-            tableviewTop.constant += 90
-        }
+        if tableviewTop.constant < 90 { tableviewTop.constant += 90 }
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut,animations: {
             self.newTaskView.alpha = 1
             self.view.layoutIfNeeded()
         })
-
+        
         add.isEnabled = false
         refreshControl.endRefreshing()
     }
     
     func reloadData() {
+        print("\(self.user!.name) has \(self.user!.points) points")
+        print("Tasks")
         for t in self.user!.tasks! {
             print(t.toString())
         }
+        print("History")
+        print(self.user!.history)
+        
         dataSource = TaskDataSource(self.user!.tasks!) // add code for sorting?
         tableView.dataSource = dataSource
         tableView.delegate = self
@@ -211,8 +212,10 @@ class FirstViewController: UIViewController, UITableViewDelegate {
             // IGNORING COMPLETED TASKS FOR NOW
             // self.dataSource?.completeTasks.append((self.dataSource?.data[editActionsForRowAt.row])!)
 //            tableView.deleteRows(at: [editActionsForRowAt], with: .fade)
-
+            self.user!.points += Int32(self.user!.tasks![editActionsForRowAt.row].points)
+            self.user!.history!.append(self.user!.tasks![editActionsForRowAt.row])
             self.user!.tasks!.remove(at: editActionsForRowAt.row)
+
 //            self.dataSource?.data.remove(at: editActionsForRowAt.row)
             PersistenceService.saveContext()
             self.reloadData()
