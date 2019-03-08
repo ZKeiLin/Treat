@@ -159,7 +159,7 @@ class FirstViewController: UIViewController, UITableViewDelegate {
             
             if result.count == 0 { // No user profile is found
                 print("Creating initial user")
-                let userProfile : UserProfile = UserProfile(name: "Me") // Default Data, would change to user enter
+                let userProfile : UserProfile = UserProfile(name: "Me") // Default Data, would change to a field user can enter information
                 user = User(context: PersistenceService.context)
                 self.user!.name = userProfile.name
                 self.user!.points = Int32(userProfile.points)
@@ -178,9 +178,9 @@ class FirstViewController: UIViewController, UITableViewDelegate {
             }
             
             self.user = result[0]
-            dataSource = TaskDataSource(result[0].tasks!)
+            dataSource = TaskDataSource(self.user!.tasks!)
         } catch {
-            print("Couldn't Fetch")
+            print("FATAL: Couldn't fetch Coredta")
         }
     
 
