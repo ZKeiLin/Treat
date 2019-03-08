@@ -14,21 +14,23 @@ class TaskDataSource : NSObject, UITableViewDataSource
     var data : [Task] = []
     var completeTasks : [Task] = [Task]()
     
+    init(_ elements : [Task]) { data = elements }
+
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count;
     }
-
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            completeTasks.append(data[indexPath.row])
-            self.data.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-    }
-    
+//
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            completeTasks.append(data[indexPath.row])
+//            self.data.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//        }
+//    }
+//
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")!
             
             cell.textLabel?.text = data[indexPath.row].name
@@ -37,15 +39,13 @@ class TaskDataSource : NSObject, UITableViewDataSource
 }
 
 class FirstViewController: UIViewController, UITableViewDelegate {
-
-
     @IBOutlet weak var tableView: UITableView!
     var refreshControl = UIRefreshControl()
-    var user : User = User(context: PersistenceService.context) 
+//    var user : User = User(context: PersistenceService.context)
+    var user : User? = nil
     var dataSource : TaskDataSource? = nil
     
     let pointColor : [UIColor] = [UIColor.blue, UIColor(red:0.18, green:0.61, blue:0.58, alpha:1.0), UIColor.orange, UIColor.red]
-
     
     @IBOutlet weak var test: UILabel!
     @IBOutlet weak var newTaskView: UIView!
@@ -66,9 +66,11 @@ class FirstViewController: UIViewController, UITableViewDelegate {
             add.isEnabled = true
         }
     }
+    
     @IBAction func checkInput(_ sender: Any) {
 
     }
+    
     // Custom Interaction Helper functions
     func updateAnswerSelection(_ answerIdx : Int) {
         for ans in answerButtons { highlightAnswer(ans, highlighted: false) }
@@ -102,39 +104,20 @@ class FirstViewController: UIViewController, UITableViewDelegate {
     @IBAction func addNewCustomTask(_ sender: Any) {
         let input = taskInput.text
         let newTask = Task(name: input!, points: pointAmounts[selectedAnswer])
-        dataSource?.data.append(newTask)
-        let indexPath = IndexPath(row: 0, section: 0)
-        tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.fade)
-        if tableviewTop.constant >= 90 {
-            tableviewTop.constant -= 90
-        }
-        self.user.points = Int32(Int(self.user.points) + pointAmounts[selectedAnswer])
-        self.user.tasks = dataSource?.data
+        
+        // Save to user
+        self.user!.tasks!.append(newTask)
         PersistenceService.saveContext()
-        
-        print("testFETC")
-        let fetchRequest : NSFetchRequest<User> = User.fetchRequest()
-        do{
-            let result = try PersistenceService.context.fetch(fetchRequest)
-            print(result.count)
-            for data in result{
-                print("resule \(data.tasks)")
-            }
-            self.user = result[0]
-            test.text = String(result[0].points)
-//            dataSource?.data = self.user.tasks as! [Task]
-        }catch{
-            print("cantfetch")
-        }
-        
+        self.reloadData()
+
+        // Animate back
+        if tableviewTop.constant >= 90 { tableviewTop.constant -= 90 }
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut,animations: {
             self.newTaskView.alpha = 0
             self.view.layoutIfNeeded()
         })
 
-        tableView.reloadData()
         taskInput.text = ""
-        
     }
 
     
@@ -154,66 +137,86 @@ class FirstViewController: UIViewController, UITableViewDelegate {
         refreshControl.endRefreshing()
     }
     
+    func reloadData() {
+        for t in self.user!.tasks! {
+            print(t.toString())
+        }
+        dataSource = TaskDataSource(self.user!.tasks!) // add code for sorting?
+        tableView.dataSource = dataSource
+        tableView.delegate = self
+        tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataSource = TaskDataSource()
-        // Do any additional setup after loading the view, typically from a nibs
-//                if self.user.name == nil{
-//                    self.user.name = "me"
-//                    self.user.points = 0
-//                    self.user.history = dataSource?.completeTasks
-//                    self.user.tasks = dataSource?.data
-//                    PersistenceService.saveContext()
-//                }
+        
+        // Fetch Data from Coredata
         let fetchRequest : NSFetchRequest<User> = User.fetchRequest()
-        do{
-            let result = try PersistenceService.context.fetch(fetchRequest)
-            print(result)
+        do {
+            var result = try PersistenceService.context.fetch(fetchRequest)
+            print("THERE ARE \(result.count) USER PROFILES")
+            
+            if result.count == 0 { // No user profile is found
+                print("Creating initial user")
+                let userProfile : UserProfile = UserProfile(name: "Me") // Default Data, would change to user enter
+                user = User(context: PersistenceService.context)
+                self.user!.name = userProfile.name
+                self.user!.points = Int32(userProfile.points)
+                self.user!.history = userProfile.history
+                self.user!.tasks = userProfile.tasks
+                self.user!.treats = userProfile.treats
+                PersistenceService.saveContext()
+                result = try PersistenceService.context.fetch(fetchRequest)
+            }
+            
             for data in result{
                 print(data.name)
+                for t in data.tasks! {
+                    print(t.toString())
+                }
             }
+            
             self.user = result[0]
-            test.text = String(result[0].points)
-            dataSource?.data = result[0].tasks ?? []
-        }catch{
-            print("can't fetch")
+            dataSource = TaskDataSource(result[0].tasks!)
+        } catch {
+            print("Couldn't Fetch")
         }
-        
-        if self.user.name == nil{
-            //            print("daaaa : \(self.dataSource?.data[0])")
-            self.user.name = "me"
-            self.user.points = 0
-            self.user.history = dataSource?.completeTasks
-            self.user.tasks = dataSource?.data
-            PersistenceService.saveContext()
-        }
-        
+    
+
+        // Tab code
         self.tabBarController!.tabBar.layer.borderWidth = 0.50
         self.tabBarController!.tabBar.layer.borderColor = UIColor(red:0.35, green:0.00, blue:0.68, alpha:0.0).cgColor
         self.tabBarController?.tabBar.clipsToBounds = true
         self.tabBarController!.tabBar.isTranslucent = true;
         
+        // Refresh Code
         refreshControl.addTarget(self, action: #selector(addNewTask(_:)), for: .valueChanged)
-        
         if #available(iOS 10.0, *) {
             tableView.refreshControl = refreshControl
         } else {
             tableView.addSubview(refreshControl)
         }
+        
+        // Add Task View
         answerButtons = [button1, button2, button3, button4]
        
-        tableView.dataSource = dataSource
-        tableView.rowHeight = 90;
-        tableView.delegate = self
-        tableView.reloadData()
+        // Tableview Setup
+        self.reloadData()
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
-        let selectedTaskPoint = self.dataSource!.data[editActionsForRowAt.row].points
+        let selectedTaskPoint = self.dataSource!.data[editActionsForRowAt.row].points!
         let content:String = "+ \(selectedTaskPoint)"
-        let remove = UITableViewRowAction(style: .destructive, title: content) { action, index in            self.dataSource?.completeTasks.append((self.dataSource?.data[editActionsForRowAt.row])!)
-            self.dataSource?.data.remove(at: editActionsForRowAt.row)
-            tableView.deleteRows(at: [editActionsForRowAt], with: .fade)
+        let remove = UITableViewRowAction(style: .destructive, title: content) { action, index in
+            // IGNORING COMPLETED TASKS FOR NOW
+            // self.dataSource?.completeTasks.append((self.dataSource?.data[editActionsForRowAt.row])!)
+//            tableView.deleteRows(at: [editActionsForRowAt], with: .fade)
+
+            self.user!.tasks!.remove(at: editActionsForRowAt.row)
+//            self.dataSource?.data.remove(at: editActionsForRowAt.row)
+            PersistenceService.saveContext()
+            self.reloadData()
+
         }
         switch selectedTaskPoint {            
         case 10:

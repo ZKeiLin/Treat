@@ -10,8 +10,8 @@ import Foundation
 
 public class Task : NSObject, NSCoding{
     
-    var name: String?
-    var points: Int?
+    var name: String!
+    var points: Int!
     
     init(name: String, points: Int) {
         self.name = name
@@ -32,8 +32,12 @@ public class Task : NSObject, NSCoding{
     
     required public init?(coder aDecoder: NSCoder) {
         name = aDecoder.decodeObject(forKey: Key.name.rawValue) as? String
-        points = aDecoder.decodeObject(forKey: Key.points.rawValue) as? Int
-        
+        points = aDecoder.decodeInteger(forKey: Key.points.rawValue)
+
         super.init()
+    }
+    
+    func toString() -> String {
+        return "Task Name: \(self.name), Points: \(self.points)"
     }
 }

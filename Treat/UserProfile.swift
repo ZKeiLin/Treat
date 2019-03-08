@@ -30,7 +30,7 @@ class UserProfile {
         self.treats = []
         
         let firstTask = Task(name: "Pull down to create new tasks", points: 10)
-        tasks.append(firstTask)
+        self.tasks.append(firstTask)
     }
     
     func addPoints(_ step : Int) { self.points += step }
@@ -51,5 +51,11 @@ class UserProfile {
             addPoints(treat.points * -1)
             self.history.append(treat)
         }
+    }
+    
+    func printTasks() -> String {
+        var returnString = ""
+        for t in self.tasks { returnString += "\(t.toString())\n" }
+        return returnString
     }
 }

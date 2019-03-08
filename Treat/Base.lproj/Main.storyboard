@@ -68,13 +68,6 @@
                                             <action selector="taskInputChanged:" destination="9pv-A4-QxB" eventType="editingChanged" id="g4Z-wK-6Y4"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brd-QV-Ta0">
-                                        <rect key="frame" x="186" y="34" width="42" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOC-vB-fUu">
                                         <rect key="frame" x="14" y="58" width="30" height="30"/>
                                         <constraints>
@@ -200,7 +193,6 @@
                         <outlet property="tableView" destination="1NM-cd-XYh" id="olR-pO-JYG"/>
                         <outlet property="tableviewTop" destination="IfQ-Jq-F7F" id="5EZ-W8-MVA"/>
                         <outlet property="taskInput" destination="M1y-YV-qcn" id="zz0-ig-PbY"/>
-                        <outlet property="test" destination="brd-QV-Ta0" id="1vt-YH-sdr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
