@@ -173,7 +173,7 @@ class AddTreatViewController: UIViewController, UITableViewDelegate {
             let currTreat = Treat(name: t.name, points: t.points, category: t.category)
             returnTreat.append(currTreat)
         }
-                self.categories = getCategories(returnTreat)
+        self.categories = getCategories(returnTreat)
         
         return returnTreat
     }

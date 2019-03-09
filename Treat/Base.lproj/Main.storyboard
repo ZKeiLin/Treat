@@ -220,10 +220,21 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfl-ri-Fzh">
-                                <rect key="frame" x="144" y="634" width="127" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Reset all user data"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfl-ri-Fzh">
+                                <rect key="frame" x="20" y="812" width="374" height="40"/>
+                                <color key="backgroundColor" red="0.92941176469999998" green="0.40000000000000002" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="twN-kz-szD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Erase All Content and Settings">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="resetUser:" destination="m91-Wr-Ziu" eventType="touchUpInside" id="8IU-1l-Gfg"/>
                                 </connections>
@@ -246,12 +257,17 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZN-O5-x0g">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZN-O5-x0g" userLabel="Xp BgBar">
                                 <rect key="frame" x="20" y="178" width="374" height="10"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="0Xj-Na-zxI"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Coo-we-9lO">
                                 <rect key="frame" x="20" y="178" width="374" height="10"/>
@@ -259,7 +275,40 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="NSc-jf-xxh"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vWG-AL-3NS">
+                                <rect key="frame" x="20" y="764" width="374" height="40"/>
+                                <color key="backgroundColor" red="0.85432293653488156" green="0.85432293653488156" blue="0.85432293653488156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="gaI-Dm-eBa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Settings">
+                                    <color key="titleColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uGo-bE-OCr">
+                                <rect key="frame" x="20" y="234" width="374" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tYR-4E-Bqr">
+                                <rect key="frame" x="20" y="259" width="374" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -267,18 +316,24 @@
                             <constraint firstItem="fsa-xd-CEI" firstAttribute="trailing" secondItem="pl0-Bh-2CO" secondAttribute="trailing" constant="20" id="5DX-2a-8tl"/>
                             <constraint firstItem="fsa-xd-CEI" firstAttribute="trailing" secondItem="dry-hi-ico" secondAttribute="trailing" constant="20" id="5Ue-SP-fda"/>
                             <constraint firstItem="Coo-we-9lO" firstAttribute="leading" secondItem="fsa-xd-CEI" secondAttribute="leading" constant="20" id="5yf-T2-rA0"/>
+                            <constraint firstItem="fsa-xd-CEI" firstAttribute="bottom" secondItem="bfl-ri-Fzh" secondAttribute="bottom" constant="10" id="DxV-Qd-B9Y"/>
+                            <constraint firstItem="bfl-ri-Fzh" firstAttribute="leading" secondItem="fsa-xd-CEI" secondAttribute="leading" constant="20" id="FBB-GD-t4r"/>
+                            <constraint firstItem="bfl-ri-Fzh" firstAttribute="top" secondItem="vWG-AL-3NS" secondAttribute="bottom" constant="8" id="KYB-ko-nV2"/>
                             <constraint firstItem="fsa-xd-CEI" firstAttribute="trailing" secondItem="odT-Dc-Qux" secondAttribute="trailing" constant="20" id="LoS-ye-aQp"/>
                             <constraint firstItem="mYE-ko-7Q3" firstAttribute="trailing" secondItem="fsa-xd-CEI" secondAttribute="trailing" id="MOU-Ih-s4r"/>
                             <constraint firstItem="YZN-O5-x0g" firstAttribute="top" secondItem="pl0-Bh-2CO" secondAttribute="bottom" constant="8" id="MwH-Kp-zSD"/>
+                            <constraint firstItem="fsa-xd-CEI" firstAttribute="trailing" secondItem="bfl-ri-Fzh" secondAttribute="trailing" constant="20" id="RFJ-iK-eyd"/>
                             <constraint firstItem="YZN-O5-x0g" firstAttribute="leading" secondItem="fsa-xd-CEI" secondAttribute="leading" constant="20" id="Rk2-Ln-uw9"/>
                             <constraint firstItem="pl0-Bh-2CO" firstAttribute="top" secondItem="dry-hi-ico" secondAttribute="bottom" id="Sry-lN-JqJ"/>
                             <constraint firstItem="dry-hi-ico" firstAttribute="top" secondItem="odT-Dc-Qux" secondAttribute="bottom" id="Vaf-Pi-Lr9"/>
                             <constraint firstItem="mYE-ko-7Q3" firstAttribute="leading" secondItem="fsa-xd-CEI" secondAttribute="leading" id="W5c-pl-9am"/>
                             <constraint firstItem="pl0-Bh-2CO" firstAttribute="leading" secondItem="fsa-xd-CEI" secondAttribute="leading" constant="20" id="Yur-1b-phc"/>
+                            <constraint firstItem="vWG-AL-3NS" firstAttribute="leading" secondItem="fsa-xd-CEI" secondAttribute="leading" constant="20" id="ciQ-Zy-QWK"/>
                             <constraint firstItem="Coo-we-9lO" firstAttribute="top" secondItem="pl0-Bh-2CO" secondAttribute="bottom" constant="8" id="d2E-DF-VAR"/>
                             <constraint firstItem="fsa-xd-CEI" firstAttribute="trailing" secondItem="Coo-we-9lO" secondAttribute="trailing" constant="20" id="eug-5y-Lv0"/>
                             <constraint firstItem="fsa-xd-CEI" firstAttribute="trailing" secondItem="YZN-O5-x0g" secondAttribute="trailing" constant="20" id="fod-zg-l1p"/>
                             <constraint firstItem="fsa-xd-CEI" firstAttribute="top" secondItem="mYE-ko-7Q3" secondAttribute="top" constant="7" id="hd0-ig-HAy"/>
+                            <constraint firstItem="fsa-xd-CEI" firstAttribute="trailing" secondItem="vWG-AL-3NS" secondAttribute="trailing" constant="20" id="uIK-7b-OHi"/>
                             <constraint firstItem="odT-Dc-Qux" firstAttribute="top" secondItem="mYE-ko-7Q3" secondAttribute="bottom" constant="10" id="vdw-Ar-PHk"/>
                             <constraint firstItem="odT-Dc-Qux" firstAttribute="leading" secondItem="fsa-xd-CEI" secondAttribute="leading" constant="20" id="z1Q-0A-Wxa"/>
                         </constraints>
@@ -751,7 +806,7 @@
                                 <state key="normal" title="Add Treat"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="15"/>
+                                        <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>

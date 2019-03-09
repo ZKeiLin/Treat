@@ -73,9 +73,27 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func resetUser(_ sender: Any) {
-        DataFunc.eraseData()
-        dismiss(animated: true) {
-            self.delegate?.notifyTaskOfReset(sender: self)
+        // Create you actionsheet - preferredStyle: .actionSheet
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // Create your actions - take a look at different style attributes
+        let eraseAction = UIAlertAction(title: "Erase data", style: .destructive) { (action) in
+            // Erase the data
+            DataFunc.eraseData()
+            self.dismiss(animated: true) {
+                self.delegate?.notifyTaskOfReset(sender: self)
+            }
         }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            print("didPress cancel")
+        }
+        
+        // Add the actions to your actionSheet
+        actionSheet.addAction(eraseAction)
+        actionSheet.addAction(cancelAction)
+        
+        // Present the controller
+        self.present(actionSheet, animated: true, completion: nil)
     }
 }
