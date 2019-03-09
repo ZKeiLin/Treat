@@ -40,7 +40,6 @@ struct DataFunc {
     }
     
     static func eraseData() {
-
         let context:NSManagedObjectContext = PersistenceService.persistentContainer.viewContext
 //        let names = PersistenceService.persistentContainer.managedObjectModel.entities.map({ (entity) -> String in
 //            return entity.name!
@@ -65,18 +64,17 @@ struct DataFunc {
         } catch let error as NSError {
             print("Deleted all my data in myEntity error : \(error) \(error.userInfo)")
         }
-            //delete all data
-//            let context = PersistenceService.persistentContainer.viewContext
-//
-//            let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-//            let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-//
-//            do {
-//                try context.execute(deleteRequest)
-//                try context.save()
-//            } catch {
-//                print ("There was an error")
-//            }
+    }
+    
+    static func createLoadAlert(_ alertMsg : String) -> UIAlertController {
+        let alert = UIAlertController(title: nil, message: alertMsg, preferredStyle: .alert)
         
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+        loadingIndicator.startAnimating();
+        
+        alert.view.addSubview(loadingIndicator)
+        return alert
     }
 }

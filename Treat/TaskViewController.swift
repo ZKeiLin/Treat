@@ -154,7 +154,8 @@ class TaskViewController: UIViewController, UITableViewDelegate {
     @objc func addNewTask(_ sender: Any) {
         // Reset
         taskInput.text = ""
-        updateAnswerSelection(0)
+        selectedAnswer = 0
+        updateAnswerSelection(selectedAnswer)
         
         newTaskView.isHidden = false
         if tableviewTop.constant < 90 { tableviewTop.constant += 90 }
@@ -221,17 +222,9 @@ class TaskViewController: UIViewController, UITableViewDelegate {
 // Extension for erasing user data
 extension TaskViewController: ProfileViewControllerDelegate {
     func notifyTaskOfReset(sender: ProfileViewController) {
-        //
-        let alert = UIAlertController(title: nil, message: "Erasing all content...", preferredStyle: .alert)
-        
-        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.style = UIActivityIndicatorView.Style.gray
-        loadingIndicator.startAnimating();
-        
-        alert.view.addSubview(loadingIndicator)
+        let alert = DataFunc.createLoadAlert("Erasing all content...")
         present(alert, animated: true, completion: nil)
-        
+
         self.user = DataFunc.fetchData()
         self.reloadData()
         
