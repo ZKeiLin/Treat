@@ -208,6 +208,11 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         
         //
         // Misc Setup
+        // Hiding Keyboard
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
+        
         // Refresh Code
         refreshControl.addTarget(self, action: #selector(addNewTask(_:)), for: .valueChanged)
         if #available(iOS 10.0, *) {
