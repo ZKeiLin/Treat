@@ -30,11 +30,19 @@ class TaskDataSource : NSObject, UITableViewDataSource
 //    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell") as! TaskCell
+            let currData = data[indexPath.row]
             
-            cell.textLabel?.text = data[indexPath.row].name
+            cell.name.text = currData.name
+            let pointColor : [UIColor] = [UIColor.blue, UIColor(red:0.18, green:0.61, blue:0.58, alpha:1.0), UIColor.orange, UIColor.red]
+            switch currData.points {
+                case 10: cell.pointIndic.backgroundColor = pointColor[0]
+                case 50: cell.pointIndic.backgroundColor = pointColor[1]
+                case 100: cell.pointIndic.backgroundColor = pointColor[2]
+                default: cell.pointIndic.backgroundColor = pointColor[3]
+            }
             return cell
-    }
+        }
 }
 
 class TaskViewController: UIViewController, UITableViewDelegate {

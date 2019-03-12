@@ -13,7 +13,47 @@ protocol ProfileViewControllerDelegate: class {
     func notifyTaskOfReset(sender: ProfileViewController)
 }
 
-class ProfileViewController: UIViewController {
+class HistoryDataSource : NSObject, UITableViewDataSource
+{
+    var data : [Any] = []
+    
+    init(_ elements : [Any]) { data = elements }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryCell") as! HistoryCell
+        let currData = data[indexPath.row]
+
+//
+//        for t in user!.history! {
+//            switch t {
+//            case is Task: let ta = t as! Task; returnXp += Int(ta.points!)
+//            default: let tr = t as! Treat; returnXp += Int(tr.points!)
+//            }
+//        }
+//
+        if currData is Task {
+            let convertedData = currData as? Task
+            cell.name.text = convertedData!.name
+            cell.historyType.text = "Completed Task"
+            cell.points.textColor = #colorLiteral(red: 0.4392156863, green: 0.1529411765, blue: 0.8156862745, alpha: 1)
+            cell.points.text = "+ \(convertedData!.points!)"
+        } else { // Treat
+            let convertedData = currData as? Treat
+            cell.name.text = convertedData!.name
+            cell.historyType.text = "Redeemed Treat"
+            cell.points.textColor = #colorLiteral(red: 1, green: 0.1764705882, blue: 0.3333333333, alpha: 1)
+            cell.points.text = "- \(convertedData!.points!)"
+        }
+        
+        return cell
+    }
+}
+
+class ProfileViewController: UIViewController, UITableViewDelegate {
     // Interface Variables
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var lvlLabel: UILabel!
@@ -21,8 +61,12 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var xpBar: UIView!
     @IBOutlet weak var xpBarConstraint: NSLayoutConstraint!
+    @IBOutlet weak var historyTableView: UITableView!
+    
     // Local Variables
     var user : User? = nil
+    var dataSource : HistoryDataSource? = nil
+
     weak var delegate: ProfileViewControllerDelegate?
     let XP_PER_LEVEL : Float = 500.0 // XP Per level
     
@@ -49,10 +93,27 @@ class ProfileViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    func reloadData() {
+        print("\(self.user!.name!) has \(self.user!.points) points")
+        print("Tasks")
+        for t in self.user!.tasks! {
+            print(t.toString())
+        }
+        print("History")
+        print(self.user!.history!)
+        
+        dataSource = HistoryDataSource(self.user!.history!.reversed()) // add code for sorting?
+        historyTableView.dataSource = dataSource
+        historyTableView.delegate = self
+        historyTableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.user = DataFunc.fetchData()
+        self.reloadData()
+        
         nameLabel.text = self.user?.name
         print("Level: \(getLevel())")
         print("XP: \(getXp())")
