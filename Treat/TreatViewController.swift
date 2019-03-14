@@ -13,11 +13,23 @@ class TreatDataSource : NSObject, UITableViewDataSource
 {
     var data : [Treat] = []
     var userPts : Int = 0
+    var user: User? = nil
     
     init(_ elements : [Treat]) { data = elements }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            data.remove(at: indexPath.row)
+            user = DataFunc.fetchData()
+            self.user?.treats? = data
+            PersistenceService.saveContext()
+            tableView.deleteRows(at: [indexPath], with: .fade
+            )
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
