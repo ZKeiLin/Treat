@@ -20,14 +20,6 @@ class TaskDataSource : NSObject, UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count;
     }
-
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            completeTasks.append(data[indexPath.row])
-//            self.data.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//        }
-//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell") as! TaskCell
@@ -72,16 +64,18 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         let remove = UITableViewRowAction(style: .destructive, title: content) { action, index in
             // IGNORING COMPLETED TASKS FOR NOW
             // self.dataSource?.completeTasks.append((self.dataSource?.data[editActionsForRowAt.row])!)
-            //            tableView.deleteRows(at: [editActionsForRowAt], with: .fade)
             self.user!.points += Int32(self.user!.tasks![editActionsForRowAt.row].points)
             self.user!.history!.append(self.user!.tasks![editActionsForRowAt.row])
             self.user!.tasks!.remove(at: editActionsForRowAt.row)
-            
-                        self.dataSource?.data.remove(at: editActionsForRowAt.row)
+            self.dataSource?.data.remove(at: editActionsForRowAt.row)            
+            tableView.deleteRows(at: [editActionsForRowAt], with: .fade)
             PersistenceService.saveContext()
-            self.reloadData()
-            
+//            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+//                // Put your code which should be executed with a delay here
+//                self.reloadData()
+//            })
         }
+        
         switch selectedTaskPoint {
         case 10:
             remove.backgroundColor = pointColor[0]
@@ -203,7 +197,7 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         print("History")
         print(self.user!.history!)
         
-        dataSource = TaskDataSource(self.user!.tasks!) // add code for sorting?
+        dataSource = TaskDataSource(self.user!.tasks!) // .reversed()
         tableView.dataSource = dataSource
         tableView.delegate = self
         tableView.reloadData()
