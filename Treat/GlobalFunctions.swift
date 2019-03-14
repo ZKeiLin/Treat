@@ -10,7 +10,11 @@ import Foundation
 import UIKit
 import CoreData
 
+var taskColor : [UIColor] = [UIColor(red:0.29, green:0.53, blue:0.91, alpha:1.0), UIColor(red:0.09, green:0.75, blue:0.73, alpha:1.0), UIColor.orange, UIColor.red]
+
+
 struct DataFunc {
+
     static func fetchData() -> User? {
         let fetchRequest : NSFetchRequest<User> = User.fetchRequest()
         do {

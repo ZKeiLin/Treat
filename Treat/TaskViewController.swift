@@ -34,12 +34,12 @@ class TaskDataSource : NSObject, UITableViewDataSource
             let currData = data[indexPath.row]
             
             cell.name.text = currData.name
-            let pointColor : [UIColor] = [UIColor.blue, UIColor(red:0.18, green:0.61, blue:0.58, alpha:1.0), UIColor.orange, UIColor.red]
+            let pointColor : [UIColor] = taskColor
             switch currData.points {
-                case 10: cell.pointIndic.backgroundColor = pointColor[0]
-                case 50: cell.pointIndic.backgroundColor = pointColor[1]
+                case 10:  cell.pointIndic.backgroundColor = pointColor[0]
+                case 50:  cell.pointIndic.backgroundColor = pointColor[1]
                 case 100: cell.pointIndic.backgroundColor = pointColor[2]
-                default: cell.pointIndic.backgroundColor = pointColor[3]
+                default:  cell.pointIndic.backgroundColor = pointColor[3]
             }
             return cell
         }
@@ -51,9 +51,10 @@ class TaskViewController: UIViewController, UITableViewDelegate {
     var user : User? = nil
     var dataSource : TaskDataSource? = nil
     
-    let pointColor : [UIColor] = [UIColor.blue, UIColor(red:0.18, green:0.61, blue:0.58, alpha:1.0), UIColor.orange, UIColor.red]
+    let pointColor : [UIColor] = taskColor
     
-    @IBOutlet weak var test: UILabel!
+    
+    @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var newTaskView: UIView!
     @IBOutlet weak var taskInput: UITextField!
     @IBOutlet weak var button1: UIButton!
@@ -76,7 +77,7 @@ class TaskViewController: UIViewController, UITableViewDelegate {
             self.user!.history!.append(self.user!.tasks![editActionsForRowAt.row])
             self.user!.tasks!.remove(at: editActionsForRowAt.row)
             
-            //            self.dataSource?.data.remove(at: editActionsForRowAt.row)
+                        self.dataSource?.data.remove(at: editActionsForRowAt.row)
             PersistenceService.saveContext()
             self.reloadData()
             
@@ -110,6 +111,16 @@ class TaskViewController: UIViewController, UITableViewDelegate {
     @IBAction func checkInput(_ sender: Any) {
 
     }
+    
+    
+    @IBAction func dismissInputView(_ sender: Any) {
+        if tableviewTop.constant >= 70 { tableviewTop.constant -= 90 }
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut,animations: {
+            self.newTaskView.alpha = 0
+            self.view.layoutIfNeeded()
+        })
+    }
+    
     
     // Custom Interaction Helper functions
     func updateAnswerSelection(_ answerIdx : Int) {
@@ -151,7 +162,7 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         self.reloadData()
 
         // Animate back
-        if tableviewTop.constant >= 90 { tableviewTop.constant -= 90 }
+        if tableviewTop.constant >= 70 { tableviewTop.constant -= 90 }
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut,animations: {
             self.newTaskView.alpha = 0
             self.view.layoutIfNeeded()
@@ -166,7 +177,7 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         updateAnswerSelection(selectedAnswer)
         
         newTaskView.isHidden = false
-        if tableviewTop.constant < 90 { tableviewTop.constant += 90 }
+        if tableviewTop.constant < 70 { tableviewTop.constant += 90 }
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut,animations: {
             self.newTaskView.alpha = 1
             self.view.layoutIfNeeded()
@@ -229,6 +240,11 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         self.tabBarController!.tabBar.layer.borderColor = UIColor(red:0.35, green:0.00, blue:0.68, alpha:0.0).cgColor
         self.tabBarController?.tabBar.clipsToBounds = true
         self.tabBarController!.tabBar.isTranslucent = true;
+        
+        // button Decoration
+        profileButton.layer.cornerRadius = 5
+        profileButton.layer.borderColor = UIColor.white.cgColor
+        profileButton.layer.borderWidth = 1
     }
 }
 
