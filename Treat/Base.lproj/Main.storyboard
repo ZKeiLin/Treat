@@ -40,7 +40,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <action selector="checkInput:" destination="9pv-A4-QxB" eventType="editingDidEnd" id="yEx-kh-7ej"/>
                                             <action selector="taskInput:" destination="Vf6-8W-8IV" eventType="editingDidEnd" id="2Nh-8b-xFU"/>
                                             <action selector="taskInputChanged:" destination="9pv-A4-QxB" eventType="editingChanged" id="g4Z-wK-6Y4"/>
                                         </connections>

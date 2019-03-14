@@ -26,12 +26,11 @@ class TaskDataSource : NSObject, UITableViewDataSource
             let currData = data[indexPath.row]
             
             cell.name.text = currData.name
-            let pointColor : [UIColor] = taskColor
             switch currData.points {
-                case 10:  cell.pointIndic.backgroundColor = pointColor[0]
-                case 50:  cell.pointIndic.backgroundColor = pointColor[1]
-                case 100: cell.pointIndic.backgroundColor = pointColor[2]
-                default:  cell.pointIndic.backgroundColor = pointColor[3]
+                case 10:  cell.pointIndic.backgroundColor = taskColor[0]
+                case 50:  cell.pointIndic.backgroundColor = taskColor[1]
+                case 100: cell.pointIndic.backgroundColor = taskColor[2]
+                default:  cell.pointIndic.backgroundColor = taskColor[3]
             }
             return cell
         }
@@ -82,21 +81,22 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         
         switch selectedTaskPoint {
         case 10:
-            remove.backgroundColor = pointColor[0]
+            remove.backgroundColor = taskColor[0]
         case 50:
-            remove.backgroundColor = pointColor[1]
+            remove.backgroundColor = taskColor[1]
         case 100:
-            remove.backgroundColor = pointColor[2]
+            remove.backgroundColor = taskColor[2]
         case 500:
-            remove.backgroundColor = pointColor[3]
+            remove.backgroundColor = taskColor[3]
         default:
-            remove.backgroundColor = pointColor[0]
+            remove.backgroundColor = taskColor[0]
         }
         
         return [remove]
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool { return true }
+
     
     @IBAction func taskInputChanged(_ sender: Any) {
         if (taskInput.text == nil || taskInput.text == "") {
@@ -104,10 +104,6 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         } else {
             add.isEnabled = true
         }
-    }
-    
-    @IBAction func checkInput(_ sender: Any) {
-
     }
     
     
@@ -127,7 +123,7 @@ class TaskViewController: UIViewController, UITableViewDelegate {
     }
     
     func highlightAnswer(_ answerButt : UIButton, highlighted : Bool) {
-        let color = pointColor[selectedAnswer]
+        let color = taskColor[selectedAnswer]
         if highlighted { // highlighted
             answerButt.backgroundColor = color
             answerButt.layer.cornerRadius = 5
@@ -137,7 +133,7 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         } else { // all other buttons
             answerButt.layer.borderColor = UIColor.white.cgColor
             answerButt.backgroundColor = UIColor.white
-            answerButt.setTitleColor(pointColor[answerButt.tag], for: .normal)
+            answerButt.setTitleColor(taskColor[answerButt.tag], for: .normal)
         }
     }
     
@@ -175,6 +171,7 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         updateAnswerSelection(selectedAnswer)
         
         newTaskView.isHidden = false
+        taskInput.becomeFirstResponder()
         if tableviewTop.constant < 70 { tableviewTop.constant += 90 }
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut,animations: {
             self.newTaskView.alpha = 1
