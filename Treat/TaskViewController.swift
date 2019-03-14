@@ -53,6 +53,8 @@ class TaskViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var button2: UIButton!
     @IBOutlet weak var button3: UIButton!
     @IBOutlet weak var button4: UIButton!
+    @IBOutlet weak var noTaskAvailable: UILabel!
+    
     var selectedAnswer : Int = 0
     var answerButtons : [UIButton] = []
     @IBOutlet weak var add: UIButton!
@@ -70,6 +72,8 @@ class TaskViewController: UIViewController, UITableViewDelegate {
             self.dataSource?.data.remove(at: editActionsForRowAt.row)            
             tableView.deleteRows(at: [editActionsForRowAt], with: .fade)
             PersistenceService.saveContext()
+            
+            self.noTaskAvailable.isHidden = self.user!.tasks!.count == 0 ? false : true
 //            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
 //                // Put your code which should be executed with a delay here
 //                self.reloadData()
@@ -197,6 +201,8 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         print("History")
         print(self.user!.history!)
         
+        noTaskAvailable.isHidden = self.user!.tasks!.count == 0 ? false : true
+
         dataSource = TaskDataSource(self.user!.tasks!) // .reversed()
         tableView.dataSource = dataSource
         tableView.delegate = self
