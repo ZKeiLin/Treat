@@ -20,15 +20,16 @@ class CreateTreatViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func numberOfComponents(in pickerView: UIPickerView) -> Int { return 1 }
     func pickerView( _ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {   return categoryList.count
     }
+    
     func pickerView( _ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         print(categoryList[row])
         print("add compoenent")
         return categoryList[row]
     }
+    
     func pickerView( _ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         treatFieldCategory.text = categoryList[row]
     }
-    
     
     @IBAction func treatSliderChange(_ sender: Any) {
         UIView.animate(withDuration: 0.1, animations: {
@@ -47,10 +48,12 @@ class CreateTreatViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let categoryPicker = UIPickerView()
-        treatFieldCategory.inputView = categoryPicker
-        
-        categoryPicker.delegate = self
+        if Reachability.isConnectedToNetwork(){ // only show picker if there's internet
+            let categoryPicker = UIPickerView()
+            treatFieldCategory.inputView = categoryPicker
+            
+            categoryPicker.delegate = self
+        }
     }
 
 }

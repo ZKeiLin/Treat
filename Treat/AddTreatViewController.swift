@@ -106,7 +106,16 @@ class AddTreatViewController: UIViewController, UITableViewDelegate {
         categoryTableView.reloadData()
         
         // Fetch online Treats (Sample JSON)
-        fetchJsonData("https://api.myjson.com/bins/1002ja")
+        if !Reachability.isConnectedToNetwork(){ // No internet
+            let alert = UIAlertController(title: "No internet connection", message: "Unable to fetch Treats online", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Create your own Treat", style: UIAlertAction.Style.default, handler:{ [weak alert] (_) in
+                    self.performSegue(withIdentifier: "treatNewSegue", sender: self)
+                }
+            ))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            fetchJsonData("https://api.myjson.com/bins/1002ja")
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -125,46 +134,40 @@ class AddTreatViewController: UIViewController, UITableViewDelegate {
     
     func fetchJsonData(_ fetchUrl: String){
         let url = URL(string: fetchUrl)
-//        if url == nil {
-//            self.refreshControl.endRefreshing()
-//            self.showURLFailed();
-//        }
-//        else {
-            URLSession.shared.dataTask(with: url!) { (data, res, err) in
-                guard let data = data else {
-                    // No data to decode
-                    print("no data")
-                    
-                    return
-                }
+        URLSession.shared.dataTask(with: url!) { (data, res, err) in
+            guard let data = data else {
+                // No data to decode
+                print("no data")
                 
-                guard let treat = try? JSONDecoder().decode([TreatObject].self, from: data) else {
-                    // Couldn't decode data into a Category
-                    print("data not readable")
-                    return
-                }
+                return
+            }
+            
+            guard let treat = try? JSONDecoder().decode([TreatObject].self, from: data) else {
+                // Couldn't decode data into a Category
+                print("data not readable")
+                return
+            }
+            
+            let fetchedTreats : [Treat] = self.convertJsonToTreats(treat)
+            
+            DispatchQueue.main.async {
+                print(fetchedTreats)
+                // All Treats
+                self.treats = fetchedTreats
+                self.dataSource = TreatOnlineDataSource(self.treats)
+                self.dataSource?.userTreats = self.userTreats
+                self.popularTableView.dataSource = self.dataSource
+                self.popularTableView.reloadData()
                 
-                let fetchedTreats : [Treat] = self.convertJsonToTreats(treat)
-                
-                DispatchQueue.main.async {
-                    print(fetchedTreats)
-                    // All Treats
-                    self.treats = fetchedTreats
-                    self.dataSource = TreatOnlineDataSource(self.treats)
-                    self.dataSource?.userTreats = self.userTreats
-                    self.popularTableView.dataSource = self.dataSource
-                    self.popularTableView.reloadData()
-                    
-                    // Categories
-                    self.categories = self.getCategories(self.treats)
-                    self.categoryDataSource = TreatOnlineCategoryDataSource(self.categories)
-                    self.categoryTableView.dataSource = self.categoryDataSource
-                    self.categoryTableView.reloadData()
+                // Categories
+                self.categories = self.getCategories(self.treats)
+                self.categoryDataSource = TreatOnlineCategoryDataSource(self.categories)
+                self.categoryTableView.dataSource = self.categoryDataSource
+                self.categoryTableView.reloadData()
 
-                }
-            }.resume()
-        }
-//    }
+            }
+        }.resume()
+    }
     
     
     func convertJsonToTreats (_ treats : [TreatObject]) -> [Treat] {
