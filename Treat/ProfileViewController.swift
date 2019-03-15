@@ -100,7 +100,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate{
         print("\(DataFunc.getPercentXp(user) * 100)%")
 
         lvlLabel.text = "Level \(DataFunc.getLevel(user))"
-        pointsLabel.text = "\(self.user!.points) points"
+        print(DataFunc.getPercentXp(user))
+        pointsLabel.text = "\(DataFunc.getXp(user))/\(DataFunc.getXp(user) - (DataFunc.getXp(user) % Int(XP_PER_LEVEL)) + Int(XP_PER_LEVEL)) xp"
         let currWidth : CGFloat = xpBar.frame.size.width
         xpBarConstraint.constant += currWidth - (CGFloat(DataFunc.getPercentXp(user) * 100) * ((20.0 + currWidth) / 100.0))
         
