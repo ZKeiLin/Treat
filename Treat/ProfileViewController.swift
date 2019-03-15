@@ -53,7 +53,7 @@ class HistoryDataSource : NSObject, UITableViewDataSource
     }
 }
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UINavigationControllerDelegate,UIImagePickerControllerDelegate {
+class ProfileViewController: UIViewController, UITableViewDelegate{
     // Interface Variables
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var lvlLabel: UILabel!
@@ -63,8 +63,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UINavigation
     @IBOutlet weak var historyTableView: UITableView!
     
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var chooseButton: UIButton!
-    var imagePicker = UIImagePickerController()
     // Local Variables
     var user : User? = nil
     var dataSource : HistoryDataSource? = nil
@@ -74,34 +72,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UINavigation
     @IBAction func backPress(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    @IBAction func btnClicked() {
-        
-        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
-            print("Button capture")
-            
-            imagePicker.delegate = self
-            imagePicker.sourceType = .savedPhotosAlbum
-            imagePicker.allowsEditing = false
-            
-            present(imagePicker, animated: true, completion: nil)
-        }
-    }
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            self.imageView.contentMode = .scaleAspectFit
-            self.imageView.image = pickedImage
-            user = DataFunc.fetchData()
-            self.user?.img = pickedImage.pngData()
-            PersistenceService.saveContext()
-        }
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
-    
-    
-    
+   
     func reloadData() {
         print("\(self.user!.name!) has \(self.user!.points) points")
         print("Tasks")
