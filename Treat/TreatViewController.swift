@@ -74,6 +74,10 @@ class TreatViewController: UIViewController, UITableViewDelegate {
             treatAddView.userTreats = user!.treats!
             print("User Treats: \(treatAddView.userTreats)")
         }
+        else if segue.identifier == "treatLevelSegue" {
+            let levelViewController = segue.destination as! LevelViewController
+            levelViewController.user = self.user
+        }
     }
     
     func useTreat(_ treat : Treat) {
@@ -84,9 +88,14 @@ class TreatViewController: UIViewController, UITableViewDelegate {
     }
     
     @IBAction func completeTreat (_ sender : UIButton) {
+        let currLevel = DataFunc.getLevel(user)
         useTreat(user!.treats![sender.tag])
         PersistenceService.saveContext()
         self.reloadData()
+        
+        // Check for levelup
+        let newLevel = DataFunc.getLevel(self.user)
+        if newLevel != currLevel { self.performSegue(withIdentifier: "treatLevelSegue", sender: nil) }
     }
     
     func reloadData() {

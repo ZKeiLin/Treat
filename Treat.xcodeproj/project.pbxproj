@@ -24,6 +24,7 @@
 		2D4E28522230923A0071A905 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4E28502230923A0071A905 /* User+CoreDataProperties.swift */; };
 		2D58234E22308E5200BE2988 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D58234C22308E5200BE2988 /* DataModel.xcdatamodeld */; };
 		2D58237122308F5800BE2988 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D58237022308F5800BE2988 /* PersistenceService.swift */; };
+		7D521965223B25D400C4662B /* LevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D521964223B25D400C4662B /* LevelViewController.swift */; };
 		7D7DA498222F6F2A00C510B6 /* AddTreatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DA497222F6F2A00C510B6 /* AddTreatViewController.swift */; };
 		7D7DA49A222F771100C510B6 /* TreatOnlineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DA499222F771100C510B6 /* TreatOnlineCell.swift */; };
 		7D7DA49C222F7EE400C510B6 /* TreatCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DA49B222F7EE400C510B6 /* TreatCategoryCell.swift */; };
@@ -76,6 +77,7 @@
 		2D4E28502230923A0071A905 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2D58234D22308E5200BE2988 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		2D58237022308F5800BE2988 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		7D521964223B25D400C4662B /* LevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelViewController.swift; sourceTree = "<group>"; };
 		7D7DA497222F6F2A00C510B6 /* AddTreatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTreatViewController.swift; sourceTree = "<group>"; };
 		7D7DA499222F771100C510B6 /* TreatOnlineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatOnlineCell.swift; sourceTree = "<group>"; };
 		7D7DA49B222F7EE400C510B6 /* TreatCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatCategoryCell.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				7DFA150422345C6E00626758 /* HistoryCell.swift */,
 				7DFA1506223774DD00626758 /* TaskCell.swift */,
 				0CE8635922124EC2005BD651 /* Main.storyboard */,
+				7D521964223B25D400C4662B /* LevelViewController.swift */,
 				7DFA15002230940000626758 /* CreateTreatViewController.swift */,
 				7D7DA49D222F850800C510B6 /* TreatCategoryViewController.swift */,
 				7D7DA49B222F7EE400C510B6 /* TreatCategoryCell.swift */,
@@ -324,6 +327,7 @@
 				0C6FF000222F648400F4FC23 /* UserProfile.swift in Sources */,
 				7DFA150322326E2200626758 /* GlobalFunctions.swift in Sources */,
 				0CE8635422124EC2005BD651 /* AppDelegate.swift in Sources */,
+				7D521965223B25D400C4662B /* LevelViewController.swift in Sources */,
 				2D58237122308F5800BE2988 /* PersistenceService.swift in Sources */,
 				7DFA150522345C6E00626758 /* HistoryCell.swift in Sources */,
 				0C6FEFFC222F5D2500F4FC23 /* Task.swift in Sources */,

@@ -75,12 +75,24 @@ struct DataFunc {
         }
     }
     
+    static func getHistoricCount(_ user : User?, type : String) -> Int {
+        var count : Int = 0
+        for t in user!.history! {
+            switch t {
+                case is Task: if type == "Task" { count += 1 }
+                default: if type == "Treat" { count += 1 }
+            }
+        }
+        
+        return count
+    }
+    
     static func getXp(_ user : User?) -> Int {
         var returnXp : Int = 0
         for t in user!.history! {
             switch t {
-            case is Task: let ta = t as! Task; returnXp += Int(ta.points!)
-            default: let tr = t as! Treat; returnXp += Int(tr.points!)
+                case is Task: let ta = t as! Task; returnXp += Int(ta.points!)
+                default: let tr = t as! Treat; returnXp += Int(tr.points!)
             }
         }
         return returnXp

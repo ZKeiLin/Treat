@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import AudioToolbox
+
 
 class TaskDataSource : NSObject, UITableViewDataSource
 {
@@ -63,20 +65,28 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         let selectedTaskPoint = self.dataSource!.data[editActionsForRowAt.row].points!
         let content:String = "+ \(selectedTaskPoint)"
         let remove = UITableViewRowAction(style: .destructive, title: content) { action, index in
-            // IGNORING COMPLETED TASKS FOR NOW
-            // self.dataSource?.completeTasks.append((self.dataSource?.data[editActionsForRowAt.row])!)
+            // Get current level to compare
+            let currLevel = DataFunc.getLevel(self.user)
+            
+            // Update user data
             self.user!.points += Int32(self.user!.tasks![editActionsForRowAt.row].points)
             self.user!.history!.append(self.user!.tasks![editActionsForRowAt.row])
             self.user!.tasks!.remove(at: editActionsForRowAt.row)
+            PersistenceService.saveContext()
+
+            // Animate changes
             self.dataSource?.data.remove(at: editActionsForRowAt.row)            
             tableView.deleteRows(at: [editActionsForRowAt], with: .fade)
-            PersistenceService.saveContext()
+            AudioServicesPlaySystemSound(1114)
             
+            // Check if 0 tasks left
             self.noTaskAvailable.isHidden = self.user!.tasks!.count == 0 ? false : true
-//            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
-//                // Put your code which should be executed with a delay here
-//                self.reloadData()
-//            })
+            
+            // Check for levelup (after a small delay)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                let newLevel = DataFunc.getLevel(self.user)
+                if newLevel != currLevel { self.performSegue(withIdentifier: "taskLevelSegue", sender: nil) }
+            }
         }
         
         switch selectedTaskPoint {
@@ -186,6 +196,10 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         if segue.identifier == "profileSegue" {
             let profileViewController = segue.destination as! ProfileViewController
             profileViewController.delegate = self
+        }
+        else if segue.identifier == "taskLevelSegue" {
+            let levelViewController = segue.destination as! LevelViewController
+            levelViewController.user = self.user
         }
     }
     
