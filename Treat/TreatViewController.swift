@@ -119,10 +119,8 @@ class TreatViewController: UIViewController, UITableViewDelegate {
         //
         // Misc Setup
         // Tab Code
-        self.tabBarController!.tabBar.layer.borderWidth = 0.50
         self.tabBarController!.tabBar.layer.borderColor = UIColor(red:0.35, green:0.00, blue:0.68, alpha:0.0).cgColor
         self.tabBarController?.tabBar.clipsToBounds = true
-        self.tabBarController!.tabBar.isTranslucent = true;
     }
     
     override func viewDidAppear(_ animated: Bool) {

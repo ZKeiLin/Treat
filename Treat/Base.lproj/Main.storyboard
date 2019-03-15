@@ -624,13 +624,18 @@
         <scene sceneID="yl2-sM-qoP">
             <objects>
                 <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                    <tabBar key="tabBar" clipsSubviews="YES" contentMode="scaleToFill" itemPositioning="centered" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" red="0.37972652912139893" green="0.15683943033218384" blue="0.93731397390365601" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                <integer key="value" value="0"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="LFW-CP-NX1" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
@@ -641,11 +646,11 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--Tasks-->
+        <!--Task-->
         <scene sceneID="EA9-XL-wxg">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LFW-CP-NX1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Tasks" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Task" image="first" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Dvs-zc-VxC">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -667,11 +672,11 @@
             </objects>
             <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
         </scene>
-        <!--Treats-->
+        <!--Treat-->
         <scene sceneID="TVb-XR-Syh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FC3-kb-M7R" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Treats" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Treat" image="second" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="KtK-op-ZCL">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -1101,8 +1106,8 @@
     </scenes>
     <resources>
         <image name="/Users/kelden/Documents/Wint-19/INFO-449/IMG_0277.jpg" width="16" height="16"/>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="first" width="156.52174377441406" height="156.52174377441406"/>
+        <image name="second" width="156.52174377441406" height="156.52174377441406"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="pHF-Ti-YCD"/>
