@@ -33,6 +33,7 @@ struct DataFunc {
                 user.history = userProfile.history
                 user.tasks = userProfile.tasks
                 user.treats = userProfile.treats
+                user.img = nil
                 
                 // tap "done" and run fetchrequest again
                 // ignore the next 2 lines

@@ -397,6 +397,18 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="grI-0m-rb9">
+                                <rect key="frame" x="321" y="91" width="73" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yhm-Ys-gxC">
+                                <rect key="frame" x="321" y="149" width="73" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit Image"/>
+                                <connections>
+                                    <action selector="btnClicked" destination="m91-Wr-Ziu" eventType="touchUpInside" id="W1k-oX-Eci"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -435,7 +447,9 @@
                         <viewLayoutGuide key="safeArea" id="fsa-xd-CEI"/>
                     </view>
                     <connections>
+                        <outlet property="chooseButton" destination="Yhm-Ys-gxC" id="7BN-mv-BvE"/>
                         <outlet property="historyTableView" destination="tYR-4E-Bqr" id="rpl-WF-roi"/>
+                        <outlet property="imageView" destination="grI-0m-rb9" id="djA-uF-NMy"/>
                         <outlet property="lvlLabel" destination="dry-hi-ico" id="6hR-BY-CNP"/>
                         <outlet property="nameLabel" destination="odT-Dc-Qux" id="h3B-I6-SKd"/>
                         <outlet property="pointsLabel" destination="pl0-Bh-2CO" id="fK9-f4-HiB"/>

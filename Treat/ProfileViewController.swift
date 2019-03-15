@@ -53,23 +53,24 @@ class HistoryDataSource : NSObject, UITableViewDataSource
     }
 }
 
-class ProfileViewController: UIViewController, UITableViewDelegate {
+class ProfileViewController: UIViewController, UITableViewDelegate, UINavigationControllerDelegate,UIImagePickerControllerDelegate {
     // Interface Variables
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var lvlLabel: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
-    
     @IBOutlet weak var xpBar: UIView!
     @IBOutlet weak var xpBarConstraint: NSLayoutConstraint!
     @IBOutlet weak var historyTableView: UITableView!
     
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var chooseButton: UIButton!
+    var imagePicker = UIImagePickerController()
     // Local Variables
     var user : User? = nil
     var dataSource : HistoryDataSource? = nil
 
     weak var delegate: ProfileViewControllerDelegate?
     let XP_PER_LEVEL : Float = 500.0 // XP Per level
-    
     func getXp() -> Int {
         var returnXp : Int = 0
         for t in user!.history! {
@@ -92,6 +93,33 @@ class ProfileViewController: UIViewController, UITableViewDelegate {
     @IBAction func backPress(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    @IBAction func btnClicked() {
+        
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+            print("Button capture")
+            
+            imagePicker.delegate = self
+            imagePicker.sourceType = .savedPhotosAlbum
+            imagePicker.allowsEditing = false
+            
+            present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            self.imageView.contentMode = .scaleAspectFit
+            self.imageView.image = pickedImage
+            user = DataFunc.fetchData()
+            self.user?.img = pickedImage.pngData()
+            PersistenceService.saveContext()
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
     
     func reloadData() {
         print("\(self.user!.name!) has \(self.user!.points) points")
@@ -118,7 +146,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate {
         print("Level: \(getLevel())")
         print("XP: \(getXp())")
         print("\(getPercentXp() * 100)%")
-
+        imageView.image = UIImage(data:(self.user?.img!)!)
         lvlLabel.text = "Level \(getLevel())"
         pointsLabel.text = "\(self.user!.points) points"
         let currWidth : CGFloat = xpBar.frame.size.width
