@@ -267,6 +267,7 @@ class TaskViewController: UIViewController, UITableViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         print("view appeared")
         self.user = DataFunc.fetchData()
+        self.reloadData()
         profileButton.setBackgroundImage(UIImage(data: (self.user?.img)!), for: .normal)
         if self.user?.name == "" {
             print("perform segue")

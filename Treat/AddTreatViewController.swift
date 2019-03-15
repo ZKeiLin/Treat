@@ -114,7 +114,7 @@ class AddTreatViewController: UIViewController, UITableViewDelegate {
             ))
             self.present(alert, animated: true, completion: nil)
         } else {
-            fetchJsonData("https://api.myjson.com/bins/1002ja")
+            fetchJsonData("https://api.myjson.com/bins/1772ri")
         }
     }
     
