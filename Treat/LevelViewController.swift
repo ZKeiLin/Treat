@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class LevelViewController: UIViewController {
     var user : User? = nil
@@ -21,6 +22,7 @@ class LevelViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        AudioServicesPlaySystemSound(1026)
         
         descLabel.text = String("Congratulations \(self.user!.name!), you're now LEVEL \(DataFunc.getLevel(user))!")
         taskLabel.text = String(DataFunc.getHistoricCount(user, type: "Task"))
