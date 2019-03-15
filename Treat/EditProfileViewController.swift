@@ -21,10 +21,12 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = viewTitle
+
         self.user = DataFunc.fetchData()
         imageView.image = UIImage(data:(self.user?.img!)!)
-
-        self.title = viewTitle
+        nameField.text = self.user?.name
     }
     
     @IBAction func btnClicked() {
