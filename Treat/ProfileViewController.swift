@@ -53,16 +53,16 @@ class HistoryDataSource : NSObject, UITableViewDataSource
     }
 }
 
-class ProfileViewController: UIViewController, UITableViewDelegate {
+class ProfileViewController: UIViewController, UITableViewDelegate{
     // Interface Variables
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var lvlLabel: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
-    
     @IBOutlet weak var xpBar: UIView!
     @IBOutlet weak var xpBarConstraint: NSLayoutConstraint!
     @IBOutlet weak var historyTableView: UITableView!
     
+    @IBOutlet weak var imageView: UIImageView!
     // Local Variables
     var user : User? = nil
     var dataSource : HistoryDataSource? = nil
@@ -72,7 +72,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate {
     @IBAction func backPress(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
+   
     func reloadData() {
         print("\(self.user!.name!) has \(self.user!.points) points")
         print("Tasks")
@@ -103,6 +103,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate {
         pointsLabel.text = "\(self.user!.points) points"
         let currWidth : CGFloat = xpBar.frame.size.width
         xpBarConstraint.constant += currWidth - (CGFloat(DataFunc.getPercentXp(user) * 100) * ((20.0 + currWidth) / 100.0))
+        
+        imageView.image = UIImage(data:(self.user?.img!)!)
+
         // widthFor100%  - (currentPercent * widthFor1%)
         // width is 374
         // sides are 20
