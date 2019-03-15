@@ -44,9 +44,6 @@ class TaskViewController: UIViewController, UITableViewDelegate {
     var user : User? = nil
     var dataSource : TaskDataSource? = nil
     
-    let pointColor : [UIColor] = taskColor
-    
-    
     @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var newTaskView: UIView!
     @IBOutlet weak var taskInput: UITextField!
@@ -246,16 +243,14 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         // Add Task View buttons
         answerButtons = [button1, button2, button3, button4]
         
-        // Tab code
-        self.tabBarController!.tabBar.layer.borderWidth = 0.50
-        self.tabBarController!.tabBar.layer.borderColor = UIColor(red:0.35, green:0.00, blue:0.68, alpha:0.0).cgColor
-        self.tabBarController?.tabBar.clipsToBounds = true
-        self.tabBarController!.tabBar.isTranslucent = true;
-        
         // button Decoration
         profileButton.layer.cornerRadius = 5
         profileButton.layer.borderColor = UIColor.white.cgColor
         profileButton.layer.borderWidth = 1
+        
+        // tab style
+        self.tabBarController!.tabBar.layer.borderColor = UIColor(red:0.35, green:0.00, blue:0.68, alpha:0.0).cgColor
+        self.tabBarController?.tabBar.clipsToBounds = true
     }
 }
 

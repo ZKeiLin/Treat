@@ -22,5 +22,6 @@ extension User {
     @NSManaged public var history: [Any]?
     @NSManaged public var tasks: [Task]?
     @NSManaged public var treats: [Treat]?
+    @NSManaged public var img: Data?
 
 }
