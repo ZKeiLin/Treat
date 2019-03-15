@@ -191,7 +191,8 @@ class TaskViewController: UIViewController, UITableViewDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "profileSegue" {
-            let profileViewController = segue.destination as! ProfileViewController
+            let profileNavViewController = segue.destination as! UINavigationController
+            let profileViewController = profileNavViewController.topViewController as! ProfileViewController
             profileViewController.delegate = self
         }
         else if segue.identifier == "taskLevelSegue" {

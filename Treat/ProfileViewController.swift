@@ -27,14 +27,6 @@ class HistoryDataSource : NSObject, UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryCell") as! HistoryCell
         let currData = data[indexPath.row]
 
-//
-//        for t in user!.history! {
-//            switch t {
-//            case is Task: let ta = t as! Task; returnXp += Int(ta.points!)
-//            default: let tr = t as! Treat; returnXp += Int(tr.points!)
-//            }
-//        }
-//
         if currData is Task {
             let convertedData = currData as? Task
             cell.name.text = convertedData!.name
@@ -100,7 +92,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate{
         print("\(DataFunc.getPercentXp(user) * 100)%")
 
         lvlLabel.text = "Level \(DataFunc.getLevel(user))"
-        print(DataFunc.getPercentXp(user))
         pointsLabel.text = "\(DataFunc.getXp(user))/\(DataFunc.getXp(user) - (DataFunc.getXp(user) % Int(XP_PER_LEVEL)) + Int(XP_PER_LEVEL)) xp"
         let currWidth : CGFloat = xpBar.frame.size.width
         xpBarConstraint.constant += currWidth - (CGFloat(DataFunc.getPercentXp(user) * 100) * ((20.0 + currWidth) / 100.0))
@@ -115,6 +106,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate{
         // 0% = + (20 + 373)
         // 1% = + (20 + width) / 100
         // 100% = - 0
+    }
+    
+    // Update name and image from edit profiel
+    override func viewDidAppear(_ animated: Bool) {
+        self.user = DataFunc.fetchData()
+        
+        nameLabel.text = self.user?.name
+        imageView.image = UIImage(data:(self.user?.img!)!)
     }
     
     @IBAction func resetUser(_ sender: Any) {
