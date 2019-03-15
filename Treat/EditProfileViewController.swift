@@ -27,6 +27,13 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         self.user = DataFunc.fetchData()
         imageView.image = UIImage(data:(self.user?.img!)!)
         nameField.text = self.user?.name
+        
+        //
+        // Misc Setup
+        // Hiding Keyboard
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
     }
     
     @IBAction func btnClicked() {
@@ -42,7 +49,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            self.imageView.contentMode = .scaleAspectFit
+            self.imageView.contentMode = .scaleAspectFill
             self.imageView.image = pickedImage
         }
         dismiss(animated: true, completion: nil)
@@ -52,5 +59,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         self.user?.name = nameField.text
         self.user?.img = self.imageView.image?.pngData()
         PersistenceService.saveContext()
+        
+        navigationController?.popViewController(animated: true)
     }
 }

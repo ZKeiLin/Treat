@@ -244,14 +244,23 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         // Add Task View buttons
         answerButtons = [button1, button2, button3, button4]
         
-        // button Decoration
-        profileButton.layer.cornerRadius = 5
+        // Profile button styling
+        profileButton.setBackgroundImage(UIImage(data: (self.user?.img)!), for: .normal)
+        profileButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        profileButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        profileButton.layer.cornerRadius = 20
+        profileButton.layer.masksToBounds = true
         profileButton.layer.borderColor = UIColor.white.cgColor
-        profileButton.layer.borderWidth = 1
+        profileButton.layer.borderWidth = 2
         
         // tab style
         self.tabBarController!.tabBar.layer.borderColor = UIColor(red:0.35, green:0.00, blue:0.68, alpha:0.0).cgColor
         self.tabBarController?.tabBar.clipsToBounds = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.user = DataFunc.fetchData()
+        profileButton.setBackgroundImage(UIImage(data: (self.user?.img)!), for: .normal)
     }
 }
 
