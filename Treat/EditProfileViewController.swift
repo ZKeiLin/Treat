@@ -22,6 +22,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         super.viewDidLoad()
         self.user = DataFunc.fetchData()
         imageView.image = UIImage(data:(self.user?.img!)!)
+
         // Do any additional setup after loading the view.
     }
     @IBAction func btnClicked() {
