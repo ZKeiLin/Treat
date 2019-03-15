@@ -70,25 +70,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UINavigation
     var dataSource : HistoryDataSource? = nil
 
     weak var delegate: ProfileViewControllerDelegate?
-    let XP_PER_LEVEL : Float = 500.0 // XP Per level
-    func getXp() -> Int {
-        var returnXp : Int = 0
-        for t in user!.history! {
-            switch t {
-                case is Task: let ta = t as! Task; returnXp += Int(ta.points!)
-                default: let tr = t as! Treat; returnXp += Int(tr.points!)
-            }
-        }
-        return returnXp
-    }
-    
-    func getPercentXp() -> Float {
-        return Float(getXp()).truncatingRemainder(dividingBy: XP_PER_LEVEL) / XP_PER_LEVEL
-    }
-    
-    func getLevel() -> Int {
-        return Int(floor(Float(getXp()) / XP_PER_LEVEL)) + 1 // Default level 1
-    }
     
     @IBAction func backPress(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -143,14 +124,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UINavigation
         self.reloadData()
         
         nameLabel.text = self.user?.name
-        print("Level: \(getLevel())")
-        print("XP: \(getXp())")
-        print("\(getPercentXp() * 100)%")
-        imageView.image = UIImage(data:(self.user?.img!)!)
-        lvlLabel.text = "Level \(getLevel())"
+        print("Level: \(DataFunc.getLevel(user))")
+        print("XP: \(DataFunc.getXp(user))")
+        print("\(DataFunc.getPercentXp(user) * 100)%")
+
+        lvlLabel.text = "Level \(DataFunc.getLevel(user))"
         pointsLabel.text = "\(self.user!.points) points"
         let currWidth : CGFloat = xpBar.frame.size.width
-        xpBarConstraint.constant += currWidth - (CGFloat(getPercentXp() * 100) * ((20.0 + currWidth) / 100.0))
+        xpBarConstraint.constant += currWidth - (CGFloat(DataFunc.getPercentXp(user) * 100) * ((20.0 + currWidth) / 100.0))
+        
+        imageView.image = UIImage(data:(self.user?.img!)!)
+
         // widthFor100%  - (currentPercent * widthFor1%)
         // width is 374
         // sides are 20

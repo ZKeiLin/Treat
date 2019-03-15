@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 import CoreData
 
-var taskColor : [UIColor] = [UIColor(red:0.29, green:0.53, blue:0.91, alpha:1.0), UIColor(red:0.09, green:0.75, blue:0.73, alpha:1.0), UIColor.orange, UIColor.red]
 
+var taskColor : [UIColor] = [UIColor(red:0.29, green:0.53, blue:0.91, alpha:1.0), UIColor(red:0.09, green:0.75, blue:0.73, alpha:1.0), UIColor.orange, #colorLiteral(red: 1, green: 0.1764705882, blue: 0.3333333333, alpha: 1)]
+let XP_PER_LEVEL : Float = 500.0 // XP Per level
 
 struct DataFunc {
-
     static func fetchData() -> User? {
         let fetchRequest : NSFetchRequest<User> = User.fetchRequest()
         do {
@@ -74,6 +74,25 @@ struct DataFunc {
         } catch let error as NSError {
             print("Deleted all my data in myEntity error : \(error) \(error.userInfo)")
         }
+    }
+    
+    static func getXp(_ user : User?) -> Int {
+        var returnXp : Int = 0
+        for t in user!.history! {
+            switch t {
+            case is Task: let ta = t as! Task; returnXp += Int(ta.points!)
+            default: let tr = t as! Treat; returnXp += Int(tr.points!)
+            }
+        }
+        return returnXp
+    }
+    
+    static func getPercentXp(_ user : User?) -> Float {
+        return Float(getXp(user)).truncatingRemainder(dividingBy: XP_PER_LEVEL) / XP_PER_LEVEL
+    }
+    
+    static func getLevel(_ user : User?) -> Int {
+        return Int(floor(Float(getXp(user)) / XP_PER_LEVEL)) + 1 // Default level 1
     }
     
     static func createLoadAlert(_ alertMsg : String) -> UIAlertController {
