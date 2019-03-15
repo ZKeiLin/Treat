@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import AudioToolbox
+
 
 class TaskDataSource : NSObject, UITableViewDataSource
 {
@@ -42,9 +44,6 @@ class TaskViewController: UIViewController, UITableViewDelegate {
     var user : User? = nil
     var dataSource : TaskDataSource? = nil
     
-    let pointColor : [UIColor] = taskColor
-    
-    
     @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var newTaskView: UIView!
     @IBOutlet weak var taskInput: UITextField!
@@ -70,6 +69,8 @@ class TaskViewController: UIViewController, UITableViewDelegate {
             self.user!.tasks!.remove(at: editActionsForRowAt.row)
             self.dataSource?.data.remove(at: editActionsForRowAt.row)            
             tableView.deleteRows(at: [editActionsForRowAt], with: .fade)
+            
+            AudioServicesPlaySystemSound(1114)
             PersistenceService.saveContext()
             
             self.noTaskAvailable.isHidden = self.user!.tasks!.count == 0 ? false : true
