@@ -9,9 +9,9 @@
 import UIKit
 import CoreData
 
-protocol ProfileViewControllerDelegate: class {
-    func notifyTaskOfReset(sender: ProfileViewController)
-}
+//protocol ProfileViewControllerDelegate: class {
+//    func notifyTaskOfReset(sender: ProfileViewController)
+//}
 
 class HistoryDataSource : NSObject, UITableViewDataSource
 {
@@ -59,7 +59,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate{
     var user : User? = nil
     var dataSource : HistoryDataSource? = nil
 
-    weak var delegate: ProfileViewControllerDelegate?
+//    weak var delegate: ProfileViewControllerDelegate?
     
     @IBAction func backPress(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -125,7 +125,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate{
             // Erase the data
             DataFunc.eraseData()
             self.dismiss(animated: true) {
-                self.delegate?.notifyTaskOfReset(sender: self)
+//                self.delegate?.notifyTaskOfReset(sender: self)
             }
         }
         

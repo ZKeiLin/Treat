@@ -11,16 +11,27 @@ import CoreData
 
 class EditProfileViewController: UIViewController, UINavigationControllerDelegate,UIImagePickerControllerDelegate  {
     
+    @IBOutlet weak var getStartedLabel: UILabel!
+    @IBOutlet weak var getStartedTopConst: NSLayoutConstraint!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var chooseButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     
+    var newUserSetup = false
     var user : User? = nil
     var imagePicker : UIImagePickerController = UIImagePickerController()
     var viewTitle : String = "Edit Profile"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if newUserSetup {
+            getStartedLabel.isHidden = false
+            getStartedTopConst.constant = 60
+            chooseButton.setTitle("Add Profile Photo", for: .normal)
+            saveButton.setTitle("Create Profile", for: .normal)
+        }
         
         self.title = viewTitle
 
@@ -56,10 +67,19 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     }
 
     @IBAction func save(_ sender: Any) {
-        self.user?.name = nameField.text
-        self.user?.img = self.imageView.image?.pngData()
-        PersistenceService.saveContext()
-        
-        navigationController?.popViewController(animated: true)
+        if nameField.text?.trimmingCharacters(in: .whitespaces) != "" {
+            self.user?.name = nameField.text
+            self.user?.img = self.imageView.image?.pngData()
+            PersistenceService.saveContext()
+            
+            navigationController?.popViewController(animated: true)
+            dismiss(animated: true, completion: nil)
+        }
+        // User left the name blank
+        else {
+            let alert = UIAlertController(title: "No name entered", message: "Please enter a valid name", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in return }))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }

@@ -190,16 +190,22 @@ class TaskViewController: UIViewController, UITableViewDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "profileSegue" {
-            let profileNavViewController = segue.destination as! UINavigationController
-            let profileViewController = profileNavViewController.topViewController as! ProfileViewController
-            profileViewController.delegate = self
-        }
-        else if segue.identifier == "taskLevelSegue" {
+//        if segue.identifier == "profileSegue" {
+//            let profileNavViewController = segue.destination as! UINavigationController
+//            let profileViewController = profileNavViewController.topViewController as! ProfileViewController
+//            profileViewController.delegate = self
+//        }
+        if segue.identifier == "taskLevelSegue" {
             let levelViewController = segue.destination as! LevelViewController
             levelViewController.user = self.user
         }
+        else if segue.identifier == "newUserSegue" {
+            let profileViewController = segue.destination as! EditProfileViewController
+            profileViewController.newUserSetup = true
+        }
     }
+    
+    
     
     func reloadData() {
         print("\(self.user!.name!) has \(self.user!.points) points")
@@ -224,8 +230,7 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         // Fetch Data from Coredata
         self.user = DataFunc.fetchData()
         self.reloadData()
-        
-        
+
         //
         // Misc Setup
         // Hiding Keyboard
@@ -256,27 +261,33 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         // tab style
         self.tabBarController!.tabBar.layer.borderColor = UIColor(red:0.35, green:0.00, blue:0.68, alpha:0.0).cgColor
         self.tabBarController?.tabBar.clipsToBounds = true
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        print("view appeared")
         self.user = DataFunc.fetchData()
         profileButton.setBackgroundImage(UIImage(data: (self.user?.img)!), for: .normal)
+        if self.user?.name == "" {
+            print("perform segue")
+            self.performSegue(withIdentifier: "newUserSegue", sender: self)
+        }
     }
 }
 
 // Extension for erasing user data
-extension TaskViewController: ProfileViewControllerDelegate {
-    func notifyTaskOfReset(sender: ProfileViewController) {
-        let alert = DataFunc.createLoadAlert("Erasing all content...")
-        present(alert, animated: true, completion: nil)
-
-        self.user = DataFunc.fetchData()
-        self.reloadData()
-        
-        // Dismiss the load after data ia reloaded
-        DispatchQueue.main.async {
-            self.dismiss(animated: false, completion: nil)
-        }
-    }
-}
+//extension TaskViewController: ProfileViewControllerDelegate {
+//    func notifyTaskOfReset(sender: ProfileViewController) {
+//        let alert = DataFunc.createLoadAlert("Erasing all content...")
+//        present(alert, animated: true, completion: nil)
+//
+//        self.user = DataFunc.fetchData()
+//        self.reloadData()
+//
+//        // Dismiss the load after data ia reloaded
+//        DispatchQueue.main.async {
+//            self.dismiss(animated: false, completion: nil)
+//        }
+//    }
+//}
 

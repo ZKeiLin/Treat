@@ -24,7 +24,7 @@ struct DataFunc {
             // No user profile is found
             if result.count == 0 {
                 print("Creating initial user")
-                let userProfile : UserProfile = UserProfile(name: "Me") // Default Data, would change to a field user can enter information
+                let userProfile : UserProfile = UserProfile(name: "") // Default Data, would change to a field user can enter information
                 // segue as popover
                 // all this info is going to be on the view controller
                 let user = User(context: PersistenceService.context)
@@ -35,8 +35,6 @@ struct DataFunc {
                 user.treats = userProfile.treats
                 user.img = userProfile.img
                 
-                // tap "done" and run fetchrequest again
-                // ignore the next 2 lines
                 PersistenceService.saveContext() // Save newly created user
                 result = try PersistenceService.context.fetch(fetchRequest) // Fetch the CoreData again with the new user
             }
