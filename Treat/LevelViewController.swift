@@ -22,6 +22,17 @@ class LevelViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        UIGraphicsBeginImageContext(self.view.frame.size)
+////        var image = UIImage(named: "levelUpBG")
+//        UIImage(named: "levelUpBG")?.draw(in: self.view.bounds)
+////        UIImage *image = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext();
+//        let image:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+//        UIGraphicsEndImageContext()
+//        
+//        self.view.backgroundColor = UIColor(patternImage: image) ?? UIColor.blue
+//
         AudioServicesPlaySystemSound(1026)
         
         descLabel.text = String("Congratulations \(self.user!.name!), you're now LEVEL \(DataFunc.getLevel(user))!")
