@@ -73,6 +73,7 @@ class AddTreatViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var popularTableView: UITableView!
     @IBOutlet weak var categoryTableView: UITableView!
     
+    var fetchUrl : String = "https://api.myjson.com/bins/1772ri"
     var userTreats : [Treat] = []
     var treats : [Treat] = []
     var categories : [String] = []
@@ -114,7 +115,7 @@ class AddTreatViewController: UIViewController, UITableViewDelegate {
             ))
             self.present(alert, animated: true, completion: nil)
         } else {
-            fetchJsonData("https://api.myjson.com/bins/1772ri")
+            fetchJsonData(fetchUrl)
         }
     }
     

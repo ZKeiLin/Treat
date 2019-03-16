@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// Set up default user information
 class UserProfile {
     let XP_PER_LEVEL : Float = 500.0
 
@@ -30,7 +31,7 @@ class UserProfile {
         self.history = []
         self.tasks = []
         self.treats = []
-        self.img = UIImage(named: "defaultProfilePic")!.pngData()!
+        self.img = UIImage(named: "defaultProfilePic")!.pngData()! // Icon made by Roundicons from www.flaticon.com
         
         let createTask = Task(name: "Pull down to create new tasks", points: 10)
         let completeTask = Task(name: "Swipe this task to complete it", points: 10)
