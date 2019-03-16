@@ -638,7 +638,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vib-Dm-TY6">
-                                                    <rect key="frame" x="245" y="14" width="60" height="30"/>
+                                                    <rect key="frame" x="339" y="14" width="60" height="30"/>
                                                     <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="yHw-DL-S3P"/>
@@ -867,7 +867,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZn-Vt-TQZ">
-                                                    <rect key="frame" x="245" y="14" width="60" height="30"/>
+                                                    <rect key="frame" x="339" y="14" width="60" height="30"/>
                                                     <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="oyy-89-p5D"/>
@@ -924,7 +924,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZsB-EG-Cvi">
-                                                    <rect key="frame" x="16" y="4" width="288" height="43.5"/>
+                                                    <rect key="frame" x="16" y="4" width="382" height="44"/>
                                                     <color key="backgroundColor" red="0.92941176469999998" green="0.40000000000000002" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -1126,7 +1126,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQx-gT-9rj">
-                                                    <rect key="frame" x="245" y="14" width="60" height="30"/>
+                                                    <rect key="frame" x="339" y="14" width="60" height="30"/>
                                                     <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="7O9-nz-JGF"/>
@@ -1198,7 +1198,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="levelUpBG" translatesAutoresizingMaskIntoConstraints="NO" id="WUd-NN-cF3">
-                                <rect key="frame" x="-20" y="0.0" width="454" height="742"/>
+                                <rect key="frame" x="-20" y="-3" width="454" height="745"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LEVEL UP!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5m-lw-1Lp">
                                 <rect key="frame" x="20" y="104" width="374" height="51"/>
@@ -1306,7 +1306,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="C5m-lw-1Lp" firstAttribute="top" secondItem="bUu-XJ-DJp" secondAttribute="top" constant="60" id="61e-Ym-5DI"/>
-                            <constraint firstItem="WUd-NN-cF3" firstAttribute="top" secondItem="vqy-jh-A2S" secondAttribute="top" id="71A-9r-Dwm"/>
+                            <constraint firstItem="WUd-NN-cF3" firstAttribute="top" secondItem="vqy-jh-A2S" secondAttribute="top" constant="-3" id="71A-9r-Dwm"/>
                             <constraint firstItem="WUd-NN-cF3" firstAttribute="leading" secondItem="bUu-XJ-DJp" secondAttribute="leading" constant="-20" id="AKH-Hr-WZs"/>
                             <constraint firstItem="bUu-XJ-DJp" firstAttribute="trailing" secondItem="C5m-lw-1Lp" secondAttribute="trailing" constant="20" id="BhX-WI-dMW"/>
                             <constraint firstItem="WUd-NN-cF3" firstAttribute="trailing" secondItem="bUu-XJ-DJp" secondAttribute="trailing" constant="20" id="Era-Fe-DfQ"/>
@@ -1382,9 +1382,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="156.52174377441406" height="156.52174377441406"/>
-        <image name="levelUpBG" width="750" height="1334"/>
-        <image name="second" width="156.52174377441406" height="156.52174377441406"/>
+        <image name="first" width="153.19148254394531" height="153.19148254394531"/>
+        <image name="levelUpBG" width="1242" height="2208"/>
+        <image name="second" width="153.19148254394531" height="153.19148254394531"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NA5-fW-dIo"/>
