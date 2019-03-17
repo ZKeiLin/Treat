@@ -455,6 +455,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="4HC-bt-Oy7">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="gyS-HC-Yx9">
+                            <color key="tintColor" red="0.32156862745098036" green="0.38823529411764707" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="backPress:" destination="m91-Wr-Ziu" id="MIT-Sf-xSU"/>
                             </connections>
@@ -652,7 +653,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vib-Dm-TY6">
-                                                    <rect key="frame" x="300" y="14" width="60" height="30"/>
+                                                    <rect key="frame" x="339" y="14" width="60" height="30"/>
                                                     <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="yHw-DL-S3P"/>
@@ -750,7 +751,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Treats" id="cpb-LB-GMb">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2Gf-NB-xNz">
-                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="E0g-Cr-OC9" kind="popoverPresentation" identifier="treatAddSegue" popoverAnchorBarButtonItem="2Gf-NB-xNz" id="lrl-xA-xUG">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -884,7 +885,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZn-Vt-TQZ">
-                                                    <rect key="frame" x="300" y="14" width="60" height="30"/>
+                                                    <rect key="frame" x="339" y="14" width="60" height="30"/>
                                                     <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="oyy-89-p5D"/>
@@ -941,7 +942,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZsB-EG-Cvi">
-                                                    <rect key="frame" x="16" y="4" width="343" height="43.5"/>
+                                                    <rect key="frame" x="16" y="4" width="382" height="44"/>
                                                     <color key="backgroundColor" red="0.92941176469999998" green="0.40000000000000002" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -1015,6 +1016,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Explore Treats" id="C47-NO-bMA">
                         <barButtonItem key="rightBarButtonItem" title="Cancel" id="5LO-cD-5Dt">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="cancelAdd:" destination="bW9-o3-kz5" id="MCB-dQ-PVW"/>
                             </connections>
@@ -1082,6 +1084,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="gI7-pJ-9wI" firstAttribute="top" secondItem="nXL-Kl-Xi9" secondAttribute="bottom" constant="16" id="0V9-Vv-4Is"/>
                             <constraint firstItem="nXL-Kl-Xi9" firstAttribute="top" secondItem="39E-HC-aym" secondAttribute="top" constant="20" id="0eG-WA-GhL"/>
@@ -1143,7 +1146,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQx-gT-9rj">
-                                                    <rect key="frame" x="300" y="14" width="60" height="30"/>
+                                                    <rect key="frame" x="339" y="14" width="60" height="30"/>
                                                     <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="7O9-nz-JGF"/>
@@ -1190,6 +1193,7 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="MaH-Za-nUv" firstAttribute="bottom" secondItem="Tyj-BG-9gH" secondAttribute="bottom" id="0dB-Ri-f88"/>
                             <constraint firstItem="MaH-Za-nUv" firstAttribute="top" secondItem="Tyj-BG-9gH" secondAttribute="top" id="3O4-87-0fQ"/>
@@ -1404,7 +1408,8 @@
         <image name="second" width="153.19148254394531" height="153.19148254394531"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pHF-Ti-YCD"/>
+        <segue reference="NA5-fW-dIo"/>
         <segue reference="pf7-wV-lqo"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.32156862749999998" green="0.41960784309999999" blue="0.90588235289999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

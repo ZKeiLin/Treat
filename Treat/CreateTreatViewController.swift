@@ -51,7 +51,7 @@ class CreateTreatViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if Reachability.isConnectedToNetwork(){ // only show picker if there's internet
             let categoryPicker = UIPickerView()
             treatFieldCategory.inputView = categoryPicker
-            
+            navigationController?.navigationBar.tintColor = .white
             categoryPicker.delegate = self
         }
     }
