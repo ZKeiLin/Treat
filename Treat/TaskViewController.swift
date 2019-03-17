@@ -250,7 +250,8 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         answerButtons = [button1, button2, button3, button4]
         
         // Profile button styling
-        profileButton.setBackgroundImage(UIImage(data: (self.user?.img)!), for: .normal)
+        profileButton.setImage(UIImage(data: (self.user?.img)!), for: .normal)
+        profileButton.imageView?.contentMode = .scaleAspectFill
         profileButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         profileButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
         profileButton.layer.cornerRadius = 20
@@ -268,7 +269,8 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         print("view appeared")
         self.user = DataFunc.fetchData()
         self.reloadData()
-        profileButton.setBackgroundImage(UIImage(data: (self.user?.img)!), for: .normal)
+        profileButton.setImage(UIImage(data: (self.user?.img)!), for: .normal)
+
         if self.user?.name == "" {
             print("perform segue")
             self.performSegue(withIdentifier: "newUserSegue", sender: self)

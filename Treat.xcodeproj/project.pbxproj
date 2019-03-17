@@ -78,6 +78,7 @@
 		2D4E28502230923A0071A905 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2D58234D22308E5200BE2988 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		2D58237022308F5800BE2988 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		7D05021C223DD2900023475F /* Treat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Treat.entitlements; sourceTree = "<group>"; };
 		7D521964223B25D400C4662B /* LevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelViewController.swift; sourceTree = "<group>"; };
 		7D7DA497222F6F2A00C510B6 /* AddTreatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTreatViewController.swift; sourceTree = "<group>"; };
 		7D7DA499222F771100C510B6 /* TreatOnlineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatOnlineCell.swift; sourceTree = "<group>"; };
@@ -119,6 +120,7 @@
 		0CE8634722124EC1005BD651 = {
 			isa = PBXGroup;
 			children = (
+				7D05021C223DD2900023475F /* Treat.entitlements */,
 				0CE8635222124EC2005BD651 /* Treat */,
 				0CE8636922124EC3005BD651 /* TreatTests */,
 				0CE8637422124EC3005BD651 /* TreatUITests */,
@@ -256,6 +258,14 @@
 				TargetAttributes = {
 					0CE8634F22124EC1005BD651 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+						};
 					};
 					0CE8636522124EC3005BD651 = {
 						CreatedOnToolsVersion = 10.1;
@@ -516,14 +526,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5PSCJVEKW3;
 				INFOPLIST_FILE = Treat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = edu.washington.Treat;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.washington.Kelden.Treat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -534,14 +546,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5PSCJVEKW3;
 				INFOPLIST_FILE = Treat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = edu.washington.Treat;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.washington.Kelden.Treat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
