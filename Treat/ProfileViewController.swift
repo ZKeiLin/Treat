@@ -32,13 +32,13 @@ class HistoryDataSource : NSObject, UITableViewDataSource
             cell.name.text = convertedData!.name
             cell.historyType.text = "Completed Task"
             cell.points.textColor = #colorLiteral(red: 0.3215686275, green: 0.3882352941, blue: 0.9019607843, alpha: 1)
-            cell.points.text = "+ \(convertedData!.points!)"
+            cell.points.text = "+\(convertedData!.points!)"
         } else { // Treat
             let convertedData = currData as? Treat
             cell.name.text = convertedData!.name
             cell.historyType.text = "Redeemed Treat"
             cell.points.textColor = #colorLiteral(red: 1, green: 0.1764705882, blue: 0.3333333333, alpha: 1)
-            cell.points.text = "- \(convertedData!.points!)"
+            cell.points.text = "-\(convertedData!.points!)"
         }
         
         return cell

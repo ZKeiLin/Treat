@@ -115,11 +115,16 @@ class TaskViewController: UIViewController, UITableViewDelegate {
     
     
     @IBAction func dismissInputView(_ sender: Any) {
-        if tableviewTop.constant >= 70 { tableviewTop.constant -= 90 }
+        if tableviewTop.constant >= 70 {
+            tableviewTop.constant -= 90
+            newTaskTop.constant -= 90
+        }
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut,animations: {
             self.newTaskView.alpha = 0
             self.view.layoutIfNeeded()
-        })
+        }, completion: { res in self.newTaskTop.constant = 120 })
+        
+        refreshControl.backgroundColor = #colorLiteral(red: 0.3215686275, green: 0.3882352941, blue: 0.9019607843, alpha: 1) // Reset refresh control background
     }
     
     
@@ -151,6 +156,7 @@ class TaskViewController: UIViewController, UITableViewDelegate {
     }
     
     @IBOutlet weak var tableviewTop: NSLayoutConstraint!
+    @IBOutlet weak var newTaskTop: NSLayoutConstraint!
     
     // Function that adds new task to table, user
     @IBAction func addNewCustomTask(_ sender: Any) {
@@ -163,11 +169,16 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         self.reloadData()
 
         // Animate back
-        if tableviewTop.constant >= 70 { tableviewTop.constant -= 90 }
+        if tableviewTop.constant >= 70 {
+            tableviewTop.constant -= 90
+            newTaskTop.constant -= 90
+        }
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut,animations: {
             self.newTaskView.alpha = 0
             self.view.layoutIfNeeded()
-        })
+        }, completion: { res in self.newTaskTop.constant = 120 })
+        
+        refreshControl.backgroundColor = #colorLiteral(red: 0.3215686275, green: 0.3882352941, blue: 0.9019607843, alpha: 1) // Reset refresh control background
     }
 
     // Animation and visual control updates when adding a new task
@@ -179,14 +190,18 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         
         newTaskView.isHidden = false
         taskInput.becomeFirstResponder()
-        if tableviewTop.constant < 70 { tableviewTop.constant += 90 }
-        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut,animations: {
+        if tableviewTop.constant < 70 {
+            tableviewTop.constant += 90
+            newTaskTop.constant -= 120
+        }
+        UIView.animate(withDuration: 0.35, delay: 0.0, options: .curveEaseOut, animations: {
             self.newTaskView.alpha = 1
             self.view.layoutIfNeeded()
         })
         
-        add.isEnabled = false
         refreshControl.endRefreshing()
+        refreshControl.backgroundColor = .white
+        add.isEnabled = false
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -237,6 +252,12 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
+        
+        
+        // Custom refresh control
+        refreshControl.backgroundColor = #colorLiteral(red: 0.3215686275, green: 0.3882352941, blue: 0.9019607843, alpha: 1)
+        refreshControl.tintColor = .clear
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull down to create task", attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
         
         // Refresh Code
         refreshControl.addTarget(self, action: #selector(addNewTask(_:)), for: .valueChanged)
