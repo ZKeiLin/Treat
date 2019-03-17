@@ -11,6 +11,7 @@ import CoreData
 
 class EditProfileViewController: UIViewController, UINavigationControllerDelegate,UIImagePickerControllerDelegate  {
     
+    @IBOutlet weak var fakeNavBar: UIView!
     @IBOutlet weak var getStartedLabel: UILabel!
     @IBOutlet weak var getStartedTopConst: NSLayoutConstraint!
     @IBOutlet weak var nameField: UITextField!
@@ -28,6 +29,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         
         if newUserSetup {
             getStartedLabel.isHidden = false
+            fakeNavBar.isHidden = true
             getStartedTopConst.constant = 60
             chooseButton.setTitle("Add Profile Photo", for: .normal)
             saveButton.setTitle("Create Profile", for: .normal)
@@ -68,6 +70,9 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
 
     @IBAction func save(_ sender: Any) {
         if nameField.text?.trimmingCharacters(in: .whitespaces) != "" {
+//            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//            self.navigationController?.navigationBar.isTranslucent = true
+
             self.user?.name = nameField.text
             self.user?.img = self.imageView.image?.pngData()
             PersistenceService.saveContext()

@@ -86,6 +86,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate{
         self.user = DataFunc.fetchData()
         self.reloadData()
         
+        
+        // Hide Navigation Bar
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.isTranslucent = true
+        
         nameLabel.text = self.user?.name
         print("Level: \(DataFunc.getLevel(user))")
         print("XP: \(DataFunc.getXp(user))")
@@ -114,6 +119,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate{
         
         nameLabel.text = self.user?.name
         imageView.image = UIImage(data:(self.user?.img!)!)
+        
     }
     
     @IBAction func resetUser(_ sender: Any) {
