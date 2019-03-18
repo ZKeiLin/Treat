@@ -58,45 +58,68 @@ class TaskViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var add: UIButton!
     var pointAmounts : [Int] = [10, 50, 100, 500]
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
-        let selectedTaskPoint = self.dataSource!.data[editActionsForRowAt.row].points!
-        let content:String = "+ \(selectedTaskPoint)"
-        let remove = UITableViewRowAction(style: .destructive, title: content) { action, index in
-            // Get current level to compare
-            let currLevel = DataFunc.getLevel(self.user)
+    // Complete task swipe function
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let selectedTaskPoint = self.dataSource?.data[indexPath.row].points!
+        let title = NSLocalizedString("+\(selectedTaskPoint!)", comment: "Point value")
+        
+        let action = UIContextualAction(style: .destructive, title: title,
+            handler: { (action, view, completionHandler) in
+                // Get current level to compare
+                let currLevel = DataFunc.getLevel(self.user)
+                
+                // Update user data
+                self.user!.points += Int32(self.user!.tasks![indexPath.row].points)
+                self.user!.history!.append(self.user!.tasks![indexPath.row])
+                self.user!.tasks!.remove(at: indexPath.row)
+                PersistenceService.saveContext()
+                
+                // Animate changes
+                self.dataSource?.data.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                AudioServicesPlaySystemSound(1114)
+                
+                // Check if 0 tasks left
+                self.noTaskAvailable.isHidden = self.user!.tasks!.count == 0 ? false : true
+                
+                // Check for levelup (after a small delay)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    let newLevel = DataFunc.getLevel(self.user)
+                    if newLevel != currLevel { self.performSegue(withIdentifier: "taskLevelSegue", sender: nil) }
+                }
+                
+                completionHandler(true)
+        })
             
+        switch selectedTaskPoint {
+            case 10:
+                action.backgroundColor = taskColor[0]
+            case 50:
+                action.backgroundColor = taskColor[1]
+            case 100:
+                action.backgroundColor = taskColor[2]
+            case 500:
+                action.backgroundColor = taskColor[3]
+            default:
+                action.backgroundColor = taskColor[0]
+        }
+        let configuration = UISwipeActionsConfiguration(actions: [action])
+        return configuration
+    }
+
+    // Delete swipe function
+    func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+        let remove = UITableViewRowAction(style: .destructive, title: "Delete") { action, index in
             // Update user data
-            self.user!.points += Int32(self.user!.tasks![editActionsForRowAt.row].points)
-            self.user!.history!.append(self.user!.tasks![editActionsForRowAt.row])
             self.user!.tasks!.remove(at: editActionsForRowAt.row)
             PersistenceService.saveContext()
 
             // Animate changes
-            self.dataSource?.data.remove(at: editActionsForRowAt.row)            
+            self.dataSource?.data.remove(at: editActionsForRowAt.row)
             tableView.deleteRows(at: [editActionsForRowAt], with: .fade)
-            AudioServicesPlaySystemSound(1114)
-            
+
             // Check if 0 tasks left
             self.noTaskAvailable.isHidden = self.user!.tasks!.count == 0 ? false : true
-            
-            // Check for levelup (after a small delay)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                let newLevel = DataFunc.getLevel(self.user)
-                if newLevel != currLevel { self.performSegue(withIdentifier: "taskLevelSegue", sender: nil) }
-            }
-        }
-        
-        switch selectedTaskPoint {
-        case 10:
-            remove.backgroundColor = taskColor[0]
-        case 50:
-            remove.backgroundColor = taskColor[1]
-        case 100:
-            remove.backgroundColor = taskColor[2]
-        case 500:
-            remove.backgroundColor = taskColor[3]
-        default:
-            remove.backgroundColor = taskColor[0]
         }
         
         return [remove]
