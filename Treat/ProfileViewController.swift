@@ -123,10 +123,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate{
     }
     
     @IBAction func resetUser(_ sender: Any) {
-        // Create you actionsheet - preferredStyle: .actionSheet
+        // Create actionsheet - preferredStyle: .actionSheet
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        // Create your actions - take a look at different style attributes
+        // Create actions
         let eraseAction = UIAlertAction(title: "Erase data", style: .destructive) { (action) in
             // Erase the data
             DataFunc.eraseData()
