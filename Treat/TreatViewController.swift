@@ -59,13 +59,15 @@ class TreatViewController: UIViewController, UITableViewDelegate {
     struct GlobalVariable{
         static var addedTreat : Treat? = nil
     }
-    
+    let generator = UIImpactFeedbackGenerator(style: .heavy)
     var user : User? = nil
     var dataSource : TreatDataSource? = nil
     
+    @IBOutlet weak var treatNotify: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noTreatAvailable: UILabel!
     @IBOutlet weak var userPointsLabel: UILabel!
+    @IBOutlet weak var treatNotifyView: UIView!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "treatAddSegue" {
@@ -84,6 +86,21 @@ class TreatViewController: UIViewController, UITableViewDelegate {
         if self.user!.points - Int32(treat.points) >= 0 {
             self.user!.points -= Int32(treat.points)
             self.user!.history?.append(treat)
+            generator.impactOccurred()
+            treatNotify.text = treat.name
+            treatNotifyView.isHidden = false
+            treatNotifyView.alpha = 0
+            UIView.animate(withDuration: 0.1) {
+                self.treatNotifyView.alpha = 1
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                UIView.animate(withDuration: 1) {
+                    self.treatNotifyView.alpha = 0
+                }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.treatNotifyView.isHidden = true
+            }
         }
     }
     

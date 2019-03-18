@@ -52,6 +52,10 @@ class TaskViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var button3: UIButton!
     @IBOutlet weak var button4: UIButton!
     @IBOutlet weak var noTaskAvailable: UILabel!
+    @IBOutlet weak var newPoints: UILabel!
+    @IBOutlet weak var newPointsView: UIView!
+    @IBOutlet weak var newUserWelcome: UIView!
+    @IBOutlet weak var newUserWelcomeBG: UIView!
     
     var selectedAnswer : Int = 0
     var answerButtons : [UIButton] = []
@@ -73,7 +77,20 @@ class TaskViewController: UIViewController, UITableViewDelegate {
                 self.user!.history!.append(self.user!.tasks![indexPath.row])
                 self.user!.tasks!.remove(at: indexPath.row)
                 PersistenceService.saveContext()
-                
+                self.newPointsView.isHidden = false
+                self.newPointsView.alpha = 0
+                self.newPoints.text = "\(self.user!.points) pts"
+                UIView.animate(withDuration: 0.1) {
+                    self.newPointsView.alpha = 1
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    UIView.animate(withDuration: 1) {
+                        self.newPointsView.alpha = 0
+                    }
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    self.newPointsView.isHidden = true
+                }
                 // Animate changes
                 self.dataSource?.data.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
@@ -128,6 +145,11 @@ class TaskViewController: UIViewController, UITableViewDelegate {
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool { return true }
 
     
+    @IBAction func getStarted(_ sender: Any) {
+        newUserWelcome.isHidden = true
+        newUserWelcomeBG.isHidden = true
+        self.performSegue(withIdentifier: "newUserSegue", sender: self)
+    }
     @IBAction func taskInputChanged(_ sender: Any) {
         if (taskInput.text == nil || taskInput.text == "") {
             add.isEnabled = false
@@ -317,7 +339,17 @@ class TaskViewController: UIViewController, UITableViewDelegate {
 
         if self.user?.name == "" {
             print("perform segue")
-            self.performSegue(withIdentifier: "newUserSegue", sender: self)
+            
+            newUserWelcome.isHidden = false
+            newUserWelcome.alpha = 0
+            newUserWelcomeBG.isHidden = false
+            newUserWelcomeBG.alpha = 0
+            UIView.animate(withDuration: 0.25) {
+                self.newUserWelcomeBG.alpha = 0.35
+            }
+            UIView.animate(withDuration: 0.75) {
+                self.newUserWelcome.alpha = 1
+            }
         }
     }
 }
