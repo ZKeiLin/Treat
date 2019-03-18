@@ -54,6 +54,13 @@ class CreateTreatViewController: UIViewController, UIPickerViewDelegate, UIPicke
             navigationController?.navigationBar.tintColor = .white
             categoryPicker.delegate = self
         }
+        
+        //
+        // Misc Setup
+        // Hiding Keyboard
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
     }
 
 }
