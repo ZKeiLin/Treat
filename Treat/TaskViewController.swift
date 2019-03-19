@@ -61,6 +61,7 @@ class TaskViewController: UIViewController, UITableViewDelegate {
     var answerButtons : [UIButton] = []
     @IBOutlet weak var add: UIButton!
     var pointAmounts : [Int] = [10, 50, 100, 500]
+    var treatTabBar : UITabBarItem? = nil
     
     // Complete task swipe function
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -143,9 +144,13 @@ class TaskViewController: UIViewController, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool { return true }
-
     
     @IBAction func getStarted(_ sender: Any) {
+        // Re-enable treat tab & profile again
+        treatTabBar!.isEnabled = true
+        profileButton.isEnabled = true
+        
+        // Hide popup
         newUserWelcome.isHidden = true
         newUserWelcomeBG.isHidden = true
         self.performSegue(withIdentifier: "newUserSegue", sender: self)
@@ -328,7 +333,6 @@ class TaskViewController: UIViewController, UITableViewDelegate {
         // tab style
         self.tabBarController!.tabBar.layer.borderColor = UIColor(red:0.35, green:0.00, blue:0.68, alpha:0.0).cgColor
         self.tabBarController?.tabBar.clipsToBounds = true
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -339,15 +343,21 @@ class TaskViewController: UIViewController, UITableViewDelegate {
 
         if self.user?.name == "" {
             print("perform segue")
+            let tabBarControllerItems = self.tabBarController?.tabBar.items
             
+            // Disable profile * treat tab buttons
+            if let tabArray = tabBarControllerItems { treatTabBar = tabArray[1]; treatTabBar!.isEnabled = false }
+            profileButton.isEnabled = false
+            
+            // Show popup
             newUserWelcome.isHidden = false
             newUserWelcome.alpha = 0
             newUserWelcomeBG.isHidden = false
             newUserWelcomeBG.alpha = 0
-            UIView.animate(withDuration: 0.25) {
+            UIView.animate(withDuration: 0.2) {
                 self.newUserWelcomeBG.alpha = 0.35
             }
-            UIView.animate(withDuration: 0.75) {
+            UIView.animate(withDuration: 0.5) {
                 self.newUserWelcome.alpha = 1
             }
         }
