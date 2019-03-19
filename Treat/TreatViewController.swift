@@ -59,7 +59,7 @@ class TreatViewController: UIViewController, UITableViewDelegate {
     struct GlobalVariable{
         static var addedTreat : Treat? = nil
     }
-    let generator = UIImpactFeedbackGenerator(style: .heavy)
+    let generator = UIImpactFeedbackGenerator(style: .medium)
     var user : User? = nil
     var dataSource : TreatDataSource? = nil
     
@@ -68,6 +68,7 @@ class TreatViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var noTreatAvailable: UILabel!
     @IBOutlet weak var userPointsLabel: UILabel!
     @IBOutlet weak var treatNotifyView: UIView!
+    @IBOutlet weak var treatNotifyConstraintBot: NSLayoutConstraint!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "treatAddSegue" {
@@ -86,20 +87,21 @@ class TreatViewController: UIViewController, UITableViewDelegate {
         if self.user!.points - Int32(treat.points) >= 0 {
             self.user!.points -= Int32(treat.points)
             self.user!.history?.append(treat)
+            
+            // Show visual feedback
             generator.impactOccurred()
             treatNotify.text = treat.name
-            treatNotifyView.isHidden = false
-            treatNotifyView.alpha = 0
-            UIView.animate(withDuration: 0.1) {
+            self.treatNotifyConstraintBot.constant = 20
+            UIView.animate(withDuration: 0.25) {
                 self.treatNotifyView.alpha = 1
+                self.view.layoutIfNeeded()
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                UIView.animate(withDuration: 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                self.treatNotifyConstraintBot.constant = -20
+                UIView.animate(withDuration: 0.75) {
                     self.treatNotifyView.alpha = 0
+                    self.view.layoutIfNeeded()
                 }
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                self.treatNotifyView.isHidden = true
             }
         }
     }

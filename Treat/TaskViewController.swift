@@ -56,6 +56,7 @@ class TaskViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var newPointsView: UIView!
     @IBOutlet weak var newUserWelcome: UIView!
     @IBOutlet weak var newUserWelcomeBG: UIView!
+    @IBOutlet weak var newPointsContraintBot: NSLayoutConstraint!
     
     var selectedAnswer : Int = 0
     var answerButtons : [UIButton] = []
@@ -78,21 +79,23 @@ class TaskViewController: UIViewController, UITableViewDelegate {
                 self.user!.history!.append(self.user!.tasks![indexPath.row])
                 self.user!.tasks!.remove(at: indexPath.row)
                 PersistenceService.saveContext()
-                self.newPointsView.isHidden = false
-                self.newPointsView.alpha = 0
+                
+                // Show new total point count
                 self.newPoints.text = "\(self.user!.points) pts"
-                UIView.animate(withDuration: 0.1) {
+                self.newPointsContraintBot.constant = 20
+                UIView.animate(withDuration: 0.25) {
                     self.newPointsView.alpha = 1
+                    self.view.layoutIfNeeded()
                 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    UIView.animate(withDuration: 1) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    self.newPointsContraintBot.constant = -20
+                    UIView.animate(withDuration: 0.75) {
                         self.newPointsView.alpha = 0
+                        self.view.layoutIfNeeded()
                     }
                 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    self.newPointsView.isHidden = true
-                }
-                // Animate changes
+                
+                // Animate tableview changes
                 self.dataSource?.data.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
                 AudioServicesPlaySystemSound(1114)
